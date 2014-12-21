@@ -1,5 +1,5 @@
 /**
- * @version		1.0.0 14-Dec-14
+ * @version		1.1.0 21-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #ifndef __IMAGE_TRANSFORMER_H__
@@ -22,10 +22,7 @@ class ImageTransformer
     	void release(void);
     
     public:
-    	void setImageFilePath(const std::string imageFilePath)
-        {
-            this->_imageFilePath = imageFilePath;
-        }
+    	inline void setImageFilePath(const std::string imageFilePath);
     
     private:
     	typedef std::vector<ImageProcessor*>::iterator ImageProcessorsIterator;
@@ -34,5 +31,7 @@ class ImageTransformer
 		std::vector<ImageProcessor*> _listProcessors;
     	std::string _imageFilePath;
 };
+
+#include <Detail/ImageTransformerDetail.h>
 
 #endif

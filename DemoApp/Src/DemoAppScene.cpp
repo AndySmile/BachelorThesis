@@ -1,7 +1,8 @@
 /**
- * @version		1.0.1 18-Dec-14
+ * @version		1.0.2 21-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
+#include <SimpleLib/SimpleLib.h>
 #include <DemoAppScene.h>
 #include <ImageTransformer.h>
 #include <HeightMapProcessor.h>
@@ -32,7 +33,9 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
 
 DemoAppScene::~DemoAppScene(void)
 {
-    
+#ifdef _DEBUG
+	std::cout << "DemoAppScene Notice: call destructor!" << std::endl;
+#endif
 }
 
 DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
@@ -109,5 +112,5 @@ void DemoAppScene::release(void)
 
 std::string DemoAppScene::getTitle(void) const
 {
-    return "Image Transformer - Demo " __DATE__ " " __TIME__;
+    return "Image Transformer - Demo " __DATE__ " " __TIME__ " - Powered by ";
 }
