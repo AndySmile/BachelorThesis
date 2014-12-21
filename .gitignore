@@ -16,8 +16,10 @@
 #
 **/tmp/
 **/DemoApp
-**/TerrainDemo/TerrainDemo
+**/VoxelTerrainDemo/VoxelTerrainDemo
+**/MeshTerrainDemo/MeshTerrainDemo
 **/ImageParameter/ImageParameter
+*.o
 
 ##
 # Resource Files.

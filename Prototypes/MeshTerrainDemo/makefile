@@ -30,10 +30,9 @@
 # @copyright	Copyright (c) 2013-2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 
-APP_TITLE = VoxelTerrainDemo
-LIST_OBJECTS = 	Tmp/Main.o \
+APP_TITLE = MeshTerrainDemo
+LIST_OBJECTS = 	Tmp/AppMain.o \
 				Tmp/DemoScene.o \
-                Tmp/VoxelChunk.o \
 				Tmp/SimpleLib/Application.o \
 				Tmp/SimpleLib/Camera.o
 
