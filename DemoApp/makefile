@@ -26,33 +26,43 @@
 #	THE SOFTWARE.
 #
 # @author		Andy Liebke<coding@andysmiles4games.com>
-# @version		1.4.1 14-Dec-14
+# @version		1.5.0 23-Dec-14
 # @copyright	Copyright (c) 2013-2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 
 APP_TITLE = DemoApp
-LIST_OBJECTS = 	Tmp/DemoAppMain.o \
-				Tmp/DemoAppScene.o \
-                Tmp/TerrainAbstract.o \
-                Tmp/TerrainVoxel.o \
-                Tmp/TerrainMesh.o \
-                Tmp/ImageProcessorHeightMap.o \
-                Tmp/ImageProcessorWater.o \
-                Tmp/ImageTransformer.o \
-				Tmp/SimpleLib/Application.o \
-				Tmp/SimpleLib/Camera.o
+LIST_OBJECTS_COMMON = 	Tmp/DemoAppScene.o \
+                        Tmp/TerrainAbstract.o \
+                        Tmp/TerrainVoxel.o \
+                        Tmp/TerrainMesh.o \
+                        Tmp/ImageProcessorHeightMap.o \
+                        Tmp/ImageProcessorWater.o \
+                        Tmp/ImageTransformer.o \
+                        Tmp/SimpleLib/Application.o \
+                        Tmp/SimpleLib/Camera.o
 
+LIST_OBJECTS_APP = Tmp/DemoAppMain.o
+LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
+					Tmp/Test/ImageTransformerTest.o
+                        
 DEBUG_SETTINGS =  -g -D_DEBUG
 COMMON_SETTINGS = $(DEBUG_SETTINGS) -Weffc++ -Wall -I Src/ -I ../Lib/ -arch i386
 LINKER_SETTINGS = -framework OpenCV -framework sfml-window -framework sfml-system -framework sfml-graphics -framework OpenGL
+LINKER_TEST_SETTINGS = -lcppunit
 		
 .PHONY: build-executable
-build-executable: $(LIST_OBJECTS) 
+build-executable: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_APP)
 	g++ $(COMMON_SETTINGS) $(LINKER_SETTINGS) -o $(APP_TITLE) $^
 	
 Tmp/%.o: Src/%.cpp
 	@mkdir -p $(dir $@)
 	g++ $(COMMON_SETTINGS) -c $^ -o $@ 
+
+.PHONY: test
+test: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_TEST) 
+	@g++ $(COMMON_SETTINGS) $(LINKER_SETTINGS) $(LINKER_TEST_SETTINGS) -o $(APP_TITLE)Test $^
+	@echo "Running test cases..."
+	@./$(APP_TITLE)Test
 
 .PHONY: start
 start:

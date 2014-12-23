@@ -31,6 +31,7 @@ class ImageTransformer
     
     public:
     	inline void setImageFilePath(const std::string imageFilePath);
+    	inline std::string getImageFilePath(void) const;
     
     private:
     	typedef std::vector<ImageProcessorInterface*> ListImageProcessors;
