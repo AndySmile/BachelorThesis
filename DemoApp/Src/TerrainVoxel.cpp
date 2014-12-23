@@ -1,17 +1,15 @@
 /**
- * @version		1.0.1 18-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @version		2.0.0 23-Dec-14
+ * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
-#include <Terrain.h>
+#include <TerrainVoxel.h>
 #include <SFML/OpenGL.hpp>
 #include <stdlib.h>
 #include <assert.h>
 
-Terrain::Terrain(const unsigned short width, const unsigned short height, const unsigned short depth) :
-	_chunk(NULL),
-	_width(width),
-	_height(height),
-	_depth(depth)
+TerrainVoxel::TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth) :
+	TerrainAbstract(width, height, depth),
+    _chunk(NULL)
 {
     this->_chunk = new unsigned char**[width];
 	
@@ -30,11 +28,9 @@ Terrain::Terrain(const unsigned short width, const unsigned short height, const 
 	}
 }
 
-Terrain::Terrain(const Terrain& src) :
-    _chunk(NULL),
-    _width(src._width),
-    _height(src._height),
-    _depth(src._depth)
+TerrainVoxel::TerrainVoxel(const TerrainVoxel& src) :
+	TerrainAbstract(src),
+    _chunk(NULL)
 {
     this->_chunk = new unsigned char**[this->_width];
 	
@@ -53,16 +49,15 @@ Terrain::Terrain(const Terrain& src) :
 	}
 }
 
-Terrain::~Terrain(void)
+TerrainVoxel::~TerrainVoxel(void)
 {
     
 }
 
-Terrain& Terrain::operator = (const Terrain& src)
+TerrainVoxel& TerrainVoxel::operator = (const TerrainVoxel& src)
 {
-	this->_width = src._width;
-    this->_height = src._height;
-    this->_depth = src._depth;
+	TerrainAbstract::operator = (src);
+    
     this->_chunk = new unsigned char**[this->_width];
 	
 	for (unsigned short x = 0; x < this->_width; ++x)
@@ -82,7 +77,7 @@ Terrain& Terrain::operator = (const Terrain& src)
     return *this;
 }
 
-void Terrain::render(void) const
+void TerrainVoxel::render(void)
 {
     for (unsigned short x = 0; x < this->_width; ++x)
     {
@@ -103,7 +98,7 @@ void Terrain::render(void) const
     }
 }
 
-void Terrain::release(void)
+void TerrainVoxel::release(void)
 {
     if (this->_chunk != NULL)
 	{
@@ -120,16 +115,24 @@ void Terrain::release(void)
 	}
 }
 
-void Terrain::setVoxelState(const char state, const unsigned short x, const unsigned short y, const unsigned short z)
+void TerrainVoxel::setGridNode(const unsigned short x, const unsigned short y, const unsigned short z)
 {
+    for (unsigned short currHeight = 0; currHeight < y; ++currHeight) {
+        this->setVoxelState(1, x, currHeight, z);
+    }
+}
+
+void TerrainVoxel::setVoxelState(const char state, const unsigned short x, const unsigned short y, const unsigned short z)
+{
+#ifdef _DEBUG
 	assert(x < this->_width);
     assert(y < this->_height);
     assert(z < this->_depth);
-    
+#endif
 	this->_chunk[x][y][z] = state;
 }
 
-void Terrain::_renderVoxel(void) const
+void TerrainVoxel::_renderVoxel(void) const
 {
 	glBegin(GL_TRIANGLE_STRIP);
         glColor3f(0.0, 0.5f, 0.0f);

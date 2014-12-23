@@ -1,5 +1,5 @@
 /**
- * @version		1.3.1 18-Dec-14
+ * @version		1.4.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
  
@@ -38,7 +38,7 @@ namespace SimpleLib
 		glLoadIdentity();
 	}		
 			
-	void Application::run(IOpenGLScene* scene)
+	void Application::run(OpenGLSceneInterface* scene)
     {
     	ConfigParameter config;
         
@@ -49,12 +49,12 @@ namespace SimpleLib
         _run(scene, config);
     }
     
-    void Application::run(IOpenGLScene* scene, const ConfigParameter& config)
+    void Application::run(OpenGLSceneInterface* scene, const ConfigParameter& config)
     {
         _run(scene, config);
     }
     
-    void Application::_run(IOpenGLScene* scene, const ConfigParameter& config) 
+    void Application::_run(OpenGLSceneInterface* scene, const ConfigParameter& config)
 	{
 		sf::ContextSettings settings;
 		
@@ -81,16 +81,16 @@ namespace SimpleLib
 	
 		sf::Clock clockHnd;
 	
-		while(window.isOpen())
+		while (window.isOpen())
 		{
 			sf::Event currEvent;
 		
-			while(window.pollEvent(currEvent))
+			while (window.pollEvent(currEvent))
 			{
-				if(currEvent.type == sf::Event::Closed || (currEvent.type == sf::Event::KeyPressed && currEvent.key.code == sf::Keyboard::Escape)) {
+				if (currEvent.type == sf::Event::Closed || (currEvent.type == sf::Event::KeyPressed && currEvent.key.code == sf::Keyboard::Escape)) {
 					window.close();
 				}
-				else if(currEvent.type == sf::Event::Resized) {
+				else if (currEvent.type == sf::Event::Resized) {
 					_updateViewport(window);
 				}
 			}

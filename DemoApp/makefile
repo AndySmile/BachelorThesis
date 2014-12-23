@@ -33,9 +33,11 @@
 APP_TITLE = DemoApp
 LIST_OBJECTS = 	Tmp/DemoAppMain.o \
 				Tmp/DemoAppScene.o \
-                Tmp/Terrain.o \
-                Tmp/HeightMapProcessor.o \
-                Tmp/WaterProcessor.o \
+                Tmp/TerrainAbstract.o \
+                Tmp/TerrainVoxel.o \
+                Tmp/TerrainMesh.o \
+                Tmp/ImageProcessorHeightMap.o \
+                Tmp/ImageProcessorWater.o \
                 Tmp/ImageTransformer.o \
 				Tmp/SimpleLib/Application.o \
 				Tmp/SimpleLib/Camera.o

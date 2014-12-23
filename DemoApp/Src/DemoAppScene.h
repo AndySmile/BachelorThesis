@@ -1,14 +1,14 @@
 /**
- * @version		1.1.0 21-Dec-14
+ * @version		1.2.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #ifndef __DEMO_APP_SCENE_H__
 #define __DEMO_APP_SCENE_H__
 
-#include <SimpleLib/IOpenGLScene.h>
-#include <Terrain.h>
+#include <SimpleLib/OpenGLSceneInterface.h>
+#include <TerrainAbstract.h>
 
-class DemoAppScene : public SimpleLib::IOpenGLScene
+class DemoAppScene : public SimpleLib::OpenGLSceneInterface
 {
 	public:
     	DemoAppScene(void);
@@ -31,7 +31,7 @@ class DemoAppScene : public SimpleLib::IOpenGLScene
     private:
     	std::string _imagePath;
     	std::string _configFilePath;
-    	Terrain* _terrain;
+    	TerrainAbstract* _terrain;
 };
 
 #include <Detail/DemoAppSceneDetail.h>

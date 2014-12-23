@@ -6,6 +6,11 @@
 #define __DEMO_SCENE_H__
 
 #include <SimpleLib/IOpenGLScene.h>
+#include <vector>
+#include <glm/vec3.hpp>
+
+typedef std::vector<glm::vec3> ListVertices;
+typedef ListVertices::iterator ListVerticesIterator;
 
 class DemoScene : public SimpleLib::IOpenGLScene
 {
@@ -22,6 +27,11 @@ class DemoScene : public SimpleLib::IOpenGLScene
     
 	private:
     	void _createFromHeightMap(void);
+    	void _printError(void);
+    
+    private:
+    	ListVertices _listVertices;
+    	unsigned int _meshId;
 };
 
 #endif

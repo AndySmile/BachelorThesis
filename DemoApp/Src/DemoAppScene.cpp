@@ -1,11 +1,11 @@
 /**
- * @version		1.0.2 21-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @version		1.1.0 23-Dec-14
+ * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/SimpleLib.h>
 #include <DemoAppScene.h>
 #include <ImageTransformer.h>
-#include <HeightMapProcessor.h>
+#include <ImageProcessorHeightMap.h>
 #include <SFML/OpenGL.hpp>
 #include <assert.h>
 
@@ -62,12 +62,12 @@ void DemoAppScene::init(void)
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    ImageTransformer* transformer 			= new ImageTransformer(this->_imagePath);
-    HeightMapProcessor* heightMapProcessor 	= new HeightMapProcessor();
+    ImageTransformer* transformer 					= new ImageTransformer(this->_imagePath);
+    ImageProcessorHeightMap* heightMapProcessor 	= new ImageProcessorHeightMap();
     
     transformer->addProcessor(heightMapProcessor);
     
-    this->_terrain = transformer->generateTerrain();
+    this->_terrain = transformer->generateTerrain(ImageTransformer::VoxelTerrain);
     
     transformer->release();
     

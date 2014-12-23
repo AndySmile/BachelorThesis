@@ -1,8 +1,10 @@
 /**
- * @version		1.0.1 18-Dec-14
+ * @version		1.1.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #include <ImageTransformer.h>
+#include <TerrainVoxel.h>
+#include <TerrainMesh.h>
 #include <OpenCV/highgui.h>
 
 #ifdef _DEBUG
@@ -27,27 +29,38 @@ ImageTransformer::~ImageTransformer(void)
     
 }
 
-void ImageTransformer::addProcessor(ImageProcessor* processor)
+void ImageTransformer::addProcessor(ImageProcessorInterface* processor)
 {
 	this->_listProcessors.push_back(processor);
 }
 
-Terrain* ImageTransformer::generateTerrain(void)
+TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
 {
-	Terrain* terrain 	= NULL;
-	cv::Mat image 		= cv::imread(this->_imageFilePath);
+	TerrainAbstract* terrain 	= NULL;
+	cv::Mat image 				= cv::imread(this->_imageFilePath);
     
-    if (image.data == 0) {
-        std::cout << "image wasn't loaded!" << std::endl;
+    if (image.data == 0)
+    {
+#ifdef _DEBUG
+        std::cerr << "image wasn't loaded!" << std::endl;
+#endif
     }
     else
     {
         cv::Size dimension = image.size();
         
-        terrain = new Terrain(dimension.width, 10, dimension.height);
+        if (type == MeshTerrain) {
+        	terrain = new TerrainMesh(dimension.width, 10, dimension.height);
+        }
+        else if (type == VoxelTerrain) {
+            terrain = new TerrainVoxel(dimension.width, 10, dimension.height);
+        }
         
-        for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
-            (*it)->process(image, terrain);
+        if (terrain != NULL)
+        {
+            for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
+                (*it)->process(image, terrain);
+            }
         }
     }
     
@@ -60,7 +73,7 @@ void ImageTransformer::release()
     {
         while (!this->_listProcessors.empty())
         {
-            ImageProcessor* currProcessor = this->_listProcessors.back();
+            ImageProcessorInterface* currProcessor = this->_listProcessors.back();
             
             if (currProcessor != NULL)
             {

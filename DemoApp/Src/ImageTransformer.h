@@ -1,12 +1,12 @@
 /**
- * @version		1.1.0 21-Dec-14
+ * @version		1.2.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #ifndef __IMAGE_TRANSFORMER_H__
 #define __IMAGE_TRANSFORMER_H__
 
-#include <ImageProcessor.h>
-#include <Terrain.h>
+#include <ImageProcessorInterface.h>
+#include <TerrainAbstract.h>
 #include <vector>
 #include <string>
 
@@ -17,18 +17,27 @@ class ImageTransformer
     	ImageTransformer(void);
     	virtual ~ImageTransformer(void);
     
-    	void addProcessor(ImageProcessor* processor);
-    	Terrain* generateTerrain(void);
-    	void release(void);
+    public:
+    	enum TerrainType
+        {
+        	VoxelTerrain = 1,
+            MeshTerrain = 2
+        };
+    
+    public:
+        void addProcessor(ImageProcessorInterface* processor);
+        TerrainAbstract* generateTerrain(TerrainType type);
+        void release(void);
     
     public:
     	inline void setImageFilePath(const std::string imageFilePath);
     
     private:
-    	typedef std::vector<ImageProcessor*>::iterator ImageProcessorsIterator;
+    	typedef std::vector<ImageProcessorInterface*> ListImageProcessors;
+    	typedef ListImageProcessors::iterator ImageProcessorsIterator;
     
 	private:
-		std::vector<ImageProcessor*> _listProcessors;
+		ListImageProcessors _listProcessors;
     	std::string _imageFilePath;
 };
 
