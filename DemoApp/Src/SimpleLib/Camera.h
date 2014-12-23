@@ -1,5 +1,5 @@
 /**
- * @version		1.0.0 03-Aug-14
+ * @version		1.1.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __CAMERA_H__
@@ -22,19 +22,15 @@ namespace SimpleLib
 			
 			void update(void);
 			
-			void setPosition(const glm::vec3 position)
-			{
-				this->_position = position;
-			}
-			
-			glm::vec3 getPosition(void) const
-			{
-				return this->_position;
-			}
+        public:
+			inline void setPosition(const glm::vec3 position);
+			inline glm::vec3 getPosition(void) const;
 			
 		private:
 			glm::vec3 _position;
 	};
 }
+
+#include <SimpleLib/Detail/CameraDetail.h>
 
 #endif
