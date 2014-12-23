@@ -1,5 +1,5 @@
-Third Party Libraries
-=====================
+Third Party Libraries And Frameworks
+=====================================
 This directory actually includes third party libraries. 
 But to prevent trouble with those licenses of each library, I've decided to not add them in
 this repository. So, if you want to compile those application in this repository, go to

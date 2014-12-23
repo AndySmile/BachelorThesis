@@ -1,11 +1,11 @@
 /**
- * @version		2.0.0 23-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @version     2.0.0 23-Dec-14
+ * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #include <ImageProcessorHeightMap.h>
 
 #ifdef _DEBUG
-	#include <iostream>
+    #include <iostream>
 #endif
 
 ImageProcessorHeightMap::ImageProcessorHeightMap(void)
@@ -20,9 +20,9 @@ ImageProcessorHeightMap::~ImageProcessorHeightMap(void)
 
 void ImageProcessorHeightMap::process(const cv::Mat& image, TerrainAbstract* terrain)
 {
-	unsigned short numberChannels	= image.channels();
-    unsigned int numberRows 		= image.rows;
-    unsigned int numberCols 		= image.cols;
+    unsigned short numberChannels   = image.channels();
+    unsigned int numberRows         = image.rows;
+    unsigned int numberCols         = image.cols;
     
 #ifdef _DEBUG
     std::cout << "image channels : " << numberChannels << std::endl;
