@@ -1,5 +1,5 @@
 /**
- * @version		2.0.0 23-Dec-14
+ * @version		2.1.0 24-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <TerrainMesh.h>
@@ -34,10 +34,49 @@ TerrainMesh::TerrainMesh(const unsigned short width, const unsigned short height
 	}
 }
 
+TerrainMesh::TerrainMesh(const TerrainMesh& src) :
+	TerrainAbstract(src),
+	_grid(NULL),
+	_meshId(0)
+{
+#ifdef _DEBUG
+	std::cout << "[DEBUG] call TerrainMesh copy constructor!" << std::endl;
+#endif
+
+    this->_grid = new float*[this->_width];
+	
+	for (unsigned short x = 0; x < this->_width; ++x)
+	{
+		this->_grid[x] = new float[this->_depth];
+		
+		for (unsigned short z = 0; z < this->_depth; ++z) {
+			this->_grid[x][z] = (src._grid != NULL) ? src._grid[x][z] : 0.0f;
+		}
+	}
+}
+
 TerrainMesh::~TerrainMesh(void)
 {
 	this->_grid 	= NULL;
     this->_meshId	= 0;
+}
+
+TerrainMesh& TerrainMesh::operator = (const TerrainMesh& src)
+{
+	TerrainAbstract::operator = (src);
+    
+    this->_grid = new float*[this->_width];
+	
+	for (unsigned short x = 0; x < this->_width; ++x)
+	{
+		this->_grid[x] = new float[this->_depth];
+		
+		for (unsigned short z = 0; z < this->_depth; ++z) {
+			this->_grid[x][z] = (src._grid != NULL) ? src._grid[x][z] : 0.0f;
+		}
+	}
+    
+    return *this;
 }
 
 void TerrainMesh::setGridNode(const unsigned short x, const unsigned short y, const unsigned short z)
@@ -68,37 +107,22 @@ void TerrainMesh::render(void)
         
         glNewList(this->_meshId, GL_COMPILE);
         
-        SimpleLib::OpenGLHelper::printError();
-        
-        for (unsigned int z=0; z < this->_depth - 1; ++z)
-        {
-            glBegin(GL_TRIANGLE_STRIP);
+            SimpleLib::OpenGLHelper::printError();
             
-            for (unsigned int x=0; x < this->_width; ++x)
+            for (unsigned short z=0; z < this->_depth - 1; ++z)
             {
-                /*sf::Color currColor = heightMap.getPixel(x, z);
-                float secondAvgColor = 0.0f;
-                float currAvgColor 	= (currColor.r + currColor.g + currColor.b) * 0.3333f;
-                currAvgColor 		= (currAvgColor / 256.0f) * 10.0f;
+                glBegin(GL_TRIANGLE_STRIP);
                 
-                if (z + 1 < dimension.y)
+                for (unsigned short x=0; x < this->_width; ++x)
                 {
-                    sf::Color secondColor = heightMap.getPixel(x, z + 1);
-                    secondAvgColor 	= (secondColor.r + secondColor.g + secondColor.b) * 0.3333f;
-                    secondAvgColor 		= (secondAvgColor / 256.0f) * 10.0f;
+                    float currHeight = this->_grid[x][z];
+                    float nextHeight = (z + 1 < this->_height) ? this->_grid[x][z + 1] : currHeight;
+                    
+                    glVertex3f(offsetX + (x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
+                    glVertex3f(offsetX + (x * 2.0f), currHeight, offsetZ + (z * 2.0f));
                 }
-                else {
-                    secondAvgColor = currAvgColor;
-                }*/
-                
-                float currHeight = this->_grid[x][z];
-                float nextHeight = (z + 1 < this->_height) ? this->_grid[x][z + 1] : currHeight;
-                
-                glVertex3f(offsetX + (x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
-                glVertex3f(offsetX + (x * 2.0f), currHeight, offsetZ + (z * 2.0f));
+                glEnd();
             }
-            glEnd();
-        }
         
         glEndList();
         

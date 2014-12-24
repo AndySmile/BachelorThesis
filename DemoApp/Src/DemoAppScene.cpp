@@ -1,5 +1,5 @@
 /**
- * @version		1.1.0 23-Dec-14
+ * @version		1.2.0 24-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/SimpleLib.h>
@@ -7,13 +7,14 @@
 #include <ImageTransformer.h>
 #include <ImageProcessorHeightMap.h>
 #include <SFML/OpenGL.hpp>
-#include <assert.h>
 
 #ifdef _DEBUG
 	#include <iostream>
+    #include <assert.h>
 #endif
 
 DemoAppScene::DemoAppScene(void) :
+	_isLightEnabled(false),
 	_imagePath(""),
 	_configFilePath(""),
 	_terrain(NULL)
@@ -22,6 +23,7 @@ DemoAppScene::DemoAppScene(void) :
 }
 
 DemoAppScene::DemoAppScene(const DemoAppScene& src) :
+	_isLightEnabled(src._isLightEnabled),
 	_imagePath(src._imagePath),
 	_configFilePath(src._configFilePath),
 	_terrain(NULL)
@@ -42,6 +44,7 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 {
 	this->_imagePath 		= src._imagePath;
     this->_configFilePath 	= src._configFilePath;
+    this->_isLightEnabled	= src._isLightEnabled;
     this->_terrain 			= NULL;
     
 #ifdef _DEBUG
@@ -53,13 +56,17 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 
 void DemoAppScene::init(void)
 {
-	float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
+	if (this->_isLightEnabled)
+    {
+        float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
+        
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    }
     
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
 	glEnable(GL_NORMALIZE);
-    //glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     ImageTransformer* transformer 					= new ImageTransformer(this->_imagePath);

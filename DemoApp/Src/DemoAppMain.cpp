@@ -1,5 +1,5 @@
 /**
- * @version		1.0.0 14-Dec-14
+ * @version		1.0.1 24-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #include <SimpleLib/Application.h>
@@ -10,7 +10,7 @@
 int main(const int argc, char** argv)
 {
 	if (argc <= 1) {
-        std::cout << "Error: you have to entere the path to the input image!" << std::endl;
+        std::cerr << "Error: you have to entere the path to the input image!" << std::endl;
     }
 	else
     {
