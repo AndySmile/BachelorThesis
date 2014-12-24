@@ -3,8 +3,8 @@
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
-#ifndef __OPENGL_SCENE_INTERFACE_H__
-#define __OPENGL_SCENE_INTERFACE_H__
+#ifndef __SIMPLE_LIB_OPENGL_SCENE_INTERFACE_H__
+#define __SIMPLE_LIB_OPENGL_SCENE_INTERFACE_H__
 
 #include <SFML/Window.hpp>
 #include <string>

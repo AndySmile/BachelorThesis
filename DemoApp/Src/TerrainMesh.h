@@ -16,6 +16,10 @@ class TerrainMesh : public TerrainAbstract
     	void setGridNode(const unsigned short x, const unsigned short y, const unsigned short z);
     	void render(void);
     	void release(void);
+    
+    private:
+    	float** _grid;
+    	unsigned int _meshId;
 };
 
 #endif

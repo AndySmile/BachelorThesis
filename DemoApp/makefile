@@ -39,7 +39,8 @@ LIST_OBJECTS_COMMON = 	Tmp/DemoAppScene.o \
                         Tmp/ImageProcessorWater.o \
                         Tmp/ImageTransformer.o \
                         Tmp/SimpleLib/Application.o \
-                        Tmp/SimpleLib/Camera.o
+                        Tmp/SimpleLib/Camera.o \
+                        Tmp/SimpleLib/OpenGLHelper.o
 
 LIST_OBJECTS_APP = Tmp/DemoAppMain.o
 LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \

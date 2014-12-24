@@ -11,17 +11,17 @@ TerrainVoxel::TerrainVoxel(const unsigned short width, const unsigned short heig
 	TerrainAbstract(width, height, depth),
     _chunk(NULL)
 {
-    this->_chunk = new unsigned char**[width];
+    this->_chunk = new unsigned char**[this->_width];
 	
-	for (unsigned short x = 0; x < width; ++x)
+	for (unsigned short x = 0; x < this->_width; ++x)
 	{
-		this->_chunk[x] = new unsigned char*[height];
+		this->_chunk[x] = new unsigned char*[this->_height];
 		
-		for (unsigned short y = 0; y < height; ++y)
+		for (unsigned short y = 0; y < this->_height; ++y)
         {
-			this->_chunk[x][y] = new unsigned char[depth];
+			this->_chunk[x][y] = new unsigned char[this->_depth];
 			
-			for (unsigned short z = 0; z < depth; ++z) {
+			for (unsigned short z = 0; z < this->_depth; ++z) {
 				this->_chunk[x][y][z] = 0;
 			}
 		}

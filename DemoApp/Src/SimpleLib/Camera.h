@@ -2,8 +2,8 @@
  * @version		1.1.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
-#ifndef __CAMERA_H__
-#define __CAMERA_H__
+#ifndef __SIMPLE_LIB_CAMERA_H__
+#define __SIMPLE_LIB_CAMERA_H__
 
 #include <glm/vec3.hpp>
 

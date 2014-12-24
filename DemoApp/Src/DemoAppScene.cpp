@@ -56,18 +56,18 @@ void DemoAppScene::init(void)
 	float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
     
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
 	glEnable(GL_NORMALIZE);
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    //glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     ImageTransformer* transformer 					= new ImageTransformer(this->_imagePath);
     ImageProcessorHeightMap* heightMapProcessor 	= new ImageProcessorHeightMap();
     
     transformer->addProcessor(heightMapProcessor);
     
-    this->_terrain = transformer->generateTerrain(ImageTransformer::VoxelTerrain);
+    this->_terrain = transformer->generateTerrain(ImageTransformer::MeshTerrain);
     
     transformer->release();
     

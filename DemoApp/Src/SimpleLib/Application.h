@@ -3,8 +3,8 @@
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
  
-#ifndef __APPLICATION_H__
-#define __APPLICATION_H__
+#ifndef __SIMPLE_LIB_APPLICATION_H__
+#define __SIMPLE_LIB_APPLICATION_H__
 
 #include <SFML/Window.hpp>
 #include <SimpleLib/OpenGLSceneInterface.h>
