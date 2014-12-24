@@ -16,7 +16,7 @@
 #
 **/tmp/
 **/DemoApp
-**/DemoApp/DemoAppTest
+DemoApp/DemoAppTest
 **/VoxelTerrainDemo/VoxelTerrainDemo
 **/MeshTerrainDemo/MeshTerrainDemo
 **/ImageParameter/ImageParameter
