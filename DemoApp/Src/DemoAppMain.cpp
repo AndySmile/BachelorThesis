@@ -1,5 +1,5 @@
 /**
- * @version		1.0.1 24-Dec-14
+ * @version		1.1.0 26-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #include <SimpleLib/Application.h>
@@ -18,16 +18,47 @@ int main(const int argc, char** argv)
         
         scene->setImagePath(argv[1]);
         
-        if (argc >= 3) {
-            scene->setConfigFilePath(argv[2]);
+        SimpleLib::ConfigParameter config;
+        bool usingDefaultValues = (argc < 3);
+        AppConfig* appConfig = NULL;
+        
+        if (argc >= 3)
+        {
+            appConfig = new AppConfig();
+            
+            SimpleLib::DataCollection::ErrorCode errorCode = appConfig->loadFromFile(argv[2]);
+            
+            if (errorCode != SimpleLib::DataCollection::None)
+            {
+#ifdef _DEBUG
+				std::cout << "[WARNING]: couldn't load configuration file! Using default values instead!" << std::endl;
+#endif
+				usingDefaultValues = true;
+            }
+            else
+            {
+                appConfig->assignScreenValues(&config);
+                scene->setAppConfig(appConfig);
+            }
         }
         
-        SimpleLib::ConfigParameter config;
-        config.screenWidth 	= 1024;
-        config.screenHeight = 900;
-        config.isWindowMode	= true;
+        if (usingDefaultValues)
+        {
+            config.screenWidth 	= 1024;
+            config.screenHeight = 900;
+            config.isWindowMode	= true;
+        }
         
-        SimpleLib::Application::run(scene);
+        SimpleLib::Application::run(scene, config);
+        
+        if (appConfig != NULL)
+        {
+#ifdef _DEBUG
+			std::cout << "[DEBUG] Releasing app config object!" << std::endl;
+#endif
+			delete appConfig;
+            appConfig = NULL;
+        }
         
         delete scene;
         scene = NULL;

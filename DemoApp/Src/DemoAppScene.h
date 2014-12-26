@@ -1,5 +1,5 @@
 /**
- * @version		1.3.0 24-Dec-14
+ * @version		1.4.0 26-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #ifndef __DEMO_APP_SCENE_H__
@@ -7,6 +7,7 @@
 
 #include <SimpleLib/OpenGLSceneInterface.h>
 #include <TerrainAbstract.h>
+#include <AppConfig.h>
 
 class DemoAppScene : public SimpleLib::OpenGLSceneInterface
 {
@@ -28,12 +29,14 @@ class DemoAppScene : public SimpleLib::OpenGLSceneInterface
     	inline void setImagePath(const std::string path);
     	inline void setConfigFilePath(const std::string path);
     	inline void enableLight(const bool isEnabled=true);
+    	inline void setAppConfig(AppConfig* config);
     
     private:
     	bool _isLightEnabled;
     	std::string _imagePath;
     	std::string _configFilePath;
     	TerrainAbstract* _terrain;
+    	AppConfig* _config;
 };
 
 #include <Detail/DemoAppSceneDetail.h>

@@ -32,7 +32,7 @@ namespace SimpleLib
         private:
         	std::string _trimValue(const std::string value);
         
-        private:
+        protected:
         	typedef std::map<std::string, int> DataMapItem;
         	typedef std::map<std::string, DataMapItem> DataMap;
         

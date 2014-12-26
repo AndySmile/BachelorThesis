@@ -1,5 +1,5 @@
 /**
- * @version		1.2.0 24-Dec-14
+ * @version		1.3.0 26-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/SimpleLib.h>
@@ -17,7 +17,8 @@ DemoAppScene::DemoAppScene(void) :
 	_isLightEnabled(false),
 	_imagePath(""),
 	_configFilePath(""),
-	_terrain(NULL)
+	_terrain(NULL),
+	_config(NULL)
 {
 
 }
@@ -26,7 +27,8 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
 	_isLightEnabled(src._isLightEnabled),
 	_imagePath(src._imagePath),
 	_configFilePath(src._configFilePath),
-	_terrain(NULL)
+    _terrain(NULL),
+    _config(NULL)
 {
 #ifdef _DEBUG
     std::cout << "call copy constructor!" << std::endl;
@@ -69,12 +71,26 @@ void DemoAppScene::init(void)
 	glEnable(GL_NORMALIZE);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    ImageTransformer* transformer 					= new ImageTransformer(this->_imagePath);
-    ImageProcessorHeightMap* heightMapProcessor 	= new ImageProcessorHeightMap();
+    ImageTransformer* transformer = new ImageTransformer(this->_imagePath);
+    ImageTransformer::TerrainType terrainType = ImageTransformer::MeshTerrain;
     
-    transformer->addProcessor(heightMapProcessor);
+    if (this->_config != NULL)
+    {
+        this->_config->assignProcessors(transformer);
+        
+        terrainType = this->_config->getTerrainType();
+    }
+    else
+    {
+#ifdef _DEBUG
+		std::cout << "[DEBUG]  DemoAppScene::init: No app config object defined! using default values instead!" << std::endl;
+#endif
+    	ImageProcessorHeightMap* heightMapProcessor = new ImageProcessorHeightMap();
+        
+    	transformer->addProcessor(heightMapProcessor);
+    }
     
-    this->_terrain = transformer->generateTerrain(ImageTransformer::MeshTerrain);
+    this->_terrain = transformer->generateTerrain(terrainType);
     
     transformer->release();
     
