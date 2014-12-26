@@ -26,7 +26,7 @@
 #	THE SOFTWARE.
 #
 # @author		Andy Liebke<coding@andysmiles4games.com>
-# @version		1.5.0 23-Dec-14
+# @version		1.5.1 26-Dec-14
 # @copyright	Copyright (c) 2013-2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 
@@ -40,11 +40,13 @@ LIST_OBJECTS_COMMON = 	Tmp/DemoAppScene.o \
                         Tmp/ImageTransformer.o \
                         Tmp/SimpleLib/Application.o \
                         Tmp/SimpleLib/Camera.o \
-                        Tmp/SimpleLib/OpenGLHelper.o
+                        Tmp/SimpleLib/OpenGLHelper.o \
+                        Tmp/SimpleLib/DataCollection.o
 
 LIST_OBJECTS_APP = Tmp/DemoAppMain.o
 LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
-					Tmp/Test/ImageTransformerTest.o
+					Tmp/Test/ImageTransformerTest.o \
+                    Tmp/Test/SimpleLib/DataCollectionTest.o
                         
 DEBUG_SETTINGS =  -g -D_DEBUG
 COMMON_SETTINGS = $(DEBUG_SETTINGS) -Weffc++ -Wall -I Src/ -I ../Lib/ -arch i386
@@ -73,6 +75,7 @@ start:
 clean:
 	rm -rf Tmp/
 	rm -f $(APP_TITLE)
+	rm -f $(APP_TITLE)Test
 	
 .PHONY: leakcheck
 leakcheck:
