@@ -37,6 +37,7 @@ class DemoAppScene : public SimpleLib::OpenGLSceneInterface
     	std::string _configFilePath;
     	TerrainAbstract* _terrain;
     	AppConfig* _config;
+    	SceneConfigParameter _sceneConfig;
 };
 
 #include <Detail/DemoAppSceneDetail.h>

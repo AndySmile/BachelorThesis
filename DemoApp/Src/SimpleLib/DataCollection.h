@@ -1,10 +1,11 @@
 /**
- * @version 	1.1.0 26-Dec-14
+ * @version 	1.7.0 27-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __SIMPLE_LIB_DATA_COLLECTION_H__
 #define __SIMPLE_LIB_DATA_COLLECTION_H__
 
+#include <SimpleLib/SimpleLib.h>
 #include <string>
 #include <map>
 
@@ -28,9 +29,10 @@ namespace SimpleLib
         
         	DataCollection::ErrorCode loadFromFile(const std::string& path);
         	int getValue(const std::string& group, const std::string& key);
+        	void assignWindowConfig(ConfigParameter* config);
         
         private:
-        	std::string _trimValue(const std::string value);
+        	std::string _trimValue(const std::string value) const;
         
         protected:
         	typedef std::map<std::string, int> DataMapItem;

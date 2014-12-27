@@ -1,5 +1,5 @@
 /**
- * @version		1.1.0 26-Dec-14
+ * @version		1.2.0 27-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #include <SimpleLib/Application.h>
@@ -10,7 +10,7 @@
 int main(const int argc, char** argv)
 {
 	if (argc <= 1) {
-        std::cerr << "Error: you have to entere the path to the input image!" << std::endl;
+        std::cerr << "\x1b[37;41m[ERROR]: you have to enter the path to the input image!\x1b[0m" << std::endl;
     }
 	else
     {
@@ -37,7 +37,7 @@ int main(const int argc, char** argv)
             }
             else
             {
-                appConfig->assignScreenValues(&config);
+                appConfig->assignWindowConfig(&config);
                 scene->setAppConfig(appConfig);
             }
         }

@@ -1,5 +1,5 @@
 /**
- * @version 	1.0.0 26-Dec-14
+ * @version 	1.1.0 27-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/DataCollection.h>
@@ -111,6 +111,32 @@ namespace SimpleLib
         return errorCode;
     }
 
+	void DataCollection::assignWindowConfig(ConfigParameter* config)
+    {
+        DataMap::iterator groupIterator = this->_data.find("window");
+        
+        if (groupIterator != this->_data.end())
+        {
+            for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it)
+            {
+                if (it->first.compare("screen_width") == 0) {
+                    config->screenWidth = it->second;
+                }
+                else if (it->first.compare("screen_height") == 0) {
+                    config->screenHeight = it->second;
+                }
+                else if (it->first.compare("fullscreen") == 0) {
+                    config->isWindowMode = (it->second == 0);
+                }
+#ifdef _DEBUG
+                else {
+                    std::cout << "[DEBUG] skipped configuration item '" << it->first << "'!" << std::endl;
+                }
+#endif
+            }
+        }
+    }
+
 	/**
      * Returns value of particular group and its key identifier.
      *
@@ -127,7 +153,7 @@ namespace SimpleLib
         return (this->_data.find(group) != this->_data.end() && this->_data[group].find(key) != this->_data[group].end()) ? this->_data[group].find(key)->second : 0;
     }
     
-    std::string DataCollection::_trimValue(const std::string value)
+    std::string DataCollection::_trimValue(const std::string value) const
     {
         std::string result(value);
     	bool isReady = false;

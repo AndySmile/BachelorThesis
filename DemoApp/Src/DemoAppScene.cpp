@@ -1,5 +1,5 @@
 /**
- * @version		1.3.0 26-Dec-14
+ * @version		1.4.0 27-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/SimpleLib.h>
@@ -58,25 +58,13 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 
 void DemoAppScene::init(void)
 {
-	if (this->_isLightEnabled)
-    {
-        float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
-        
-        glEnable(GL_LIGHTING);
-        glEnable(GL_LIGHT0);
-        glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
-    }
-    
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_NORMALIZE);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    ImageTransformer* transformer = new ImageTransformer(this->_imagePath);
-    ImageTransformer::TerrainType terrainType = ImageTransformer::MeshTerrain;
+    ImageTransformer* transformer 				= new ImageTransformer(this->_imagePath);
+    ImageTransformer::TerrainType terrainType 	= ImageTransformer::MeshTerrain;
     
     if (this->_config != NULL)
     {
         this->_config->assignProcessors(transformer);
+        this->_config->assignSceneConfig(&this->_sceneConfig);
         
         terrainType = this->_config->getTerrainType();
     }
@@ -88,6 +76,8 @@ void DemoAppScene::init(void)
     	ImageProcessorHeightMap* heightMapProcessor = new ImageProcessorHeightMap();
         
     	transformer->addProcessor(heightMapProcessor);
+        
+        this->_sceneConfig.isLightEnabled = false;
     }
     
     this->_terrain = transformer->generateTerrain(terrainType);
@@ -96,6 +86,19 @@ void DemoAppScene::init(void)
     
     delete transformer;
     transformer = NULL;
+    
+    if (this->_isLightEnabled || this->_sceneConfig.isLightEnabled)
+    {
+        float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
+        
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    }
+    
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_NORMALIZE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void DemoAppScene::update(const float currTime)

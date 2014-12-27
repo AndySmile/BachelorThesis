@@ -1,5 +1,5 @@
 /**
- * @version		1.0.0 26-Dec-14
+ * @version		1.1.0 27-Dec-14
  * @copyright	Copyright (c) by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <AppConfig.h>
@@ -18,25 +18,20 @@ AppConfig::~AppConfig(void)
     
 }
 
-void AppConfig::assignScreenValues(SimpleLib::ConfigParameter* config)
+void AppConfig::assignSceneConfig(SceneConfigParameter* config)
 {
-	DataMap::iterator groupIterator = this->_data.find("scene");
-
-	if (groupIterator != this->_data.end())
+    DataMap::iterator groupIterator = this->_data.find("scene");
+    
+    if (groupIterator != this->_data.end())
     {
-    	for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it) {
-        	if (it->first.compare("screen_width") == 0) {
-                config->screenWidth = it->second;
-            }
-            else if (it->first.compare("screen_height") == 0) {
-                config->screenHeight = it->second;
-            }
-            else if (it->first.compare("fullscreen") == 0) {
-                config->screenHeight = it->second;
+        for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it)
+        {
+            if (it->first.compare("enable_light") == 0) {
+                config->isLightEnabled = (it->second == 1);
             }
 #ifdef _DEBUG
-			else {
-            	std::cout << "[DEBUG] skipped configuration item '" << it->first << "'!" << std::endl;
+            else {
+                std::cout << "[DEBUG] skipped configuration item '" << it->first << "' in group 'scene'!" << std::endl;
             }
 #endif
         }
@@ -48,7 +43,7 @@ void AppConfig::assignProcessors(ImageTransformer* transformer)
     
 }
 
-ImageTransformer::TerrainType AppConfig::getTerrainType(void)
+ImageTransformer::TerrainType AppConfig::getTerrainType(void) const
 {
     return ImageTransformer::MeshTerrain;
 }
