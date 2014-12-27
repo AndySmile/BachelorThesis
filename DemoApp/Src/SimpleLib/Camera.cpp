@@ -1,6 +1,11 @@
 /**
+ * SimpleLib - Camera Model Header.
+ *
+ * @author		Andy Liebke\<coding@andysmiles4games.com>
+ * @file		SimpleLib/Camera.cpp
  * @version		1.0.0 03-Aug-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup		simplelib
  */
 
 #include <SimpleLib/Camera.h>

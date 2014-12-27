@@ -1,6 +1,11 @@
 /**
+ * SimpleLib - Camera Model.
+ *
+ * @author		Andy Liebke\<coding@andysmiles4games.com\>
+ * @file		SimpleLib/Camera.h
  * @version		1.1.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup		simplelib
  */
 #ifndef __SIMPLE_LIB_CAMERA_H__
 #define __SIMPLE_LIB_CAMERA_H__

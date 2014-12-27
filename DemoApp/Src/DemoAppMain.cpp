@@ -1,6 +1,10 @@
 /**
+ * @defgroup demoapp DemoApp
+ *
+ * @author		Andy Liebke\<coding@andysmiles4games.com\>
+ * @file		Src/DemoAppMain.cpp
  * @version		1.2.0 27-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/Application.h>
 #include <DemoAppScene.h>

@@ -1,4 +1,6 @@
 /**
+ * @defgroup simplelib SimpleLib
+ *
  * SimpleLib - Common Header.
  *
  * @author		Andy Liebke\<coding@andymiles4games.com\>

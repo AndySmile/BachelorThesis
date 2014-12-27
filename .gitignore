@@ -2,7 +2,7 @@
 # BachelorThesis - GIT Ignore File.
 #
 # @author       Andy Liebke<coding@andysmiles4games.com>
-# @version      1.1.0 23-Dec-14
+# @version      1.2.0 27-Dec-14
 # @copyright    Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 
@@ -32,3 +32,8 @@ Resource
 #
 Lib/*
 !Lib/README.md
+
+##
+# Documentation Files.
+#
+**/Doc/Reference

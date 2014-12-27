@@ -1,6 +1,11 @@
 /**
+ * SimpleLib - Application Model Header.
+ *
+ * @author		Andy Liebke\<coding@andysmiles4games.com\>
+ * @file		Src/SimpleLib/Application.h
  * @version		1.3.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup		simplelib
  */
  
 #ifndef __SIMPLE_LIB_APPLICATION_H__

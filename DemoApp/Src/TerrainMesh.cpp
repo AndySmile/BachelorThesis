@@ -1,6 +1,11 @@
 /**
+ * DemoApp - Terrain Mesh Model.
+ *
+ * @author		Andy Liebke\<coding@andysmiles4games.com\>
+ * @file		Src/TerrainMesh.cpp
  * @version		2.1.0 24-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup		demoapp
  */
 #include <TerrainMesh.h>
 #include <SimpleLib/OpenGLHelper.h>
