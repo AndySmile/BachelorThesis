@@ -1,11 +1,16 @@
 /**
- * @version		1.1.1 28-Dec-14
- * @copyright	Copyright (c) by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * SimpleLib - App Config Model.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/AppConfig.cpp
+ * @version     1.1.1 28-Dec-14
+ * @copyright   Copyright (c) by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     simplelib
  */
 #include <AppConfig.h>
 
 #ifdef _DEBUG
-	#include <SimpleLib/Logger.h>
+    #include <SimpleLib/Logger.h>
 #endif
 
 AppConfig::AppConfig(void)
