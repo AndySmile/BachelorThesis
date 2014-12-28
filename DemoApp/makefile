@@ -31,25 +31,25 @@
 #
 
 APP_TITLE = DemoApp
-LIST_OBJECTS_COMMON = 	Tmp/DemoAppScene.o \
-                        Tmp/TerrainAbstract.o \
-                        Tmp/TerrainVoxel.o \
-                        Tmp/TerrainMesh.o \
-                        Tmp/ImageProcessorHeightMap.o \
-                        Tmp/ImageProcessorWater.o \
-                        Tmp/ImageTransformer.o \
-                        Tmp/AppConfig.o \
-                        Tmp/SimpleLib/Application.o \
-                        Tmp/SimpleLib/Camera.o \
-                        Tmp/SimpleLib/OpenGLHelper.o \
-                        Tmp/SimpleLib/DataCollection.o \
-                        Tmp/SimpleLib/Logger.o 
+LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
+						Tmp/TerrainAbstract.o \
+						Tmp/TerrainVoxel.o \
+						Tmp/TerrainMesh.o \
+						Tmp/ImageProcessorHeightMap.o \
+						Tmp/ImageProcessorWater.o \
+						Tmp/ImageTransformer.o \
+						Tmp/AppConfig.o \
+						Tmp/SimpleLib/Application.o \
+						Tmp/SimpleLib/Camera.o \
+						Tmp/SimpleLib/OpenGLHelper.o \
+						Tmp/SimpleLib/DataCollection.o \
+						Tmp/SimpleLib/Logger.o 
 
 LIST_OBJECTS_APP = Tmp/DemoAppMain.o
 LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
 					Tmp/Test/ImageTransformerTest.o \
-                    Tmp/Test/SimpleLib/DataCollectionTest.o
-                        
+					Tmp/Test/SimpleLib/DataCollectionTest.o
+						
 DEBUG_SETTINGS =  -g -D_DEBUG
 COMMON_SETTINGS = $(DEBUG_SETTINGS) -Weffc++ -Wall -I Src/ -I ../Lib/ -arch i386
 LINKER_SETTINGS = -framework OpenCV -framework sfml-window -framework sfml-system -framework sfml-graphics -framework OpenGL
