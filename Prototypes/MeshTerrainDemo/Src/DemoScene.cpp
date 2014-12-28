@@ -1,17 +1,17 @@
 /**
- * @version		1.0.1 22-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. 
+ * @version     1.0.1 22-Dec-14
+ * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved. 
  */
 #include <DemoScene.h>
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics/Image.hpp>
 
 #ifdef _DEBUG
-	#include <iostream>
+    #include <iostream>
 #endif
 
 DemoScene::DemoScene(void) :
-	_meshId(0)
+    _meshId(0)
 {
 }
 
@@ -21,12 +21,12 @@ DemoScene::~DemoScene(void)
 
 void DemoScene::init(void)
 {
-	float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
+    float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
 
-	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
-	glEnable(GL_NORMALIZE);
+    glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_LIGHTING);
+    //glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
@@ -35,7 +35,7 @@ void DemoScene::init(void)
 
 void DemoScene::_createFromHeightMap(void)
 {
-	if (this->_meshId == 0)
+    if (this->_meshId == 0)
     {
 #ifdef _DEBUG
         std::cout << "generate terrain from height map" << std::endl;
@@ -71,14 +71,14 @@ void DemoScene::_createFromHeightMap(void)
                     {
                         sf::Color currColor = heightMap.getPixel(x, z);
                         float secondAvgColor = 0.0f;
-                        float currAvgColor 	= (currColor.r + currColor.g + currColor.b) * 0.3333f;
-                        currAvgColor 		= (currAvgColor / 256.0f) * 10.0f;
+                        float currAvgColor  = (currColor.r + currColor.g + currColor.b) * 0.3333f;
+                        currAvgColor        = (currAvgColor / 256.0f) * 10.0f;
                         
                         if (z + 1 < dimension.y)
                         {
                             sf::Color secondColor = heightMap.getPixel(x, z + 1);
-                            secondAvgColor 	= (secondColor.r + secondColor.g + secondColor.b) * 0.3333f;
-                            secondAvgColor 		= (secondAvgColor / 256.0f) * 10.0f;
+                            secondAvgColor  = (secondColor.r + secondColor.g + secondColor.b) * 0.3333f;
+                            secondAvgColor      = (secondAvgColor / 256.0f) * 10.0f;
                         }
                         else {
                             secondAvgColor = currAvgColor;
@@ -109,16 +109,16 @@ void DemoScene::_printError(void)
 
 void DemoScene::update(const float currTime)
 {
-	
+    
 }
 
 void DemoScene::render(sf::Window& window)
 {
-	static float rotationAngle = 0.0f;
+    static float rotationAngle = 0.0f;
 
-	glLoadIdentity();
-	gluLookAt(0.0f, 18.0f, 45.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	
+    glLoadIdentity();
+    gluLookAt(0.0f, 18.0f, 45.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    
     rotationAngle += 0.5f;
 
     glPushMatrix();
@@ -136,5 +136,5 @@ void DemoScene::release(void)
 
 std::string DemoScene::getTitle(void) const
 {
-	return "Demo Mesh Terrain";
+    return "Demo Mesh Terrain";
 }
