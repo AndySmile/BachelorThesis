@@ -1,6 +1,10 @@
 /**
- * @version		1.0.0 23-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * SimpleLib - Camera Model Detail Implementation.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        SimpleLib/Detail/Camera.h
+ * @version     1.0.0 23-Dec-14
+ * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
 namespace SimpleLib
