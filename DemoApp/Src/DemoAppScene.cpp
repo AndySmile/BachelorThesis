@@ -9,7 +9,7 @@
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
-	#include <iostream>
+	#include <SimpleLib/Logger.h>
     #include <assert.h>
 #endif
 
@@ -31,14 +31,14 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
     _config(NULL)
 {
 #ifdef _DEBUG
-    std::cout << "call copy constructor!" << std::endl;
+    SimpleLib::Logger::writeDebug("call copy constructor!");
 #endif
 }
 
 DemoAppScene::~DemoAppScene(void)
 {
 #ifdef _DEBUG
-	std::cout << "DemoAppScene Notice: call destructor!" << std::endl;
+	SimpleLib::Logger::writeDebug("DemoAppScene Notice: call destructor!");
 #endif
 }
 
@@ -50,7 +50,7 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
     this->_terrain 			= NULL;
     
 #ifdef _DEBUG
-	std::cout << "call assignment operator!" << std::endl;
+	SimpleLib::Logger::writeDebug("call assignment operator!");
 #endif
 
     return *this;
@@ -71,7 +71,7 @@ void DemoAppScene::init(void)
     else
     {
 #ifdef _DEBUG
-		std::cout << "[DEBUG]  DemoAppScene::init: No app config object defined! using default values instead!" << std::endl;
+		SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
 #endif
     	ImageProcessorHeightMap* heightMapProcessor = new ImageProcessorHeightMap();
         

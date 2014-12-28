@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 #ifdef _DEBUG
-	#include <iostream>
+	#include <SimpleLib/Logger.h>
 #endif
 
 namespace SimpleLib
@@ -30,7 +30,7 @@ namespace SimpleLib
             errorCode = InvalidParameter;
             
 #ifdef _DEBUG
-			std::cout << "[DEBUG] DataCollection::loadFromFile: path empty!" << std::endl;
+			Logger::writeDebug("DataCollection::loadFromFile: path empty!");
 #endif
         }
         else
@@ -42,7 +42,7 @@ namespace SimpleLib
                 errorCode = FileIsNotReadable;
                 
 #ifdef _DEBUG
-                std::cout << "[DEBUG] DataCollection::loadFromFile: file couldn't be opened!" << std::endl;
+                Logger::writeDebug("DataCollection::loadFromFile: file couldn't be opened!");
 #endif
             }
             else
@@ -57,7 +57,7 @@ namespace SimpleLib
                     {
                     	errorCode = ReadFailure;
 #ifdef _DEBUG
-                        std::cout << "[DEBUG] DataCollection::loadFromFile: error while reading the data from file!" << std::endl;
+                        Logger::writeDebug("DataCollection::loadFromFile: error while reading the data from file!");
 #endif
                         break;
                     }
@@ -130,7 +130,7 @@ namespace SimpleLib
                 }
 #ifdef _DEBUG
                 else {
-                    std::cout << "[DEBUG] skipped configuration item '" << it->first << "'!" << std::endl;
+                    Logger::writeDebug("skipped configuration item '" + it->first + "!");
                 }
 #endif
             }

@@ -5,6 +5,7 @@
  * @file		Src/AbstractTerrain.cpp
  * @version		1.0.0 23-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup		demoapp
  */
 #include <TerrainAbstract.h>
 

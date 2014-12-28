@@ -11,6 +11,10 @@
 #include <stdlib.h>
 #include <iostream>
 
+#ifdef _DEBUG
+	#include <SimpleLib/Logger.h>
+#endif
+
 int main(const int argc, char** argv)
 {
 	if (argc <= 1) {
@@ -24,7 +28,7 @@ int main(const int argc, char** argv)
         
         SimpleLib::ConfigParameter config;
         bool usingDefaultValues = (argc < 3);
-        AppConfig* appConfig = NULL;
+        AppConfig* appConfig 	= NULL;
         
         if (argc >= 3)
         {
@@ -35,7 +39,7 @@ int main(const int argc, char** argv)
             if (errorCode != SimpleLib::DataCollection::None)
             {
 #ifdef _DEBUG
-				std::cout << "[WARNING]: couldn't load configuration file! Using default values instead!" << std::endl;
+                SimpleLib::Logger::writeDebug("couldn't load configuration file! Using default values instead!");
 #endif
 				usingDefaultValues = true;
             }
@@ -58,7 +62,7 @@ int main(const int argc, char** argv)
         if (appConfig != NULL)
         {
 #ifdef _DEBUG
-			std::cout << "[DEBUG] Releasing app config object!" << std::endl;
+			SimpleLib::Logger::writeDebug("Releasing app config object!");
 #endif
 			delete appConfig;
             appConfig = NULL;

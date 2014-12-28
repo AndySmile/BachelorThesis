@@ -1,11 +1,11 @@
 /**
- * @version		1.1.0 27-Dec-14
+ * @version		1.1.1 28-Dec-14
  * @copyright	Copyright (c) by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <AppConfig.h>
 
 #ifdef _DEBUG
-	#include <iostream>
+	#include <SimpleLib/Logger.h>
 #endif
 
 AppConfig::AppConfig(void)
@@ -31,7 +31,7 @@ void AppConfig::assignSceneConfig(SceneConfigParameter* config)
             }
 #ifdef _DEBUG
             else {
-                std::cout << "[DEBUG] skipped configuration item '" << it->first << "' in group 'scene'!" << std::endl;
+                SimpleLib::Logger::writeDebug("Skipped configuration item '" + it->first + "' in group 'scene'!");
             }
 #endif
         }

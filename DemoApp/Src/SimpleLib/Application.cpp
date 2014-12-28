@@ -3,12 +3,13 @@
  *
  * @author		Andy Liebke\<coding@andysmiles4games.com>
  * @file		Src/SimpleLib/Application.cpp
- * @version		1.4.0 23-Dec-14
+ * @version		1.5.0 27-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup		simplelib
  */
  
 #include <SimpleLib/Application.h>
+#include <SimpleLib/Logger.h>
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
@@ -28,7 +29,7 @@ namespace SimpleLib
 	void Application::_updateViewport(const sf::Window& window)
 	{
 #ifdef _DEBUG
-		std::cout << "update resized window" << std::endl;
+		Logger::writeDebug("update resized window");
 #endif
 		glViewport(0, 0, window.getSize().x, window.getSize().y);
 	
@@ -61,6 +62,10 @@ namespace SimpleLib
     
     void Application::_run(OpenGLSceneInterface* scene, const ConfigParameter& config)
 	{
+    	if (!Logger::isInitilized()) {
+            Logger::init();
+        }
+    
 		sf::ContextSettings settings;
 		
 		settings.depthBits = 32;
@@ -72,11 +77,11 @@ namespace SimpleLib
 #ifdef _DEBUG	
 		settings = window.getSettings();
 		
-		std::cout << "depth bits: " << settings.depthBits << std::endl;
-		std::cout << "stencil bits: " << settings.stencilBits << std::endl;
-		std::cout << "antialiasing level: " << settings.antialiasingLevel << std::endl;
-		std::cout << "major version: " << settings.majorVersion << std::endl;
-		std::cout << "minor version: " << settings.minorVersion << std::endl;
+		Logger::writeDebug("depth bits: " + settings.depthBits);
+		Logger::writeDebug("stencil bits: " + settings.stencilBits);
+		Logger::writeDebug("antialiasing level: " + settings.antialiasingLevel);
+		Logger::writeDebug("major version: " + settings.majorVersion);
+		Logger::writeDebug("minor version: " + settings.minorVersion);
 #endif		
 		_updateViewport(window);
 	

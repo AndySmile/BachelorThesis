@@ -1,5 +1,5 @@
 /**
- * @version		1.1.0 23-Dec-14
+ * @version		1.2.1 28-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
  */
 #include <ImageTransformer.h>
@@ -8,7 +8,7 @@
 #include <OpenCV/highgui.h>
 
 #ifdef _DEBUG
-	#include <iostream>
+	#include <SimpleLib/Logger.h>
 #endif
 
 ImageTransformer::ImageTransformer(const std::string imagePath) :
@@ -42,7 +42,7 @@ TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
     if (image.data == 0)
     {
 #ifdef _DEBUG
-        std::cerr << "image wasn't loaded!" << std::endl;
+        SimpleLib::Logger::writeDebug("image '" + this->_imageFilePath + "' wasn't loaded!");
 #endif
     }
     else

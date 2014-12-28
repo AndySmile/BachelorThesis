@@ -3,7 +3,7 @@
  *
  * @author		Andy Liebke\<coding@andysmiles4games.com\>
  * @file		Src/TerrainMesh.cpp
- * @version		2.1.0 24-Dec-14
+ * @version		2.2.1 28-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup		demoapp
  */
@@ -12,7 +12,7 @@
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
-	#include <iostream>
+	#include <SimpleLib/Logger.h>
     #include <assert.h>
 #endif
 
@@ -22,9 +22,9 @@ TerrainMesh::TerrainMesh(const unsigned short width, const unsigned short height
 	_meshId(0)
 {
 #ifdef _DEBUG
-	std::cout << "Mesh Terrain Width: " << (int)this->_width << std::endl;
-    std::cout << "Mesh Terrain Height: " << (int)this->_height << std::endl;
-    std::cout << "Mesh Terrain Depth: " << (int)this->_depth << std::endl;
+	SimpleLib::Logger::writeDebug("Mesh Terrain Width: %d", this->_width);
+    SimpleLib::Logger::writeDebug("Mesh Terrain Height: %d", this->_height);
+    SimpleLib::Logger::writeDebug("Mesh Terrain Depth: %d", this->_depth);
 #endif
 
     this->_grid = new float*[this->_width];
@@ -45,7 +45,7 @@ TerrainMesh::TerrainMesh(const TerrainMesh& src) :
 	_meshId(0)
 {
 #ifdef _DEBUG
-	std::cout << "[DEBUG] call TerrainMesh copy constructor!" << std::endl;
+	SimpleLib::Logger::writeDebug("Performing TerrainMesh copy constructor!");
 #endif
 
     this->_grid = new float*[this->_width];
@@ -104,9 +104,9 @@ void TerrainMesh::render(void)
         this->_meshId = glGenLists(1);
         
 #ifdef _DEBUG
-        std::cout << "Mesh ID: " << (int)this->_meshId << std::endl;
-        std::cout << "offsetX: " << (float)offsetX << std::endl;
-        std::cout << "offsetZ: " << (float)offsetZ << std::endl;
+        SimpleLib::Logger::writeDebug("Mesh ID: %d", this->_meshId);
+        SimpleLib::Logger::writeDebug("offsetX: %f", offsetX);
+        SimpleLib::Logger::writeDebug("offsetZ: %f", offsetZ);
 #endif
         SimpleLib::OpenGLHelper::printError();
         

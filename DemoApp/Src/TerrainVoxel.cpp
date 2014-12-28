@@ -1,11 +1,14 @@
 /**
- * @version		2.0.0 23-Dec-14
+ * @version		2.0.1 27-Dec-14
  * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <TerrainVoxel.h>
 #include <SFML/OpenGL.hpp>
 #include <stdlib.h>
-#include <assert.h>
+
+#ifdef _DEBUG
+	#include <assert.h>
+#endif
 
 TerrainVoxel::TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth) :
 	TerrainAbstract(width, height, depth),
