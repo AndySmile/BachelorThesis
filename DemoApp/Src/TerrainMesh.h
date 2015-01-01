@@ -1,5 +1,5 @@
 /**
- * @version     2.1.0 24-Dec-14
+ * @version     2.2.0 01-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __TERRAIN_MESH_H__
@@ -16,7 +16,7 @@ class TerrainMesh : public TerrainAbstract
     
         TerrainMesh& operator = (const TerrainMesh& src);
     
-        void setGridNode(const unsigned short x, const unsigned short y, const unsigned short z);
+        void setGridNode(const unsigned short x, const float y, const unsigned short z);
         void render(void);
         void release(void);
     

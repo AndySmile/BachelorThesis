@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainMesh.cpp
- * @version     2.2.1 28-Dec-14
+ * @version     2.2.2 01-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -84,7 +84,7 @@ TerrainMesh& TerrainMesh::operator = (const TerrainMesh& src)
     return *this;
 }
 
-void TerrainMesh::setGridNode(const unsigned short x, const unsigned short y, const unsigned short z)
+void TerrainMesh::setGridNode(const unsigned short x, const float y, const unsigned short z)
 {
 #ifdef _DEBUG
     assert(x < this->_width);
@@ -118,14 +118,15 @@ void TerrainMesh::render(void)
             {
                 glBegin(GL_TRIANGLE_STRIP);
                 
-                for (unsigned short x=0; x < this->_width; ++x)
-                {
-                    float currHeight = this->_grid[x][z];
-                    float nextHeight = (z + 1 < this->_height) ? this->_grid[x][z + 1] : currHeight;
-                    
-                    glVertex3f(offsetX + (x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
-                    glVertex3f(offsetX + (x * 2.0f), currHeight, offsetZ + (z * 2.0f));
-                }
+                    for (unsigned short x=0; x < this->_width; ++x)
+                    {
+                        float currHeight = this->_grid[x][z];
+                        float nextHeight = (z + 1 < this->_height) ? this->_grid[x][z + 1] : currHeight;
+                        
+                        glVertex3f(offsetX + (x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
+                        glVertex3f(offsetX + (x * 2.0f), currHeight, offsetZ + (z * 2.0f));
+                    }
+                
                 glEnd();
             }
         

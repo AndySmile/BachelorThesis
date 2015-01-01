@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainAbstract.h
- * @version     1.0.0 23-Dec-14
+ * @version     1.1.0 01-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __TERRAIN_ABSTRACT_H__
@@ -16,7 +16,7 @@ class TerrainAbstract
         virtual ~TerrainAbstract(void);
     
     public:
-        virtual void setGridNode(const unsigned short x, const unsigned short y, const unsigned short z) = 0;
+        virtual void setGridNode(const unsigned short x, const float y, const unsigned short z) = 0;
         virtual void render(void) = 0;
         virtual void release(void) = 0;
     

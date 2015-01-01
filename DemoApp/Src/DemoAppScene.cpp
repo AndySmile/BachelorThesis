@@ -1,11 +1,18 @@
 /**
- * @version     1.4.0 27-Dec-14
+ * DemoApp - Demo Application Scene.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/DemoAppScene.cpp
+ * @version     1.5.0 01-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     demoapp
  */
+ 
 #include <SimpleLib/SimpleLib.h>
 #include <DemoAppScene.h>
 #include <ImageTransformer.h>
 #include <ImageProcessorHeightMap.h>
+#include <ImageProcessorHistogramHeightMap.h>
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
@@ -73,9 +80,8 @@ void DemoAppScene::init(void)
 #ifdef _DEBUG
         SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
 #endif
-        ImageProcessorHeightMap* heightMapProcessor = new ImageProcessorHeightMap();
-        
-        transformer->addProcessor(heightMapProcessor);
+        transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+        //transformer->addProcessor(new ImageProcessorHeightMap());
         
         this->_sceneConfig.isLightEnabled = false;
     }
@@ -89,7 +95,7 @@ void DemoAppScene::init(void)
     
     if (this->_isLightEnabled || this->_sceneConfig.isLightEnabled)
     {
-        float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
+        float lightPosition[] = {10.0f, this->_terrain->getHeight() * 2.0f, 0.0f, 0.0f};
         
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
@@ -112,10 +118,10 @@ void DemoAppScene::render(sf::Window& window)
     {
         static float rotationAngle = 0.0f;
         
-        rotationAngle += 0.5f;
+        //rotationAngle += 0.5f;
         
         glLoadIdentity();
-        gluLookAt(0.0f, 30.0f, -20.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+        gluLookAt(0.0f, 50.0f, -80.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         
         glPushMatrix();
             glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);

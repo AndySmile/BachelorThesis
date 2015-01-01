@@ -1,5 +1,5 @@
 /**
- * @version     2.0.1 27-Dec-14
+ * @version     2.1.0 01-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <TerrainVoxel.h>
@@ -118,7 +118,7 @@ void TerrainVoxel::release(void)
     }
 }
 
-void TerrainVoxel::setGridNode(const unsigned short x, const unsigned short y, const unsigned short z)
+void TerrainVoxel::setGridNode(const unsigned short x, const float y, const unsigned short z)
 {
     for (unsigned short currHeight = 0; currHeight < y; ++currHeight) {
         this->setVoxelState(1, x, currHeight, z);

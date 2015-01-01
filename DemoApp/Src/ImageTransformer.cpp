@@ -1,5 +1,5 @@
 /**
- * @version     1.2.1 28-Dec-14
+ * @version     1.2.2 01-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageTransformer.h>
@@ -50,7 +50,7 @@ TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
         cv::Size dimension = image.size();
         
         if (type == MeshTerrain) {
-            terrain = new TerrainMesh(dimension.width, 10, dimension.height);
+            terrain = new TerrainMesh(dimension.width, 40, dimension.height);
         }
         else if (type == VoxelTerrain) {
             terrain = new TerrainVoxel(dimension.width, 10, dimension.height);

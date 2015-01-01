@@ -37,6 +37,7 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/TerrainMesh.o \
 						Tmp/ImageProcessorHeightMap.o \
 						Tmp/ImageProcessorWater.o \
+                        Tmp/ImageProcessorHistogramHeightMap.o \
 						Tmp/ImageTransformer.o \
 						Tmp/AppConfig.o \
 						Tmp/SimpleLib/Application.o \
