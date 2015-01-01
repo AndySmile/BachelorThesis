@@ -1,6 +1,6 @@
 /**
  * @version     1.0.0 13-Dec-14
- * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
 #ifndef __IMAGE_PROCESSOR_H__
