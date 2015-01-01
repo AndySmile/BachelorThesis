@@ -1,6 +1,6 @@
 /**
  * @version     2.1.0 28-Dec-14
- * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageProcessorHeightMap.h>
 

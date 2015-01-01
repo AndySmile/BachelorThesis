@@ -1,6 +1,6 @@
 /**
- * @version 	1.7.0 27-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @version     1.7.0 27-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __SIMPLE_LIB_DATA_COLLECTION_H__
 #define __SIMPLE_LIB_DATA_COLLECTION_H__
@@ -11,14 +11,14 @@
 
 namespace SimpleLib
 {
-	class DataCollection
+    class DataCollection
     {
-    	public:
-        	DataCollection(void);
-        	virtual ~DataCollection(void);
+        public:
+            DataCollection(void);
+            virtual ~DataCollection(void);
      
         public:
-        	enum ErrorCode
+            enum ErrorCode
             {
                 None = 0,
                 Failure = 1,
@@ -27,18 +27,18 @@ namespace SimpleLib
                 ReadFailure = 4
             };
         
-        	DataCollection::ErrorCode loadFromFile(const std::string& path);
-        	int getValue(const std::string& group, const std::string& key);
-        	void assignWindowConfig(ConfigParameter* config);
+            DataCollection::ErrorCode loadFromFile(const std::string& path);
+            int getValue(const std::string& group, const std::string& key);
+            void assignWindowConfig(ConfigParameter* config);
         
         private:
-        	std::string _trimValue(const std::string value) const;
+            std::string _trimValue(const std::string value) const;
         
         protected:
-        	typedef std::map<std::string, int> DataMapItem;
-        	typedef std::map<std::string, DataMapItem> DataMap;
+            typedef std::map<std::string, int> DataMapItem;
+            typedef std::map<std::string, DataMapItem> DataMap;
         
-        	DataMap _data;
+            DataMap _data;
     };
 }
 

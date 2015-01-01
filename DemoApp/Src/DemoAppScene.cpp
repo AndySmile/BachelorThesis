@@ -1,6 +1,6 @@
 /**
- * @version		1.4.0 27-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @version     1.4.0 27-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/SimpleLib.h>
 #include <DemoAppScene.h>
@@ -9,24 +9,24 @@
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
-	#include <SimpleLib/Logger.h>
+    #include <SimpleLib/Logger.h>
     #include <assert.h>
 #endif
 
 DemoAppScene::DemoAppScene(void) :
-	_isLightEnabled(false),
-	_imagePath(""),
-	_configFilePath(""),
-	_terrain(NULL),
-	_config(NULL)
+    _isLightEnabled(false),
+    _imagePath(""),
+    _configFilePath(""),
+    _terrain(NULL),
+    _config(NULL)
 {
 
 }
 
 DemoAppScene::DemoAppScene(const DemoAppScene& src) :
-	_isLightEnabled(src._isLightEnabled),
-	_imagePath(src._imagePath),
-	_configFilePath(src._configFilePath),
+    _isLightEnabled(src._isLightEnabled),
+    _imagePath(src._imagePath),
+    _configFilePath(src._configFilePath),
     _terrain(NULL),
     _config(NULL)
 {
@@ -38,19 +38,19 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
 DemoAppScene::~DemoAppScene(void)
 {
 #ifdef _DEBUG
-	SimpleLib::Logger::writeDebug("DemoAppScene Notice: call destructor!");
+    SimpleLib::Logger::writeDebug("DemoAppScene Notice: call destructor!");
 #endif
 }
 
 DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 {
-	this->_imagePath 		= src._imagePath;
-    this->_configFilePath 	= src._configFilePath;
-    this->_isLightEnabled	= src._isLightEnabled;
-    this->_terrain 			= NULL;
+    this->_imagePath        = src._imagePath;
+    this->_configFilePath   = src._configFilePath;
+    this->_isLightEnabled   = src._isLightEnabled;
+    this->_terrain          = NULL;
     
 #ifdef _DEBUG
-	SimpleLib::Logger::writeDebug("call assignment operator!");
+    SimpleLib::Logger::writeDebug("call assignment operator!");
 #endif
 
     return *this;
@@ -58,8 +58,8 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 
 void DemoAppScene::init(void)
 {
-    ImageTransformer* transformer 				= new ImageTransformer(this->_imagePath);
-    ImageTransformer::TerrainType terrainType 	= ImageTransformer::MeshTerrain;
+    ImageTransformer* transformer               = new ImageTransformer(this->_imagePath);
+    ImageTransformer::TerrainType terrainType   = ImageTransformer::MeshTerrain;
     
     if (this->_config != NULL)
     {
@@ -71,11 +71,11 @@ void DemoAppScene::init(void)
     else
     {
 #ifdef _DEBUG
-		SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
+        SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
 #endif
-    	ImageProcessorHeightMap* heightMapProcessor = new ImageProcessorHeightMap();
+        ImageProcessorHeightMap* heightMapProcessor = new ImageProcessorHeightMap();
         
-    	transformer->addProcessor(heightMapProcessor);
+        transformer->addProcessor(heightMapProcessor);
         
         this->_sceneConfig.isLightEnabled = false;
     }
@@ -96,8 +96,8 @@ void DemoAppScene::init(void)
         glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_NORMALIZE);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_NORMALIZE);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
@@ -110,7 +110,7 @@ void DemoAppScene::render(sf::Window& window)
 {
     if (this->_terrain != NULL)
     {
-    	static float rotationAngle = 0.0f;
+        static float rotationAngle = 0.0f;
         
         rotationAngle += 0.5f;
         
@@ -118,9 +118,9 @@ void DemoAppScene::render(sf::Window& window)
         gluLookAt(0.0f, 30.0f, -20.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         
         glPushMatrix();
-			glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
+            glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
         
-        	this->_terrain->render();
+            this->_terrain->render();
         glPopMatrix();
     }
 }

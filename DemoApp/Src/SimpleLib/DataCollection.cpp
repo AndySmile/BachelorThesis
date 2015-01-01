@@ -1,12 +1,12 @@
 /**
- * @version 	1.1.0 27-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @version     1.1.0 27-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/DataCollection.h>
 #include <stdio.h>
 
 #ifdef _DEBUG
-	#include <SimpleLib/Logger.h>
+    #include <SimpleLib/Logger.h>
 #endif
 
 namespace SimpleLib
@@ -30,7 +30,7 @@ namespace SimpleLib
             errorCode = InvalidParameter;
             
 #ifdef _DEBUG
-			Logger::writeDebug("DataCollection::loadFromFile: path empty!");
+            Logger::writeDebug("DataCollection::loadFromFile: path empty!");
 #endif
         }
         else
@@ -47,15 +47,15 @@ namespace SimpleLib
             }
             else
             {
-            	std::map<std::string, int> currGroupItems;
-            	char currLine[256] 		= "";
-                std::string currGroup 	= "";
+                std::map<std::string, int> currGroupItems;
+                char currLine[256]      = "";
+                std::string currGroup   = "";
                 
-            	while (!feof(fileHnd))
+                while (!feof(fileHnd))
                 {
                     if (fgets(currLine, 256, fileHnd) == NULL)
                     {
-                    	errorCode = ReadFailure;
+                        errorCode = ReadFailure;
 #ifdef _DEBUG
                         Logger::writeDebug("DataCollection::loadFromFile: error while reading the data from file!");
 #endif
@@ -63,13 +63,13 @@ namespace SimpleLib
                     }
                     else
                     {
-                    	// ignore empty lines and comments
+                        // ignore empty lines and comments
                         if ((unsigned int)strlen(currLine) > 0 && currLine[0] != '#')
                         {
-                        	// is is a group
+                            // is is a group
                             if (currLine[0] == '[')
                             {
-                            	// in case there were already some group items loaded
+                                // in case there were already some group items loaded
                                 // add them to the final data list
                                 if (!currGroupItems.empty())
                                 {
@@ -87,13 +87,13 @@ namespace SimpleLib
                             }
                             else
                             {
-                            	std::string currItem(currLine);
-                            	unsigned int position = currItem.find('=');
+                                std::string currItem(currLine);
+                                unsigned int position = currItem.find('=');
                                 
                                 // items without an assignment operator will be ignored
                                 if (position != std::string::npos)
                                 {
-                                	std::string key(this->_trimValue(currItem.substr(0, position)));
+                                    std::string key(this->_trimValue(currItem.substr(0, position)));
                                     std::string value(this->_trimValue(currItem.substr(position + 1)));
                                     
                                     currGroupItems[key] = atoi(value.c_str());
@@ -111,7 +111,7 @@ namespace SimpleLib
         return errorCode;
     }
 
-	void DataCollection::assignWindowConfig(ConfigParameter* config)
+    void DataCollection::assignWindowConfig(ConfigParameter* config)
     {
         DataMap::iterator groupIterator = this->_data.find("window");
         
@@ -137,16 +137,16 @@ namespace SimpleLib
         }
     }
 
-	/**
+    /**
      * Returns value of particular group and its key identifier.
      *
      * This method returns 0 in case of no item was found and also if an item was found
      * and its value is 0. So you cannot use this method to figure out if an option was 
      * defined!
      *
-     * @param group string 	- group the value belongs to
-     * @param key string 	- key identifier to select a particular value
-     * @return integer 		- returns 0 in case of no item was found otherwise its value
+     * @param group string  - group the value belongs to
+     * @param key string    - key identifier to select a particular value
+     * @return integer      - returns 0 in case of no item was found otherwise its value
      */
     int DataCollection::getValue(const std::string& group, const std::string& key)
     {
@@ -156,7 +156,7 @@ namespace SimpleLib
     std::string DataCollection::_trimValue(const std::string value) const
     {
         std::string result(value);
-    	bool isReady = false;
+        bool isReady = false;
         
         if (result[result.length() - 1] == '\n') {
             result = result.substr(0, result.length() - 1);
@@ -182,5 +182,5 @@ namespace SimpleLib
         }
         
         return result;
-	}
+    }
 }

@@ -1,6 +1,6 @@
 /**
- * @version		1.1.0 27-Dec-14
- * @copyright	Copyright (c) by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @version     1.1.0 27-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __APP_CONFIG_H__
 #define __APP_CONFIG_H__
@@ -16,13 +16,13 @@ typedef struct _scene_config_parameter
 
 class AppConfig : public SimpleLib::DataCollection
 {
-	public:
-    	AppConfig(void);
-    	virtual ~AppConfig(void);
+    public:
+        AppConfig(void);
+        virtual ~AppConfig(void);
 
-    	void assignProcessors(ImageTransformer* transformer);
-    	ImageTransformer::TerrainType getTerrainType(void) const;
-    	void assignSceneConfig(SceneConfigParameter* config);
+        void assignProcessors(ImageTransformer* transformer);
+        ImageTransformer::TerrainType getTerrainType(void) const;
+        void assignSceneConfig(SceneConfigParameter* config);
 };
 
 #endif

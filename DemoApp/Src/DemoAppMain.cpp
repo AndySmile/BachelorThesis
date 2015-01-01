@@ -1,10 +1,10 @@
 /**
  * @defgroup demoapp DemoApp
  *
- * @author		Andy Liebke\<coding@andysmiles4games.com\>
- * @file		Src/DemoAppMain.cpp
- * @version		1.2.0 27-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/DemoAppMain.cpp
+ * @version     1.2.0 27-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/Application.h>
 #include <DemoAppScene.h>
@@ -12,15 +12,15 @@
 #include <iostream>
 
 #ifdef _DEBUG
-	#include <SimpleLib/Logger.h>
+    #include <SimpleLib/Logger.h>
 #endif
 
 int main(const int argc, char** argv)
 {
-	if (argc <= 1) {
+    if (argc <= 1) {
         std::cerr << "\x1b[37;41m[ERROR]: you have to enter the path to the input image!\x1b[0m" << std::endl;
     }
-	else
+    else
     {
         DemoAppScene* scene = new DemoAppScene();
         
@@ -28,7 +28,7 @@ int main(const int argc, char** argv)
         
         SimpleLib::ConfigParameter config;
         bool usingDefaultValues = (argc < 3);
-        AppConfig* appConfig 	= NULL;
+        AppConfig* appConfig    = NULL;
         
         if (argc >= 3)
         {
@@ -41,7 +41,7 @@ int main(const int argc, char** argv)
 #ifdef _DEBUG
                 SimpleLib::Logger::writeDebug("couldn't load configuration file! Using default values instead!");
 #endif
-				usingDefaultValues = true;
+                usingDefaultValues = true;
             }
             else
             {
@@ -52,9 +52,9 @@ int main(const int argc, char** argv)
         
         if (usingDefaultValues)
         {
-            config.screenWidth 	= 1024;
+            config.screenWidth  = 1024;
             config.screenHeight = 900;
-            config.isWindowMode	= true;
+            config.isWindowMode = true;
         }
         
         SimpleLib::Application::run(scene, config);
@@ -62,9 +62,9 @@ int main(const int argc, char** argv)
         if (appConfig != NULL)
         {
 #ifdef _DEBUG
-			SimpleLib::Logger::writeDebug("Releasing app config object!");
+            SimpleLib::Logger::writeDebug("Releasing app config object!");
 #endif
-			delete appConfig;
+            delete appConfig;
             appConfig = NULL;
         }
         
@@ -72,5 +72,5 @@ int main(const int argc, char** argv)
         scene = NULL;
     }
     
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

@@ -1,6 +1,6 @@
 /**
- * @version		1.2.1 28-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @version     1.2.1 28-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageTransformer.h>
 #include <TerrainVoxel.h>
@@ -8,18 +8,18 @@
 #include <OpenCV/highgui.h>
 
 #ifdef _DEBUG
-	#include <SimpleLib/Logger.h>
+    #include <SimpleLib/Logger.h>
 #endif
 
 ImageTransformer::ImageTransformer(const std::string imagePath) :
-	_listProcessors(0),
-	_imageFilePath(imagePath)
+    _listProcessors(0),
+    _imageFilePath(imagePath)
 {
 }
 
 ImageTransformer::ImageTransformer(void) :
-	_listProcessors(0),
-	_imageFilePath("")
+    _listProcessors(0),
+    _imageFilePath("")
 {
     
 }
@@ -31,13 +31,13 @@ ImageTransformer::~ImageTransformer(void)
 
 void ImageTransformer::addProcessor(ImageProcessorInterface* processor)
 {
-	this->_listProcessors.push_back(processor);
+    this->_listProcessors.push_back(processor);
 }
 
 TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
 {
-	TerrainAbstract* terrain 	= NULL;
-	cv::Mat image 				= cv::imread(this->_imageFilePath);
+    TerrainAbstract* terrain    = NULL;
+    cv::Mat image               = cv::imread(this->_imageFilePath);
     
     if (image.data == 0)
     {
@@ -50,7 +50,7 @@ TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
         cv::Size dimension = image.size();
         
         if (type == MeshTerrain) {
-        	terrain = new TerrainMesh(dimension.width, 10, dimension.height);
+            terrain = new TerrainMesh(dimension.width, 10, dimension.height);
         }
         else if (type == VoxelTerrain) {
             terrain = new TerrainVoxel(dimension.width, 10, dimension.height);
@@ -77,12 +77,12 @@ void ImageTransformer::release()
             
             if (currProcessor != NULL)
             {
-            	currProcessor->release();
-            	delete currProcessor;
-            	currProcessor = NULL;
+                currProcessor->release();
+                delete currProcessor;
+                currProcessor = NULL;
             }
             
-        	this->_listProcessors.pop_back();
+            this->_listProcessors.pop_back();
         }
     }
 }

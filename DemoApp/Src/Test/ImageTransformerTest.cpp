@@ -1,6 +1,6 @@
 /**
- * @version		1.0.0 23-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @version     1.0.0 23-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <Test/ImageTransformerTest.h>
 #include <ImageTransformer.h>
@@ -12,7 +12,7 @@
  */
 namespace DemoAppTest
 {
-	/**
+    /**
      * Tests setter and getter for image file path.
      */
     void ImageTransformerTest::setImageFilePathTest(void)
@@ -23,7 +23,7 @@ namespace DemoAppTest
         
         CPPUNIT_ASSERT(path.empty());
         
-    	transformer.setImageFilePath("test/path/to/image.png");
+        transformer.setImageFilePath("test/path/to/image.png");
         
         path = transformer.getImageFilePath();
         

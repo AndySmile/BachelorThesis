@@ -3,10 +3,10 @@
  *
  * SimpleLib - Common Header.
  *
- * @author		Andy Liebke\<coding@andymiles4games.com\>
- * @file		SimpleLib/SimpleLib.h
- * @version		1.1.1 23-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @author      Andy Liebke\<coding@andymiles4games.com\>
+ * @file        SimpleLib/SimpleLib.h
+ * @version     1.1.1 23-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
  
 #ifndef __SIMPLE_LIB_H__
@@ -20,12 +20,12 @@
 
 namespace SimpleLib
 {
-	typedef struct _struct_config_params
-	{
-    	bool isWindowMode;
-		unsigned short screenWidth;
-		unsigned short screenHeight;
-	} ConfigParameter;
+    typedef struct _struct_config_params
+    {
+        bool isWindowMode;
+        unsigned short screenWidth;
+        unsigned short screenHeight;
+    } ConfigParameter;
 }
 
 #endif

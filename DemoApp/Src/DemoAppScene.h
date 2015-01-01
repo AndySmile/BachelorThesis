@@ -1,6 +1,6 @@
 /**
- * @version		1.4.0 26-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved.
+ * @version     1.4.0 26-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __DEMO_APP_SCENE_H__
 #define __DEMO_APP_SCENE_H__
@@ -11,12 +11,12 @@
 
 class DemoAppScene : public SimpleLib::OpenGLSceneInterface
 {
-	public:
-    	DemoAppScene(void);
-    	DemoAppScene(const DemoAppScene& src);
-    	virtual ~DemoAppScene(void);
+    public:
+        DemoAppScene(void);
+        DemoAppScene(const DemoAppScene& src);
+        virtual ~DemoAppScene(void);
     
-    	DemoAppScene& operator = (const DemoAppScene& src);
+        DemoAppScene& operator = (const DemoAppScene& src);
     
         void init(void);
         void update(const float currTime);
@@ -26,18 +26,18 @@ class DemoAppScene : public SimpleLib::OpenGLSceneInterface
         std::string getTitle(void) const;
     
     public:
-    	inline void setImagePath(const std::string path);
-    	inline void setConfigFilePath(const std::string path);
-    	inline void enableLight(const bool isEnabled=true);
-    	inline void setAppConfig(AppConfig* config);
+        inline void setImagePath(const std::string path);
+        inline void setConfigFilePath(const std::string path);
+        inline void enableLight(const bool isEnabled=true);
+        inline void setAppConfig(AppConfig* config);
     
     private:
-    	bool _isLightEnabled;
-    	std::string _imagePath;
-    	std::string _configFilePath;
-    	TerrainAbstract* _terrain;
-    	AppConfig* _config;
-    	SceneConfigParameter _sceneConfig;
+        bool _isLightEnabled;
+        std::string _imagePath;
+        std::string _configFilePath;
+        TerrainAbstract* _terrain;
+        AppConfig* _config;
+        SceneConfigParameter _sceneConfig;
 };
 
 #include <Detail/DemoAppSceneDetail.h>

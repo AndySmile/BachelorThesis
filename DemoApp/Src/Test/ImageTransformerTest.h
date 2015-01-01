@@ -1,6 +1,6 @@
 /**
- * @version		1.0.0 23-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @version     1.0.0 23-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_TRANSFORMER_TEST_H__
 #define __IMAGE_TRANSFORMER_TEST_H__
@@ -15,7 +15,7 @@
  */
 namespace DemoAppTest
 {
-	class ImageTransformerTest : public CppUnit::TestFixture
+    class ImageTransformerTest : public CppUnit::TestFixture
     {
         public:
             CPPUNIT_TEST_SUITE(ImageTransformerTest);
@@ -26,7 +26,7 @@ namespace DemoAppTest
             /**
              * Tests setter and getter for image file path.
              */
-        	void setImageFilePathTest(void);
+            void setImageFilePathTest(void);
     };
 }
 #endif

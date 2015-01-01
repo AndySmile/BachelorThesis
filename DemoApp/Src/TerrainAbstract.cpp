@@ -1,11 +1,11 @@
 /**
  * DempApp - Abstract Grid Terrain Model.
  *
- * @author		Andy Liebke\<coding@andysmiles4games.com\>
- * @file		Src/AbstractTerrain.cpp
- * @version		1.0.0 23-Dec-14
- * @copyright	Copyright (c) 2014 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
- * @ingroup		demoapp
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/AbstractTerrain.cpp
+ * @version     1.0.0 23-Dec-14
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     demoapp
  */
 #include <TerrainAbstract.h>
 
@@ -14,12 +14,12 @@ TerrainAbstract::TerrainAbstract(const unsigned short width, const unsigned shor
     _height(height),
     _depth(depth)
 {
-	
+    
 }
 
 TerrainAbstract::~TerrainAbstract(void)
 {
-    this->_width 	= 0;
-    this->_height	= 0;
-    this->_depth	= 0;
+    this->_width    = 0;
+    this->_height   = 0;
+    this->_depth    = 0;
 }

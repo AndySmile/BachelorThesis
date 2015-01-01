@@ -4,7 +4,7 @@
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/AppConfig.cpp
  * @version     1.1.1 28-Dec-14
- * @copyright   Copyright (c) by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
 #include <AppConfig.h>
