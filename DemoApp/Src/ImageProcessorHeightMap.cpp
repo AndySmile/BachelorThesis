@@ -1,6 +1,11 @@
 /**
- * @version     2.1.0 28-Dec-14
+ * DemoApp - Height Map Image Processor Model.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/ImageProcessorHeightMap.cpp
+ * @version     2.1.1 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     demoapp
  */
 #include <ImageProcessorHeightMap.h>
 
@@ -25,12 +30,12 @@ void ImageProcessorHeightMap::process(const cv::Mat& image, TerrainAbstract* ter
     unsigned int numberCols         = image.cols;
     
 #ifdef _DEBUG
-    SimpleLib::Logger::writeDebug("image channels: " + numberChannels);
-    SimpleLib::Logger::writeDebug("image rows: " + numberRows);
-    SimpleLib::Logger::writeDebug("image cols: " + numberCols);
-    SimpleLib::Logger::writeDebug("terrain width: " + terrain->getWidth());
-    SimpleLib::Logger::writeDebug("terrain height: " + terrain->getHeight());
-    SimpleLib::Logger::writeDebug("terrain depth: " + terrain->getDepth());
+    SimpleLib::Logger::writeDebug("image channels: %d", numberChannels);
+    SimpleLib::Logger::writeDebug("image rows: %d", numberRows);
+    SimpleLib::Logger::writeDebug("image cols: %d", numberCols);
+    SimpleLib::Logger::writeDebug("terrain width: %d", terrain->getWidth());
+    SimpleLib::Logger::writeDebug("terrain height: %d", terrain->getHeight());
+    SimpleLib::Logger::writeDebug("terrain depth: %d", terrain->getDepth());
 #endif
 
     for (unsigned int x=0; x < numberCols; ++x)

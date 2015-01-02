@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com>
  * @file        Src/SimpleLib/Application.cpp
- * @version     1.5.0 27-Dec-14
+ * @version     1.5.1 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
@@ -77,11 +77,11 @@ namespace SimpleLib
 #ifdef _DEBUG   
         settings = window.getSettings();
         
-        Logger::writeDebug("depth bits: " + settings.depthBits);
-        Logger::writeDebug("stencil bits: " + settings.stencilBits);
-        Logger::writeDebug("antialiasing level: " + settings.antialiasingLevel);
-        Logger::writeDebug("major version: " + settings.majorVersion);
-        Logger::writeDebug("minor version: " + settings.minorVersion);
+        Logger::writeDebug("depth bits: %d", settings.depthBits);
+        Logger::writeDebug("stencil bits: %d", settings.stencilBits);
+        Logger::writeDebug("antialiasing level: %d", settings.antialiasingLevel);
+        Logger::writeDebug("major version: %d", settings.majorVersion);
+        Logger::writeDebug("minor version: %d", settings.minorVersion);
 #endif      
         _updateViewport(window);
     

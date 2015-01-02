@@ -1,5 +1,5 @@
 /**
- * @version     1.2.2 01-Jan-15
+ * @version     1.2.3 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageTransformer.h>
@@ -42,7 +42,7 @@ TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
     if (image.data == 0)
     {
 #ifdef _DEBUG
-        SimpleLib::Logger::writeDebug("image '" + this->_imageFilePath + "' wasn't loaded!");
+        SimpleLib::Logger::writeDebug("image '%s' wasn't loaded!", this->_imageFilePath.c_str());
 #endif
     }
     else

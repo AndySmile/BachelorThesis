@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/AppConfig.cpp
- * @version     1.1.1 28-Dec-14
+ * @version     1.1.2 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
@@ -36,7 +36,7 @@ void AppConfig::assignSceneConfig(SceneConfigParameter* config)
             }
 #ifdef _DEBUG
             else {
-                SimpleLib::Logger::writeDebug("Skipped configuration item '" + it->first + "' in group 'scene'!");
+                SimpleLib::Logger::writeDebug("Skipped configuration item '%s' in group 'scene'!", it->first.c_str());
             }
 #endif
         }

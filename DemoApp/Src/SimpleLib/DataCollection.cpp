@@ -1,6 +1,11 @@
 /**
- * @version     1.1.0 27-Dec-14
+ * SimpleLib - DataCollection Model.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        SimpleLib/DataCollection.cpp
+ * @version     1.1.1 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     simplelib
  */
 #include <SimpleLib/DataCollection.h>
 #include <stdio.h>
@@ -130,7 +135,7 @@ namespace SimpleLib
                 }
 #ifdef _DEBUG
                 else {
-                    Logger::writeDebug("skipped configuration item '" + it->first + "!");
+                    Logger::writeDebug("skipped configuration item '%s'!", it->first.c_str());
                 }
 #endif
             }
