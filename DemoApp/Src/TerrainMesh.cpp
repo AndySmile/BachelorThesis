@@ -114,7 +114,7 @@ void TerrainMesh::render(void)
         
             SimpleLib::OpenGLHelper::printError();
         
-            for (unsigned int z=0; z < this->_depth - 1; ++z)
+            for (unsigned short z=0; z < this->_depth - 1; ++z)
             {
                 glBegin(GL_TRIANGLE_STRIP);
                 

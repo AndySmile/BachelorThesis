@@ -1,5 +1,5 @@
 /**
- * SimpleLib - Camera Model.
+ * SimpleLib - Camera Model Header.
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        SimpleLib/Camera.h

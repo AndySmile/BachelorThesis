@@ -25,7 +25,8 @@ DemoAppScene::DemoAppScene(void) :
     _imagePath(""),
     _configFilePath(""),
     _terrain(NULL),
-    _config(NULL)
+    _config(NULL),
+    _sceneConfig()
 {
 
 }
@@ -35,7 +36,8 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
     _imagePath(src._imagePath),
     _configFilePath(src._configFilePath),
     _terrain(NULL),
-    _config(NULL)
+    _config(NULL),
+    _sceneConfig()
 {
 #ifdef _DEBUG
     SimpleLib::Logger::writeDebug("call copy constructor!");
@@ -80,8 +82,8 @@ void DemoAppScene::init(void)
 #ifdef _DEBUG
         SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
 #endif
-        //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
-        transformer->addProcessor(new ImageProcessorHeightMap());
+        transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+        //transformer->addProcessor(new ImageProcessorHeightMap());
         
         this->_sceneConfig.isLightEnabled = false;
     }

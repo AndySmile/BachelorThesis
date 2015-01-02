@@ -16,7 +16,8 @@
 
 namespace SimpleLib
 {
-    DataCollection::DataCollection(void)
+    DataCollection::DataCollection(void) :
+        _data()
     {
         
     }
