@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppScene.cpp
- * @version     1.5.1 02-Jan-15
+ * @version     1.6.0 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -26,6 +26,7 @@ DemoAppScene::DemoAppScene(void) :
     _configFilePath(""),
     _terrain(NULL),
     _config(NULL),
+    _camera(NULL),
     _sceneConfig()
 {
 
@@ -37,6 +38,7 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
     _configFilePath(src._configFilePath),
     _terrain(NULL),
     _config(NULL),
+    _camera(NULL),
     _sceneConfig()
 {
 #ifdef _DEBUG
@@ -67,6 +69,7 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 
 void DemoAppScene::init(void)
 {
+    // setup terrain
     ImageTransformer* transformer               = new ImageTransformer(this->_imagePath);
     ImageTransformer::TerrainType terrainType   = ImageTransformer::MeshTerrain;
     
@@ -82,8 +85,8 @@ void DemoAppScene::init(void)
 #ifdef _DEBUG
         SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
 #endif
-        transformer->addProcessor(new ImageProcessorHistogramHeightMap());
-        //transformer->addProcessor(new ImageProcessorHeightMap());
+        //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+        transformer->addProcessor(new ImageProcessorHeightMap());
         
         this->_sceneConfig.isLightEnabled = false;
     }
@@ -95,6 +98,10 @@ void DemoAppScene::init(void)
     delete transformer;
     transformer = NULL;
     
+    // initialize camera
+    this->_camera = new SimpleLib::Camera(0.0f, 50.0f, -80.0f, 3.0f);
+    
+    // if enabled setup light
     if (this->_isLightEnabled || this->_sceneConfig.isLightEnabled)
     {
         float lightPosition[] = {10.0f, this->_terrain->getHeight() * 2.0f, 0.0f, 0.0f};
@@ -111,23 +118,36 @@ void DemoAppScene::init(void)
 
 void DemoAppScene::update(const float currTime)
 {
-    
+    // camera control
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+        this->_camera->moveRight();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        this->_camera->moveLeft();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+        this->_camera->moveForward();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+        this->_camera->moveBackward();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::U)) {
+        this->_camera->moveUp();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        this->_camera->moveDown();
+    }
 }
 
 void DemoAppScene::render(sf::Window& window)
 {
     if (this->_terrain != NULL)
     {
-        static float rotationAngle = 0.0f;
-        
-        rotationAngle += 0.5f;
-        
         glLoadIdentity();
-        gluLookAt(0.0f, 50.0f, -80.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+        
+        this->_camera->update();
         
         glPushMatrix();
-            glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);
-        
             this->_terrain->render();
         glPopMatrix();
     }
@@ -141,6 +161,12 @@ void DemoAppScene::release(void)
         
         delete this->_terrain;
         this->_terrain = NULL;
+    }
+    
+    if (this->_camera != NULL)
+    {
+        delete this->_camera;
+        this->_camera = NULL;
     }
 }
 

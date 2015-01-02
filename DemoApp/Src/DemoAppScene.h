@@ -1,11 +1,17 @@
 /**
- * @version     1.4.0 26-Dec-14
+ * DemoApp - Scene Model.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/DemoAppScene.h
+ * @version     1.5.0 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     demoapp
  */
 #ifndef __DEMO_APP_SCENE_H__
 #define __DEMO_APP_SCENE_H__
 
 #include <SimpleLib/OpenGLSceneInterface.h>
+#include <SimpleLib/Camera.h>
 #include <TerrainAbstract.h>
 #include <AppConfig.h>
 
@@ -37,6 +43,7 @@ class DemoAppScene : public SimpleLib::OpenGLSceneInterface
         std::string _configFilePath;
         TerrainAbstract* _terrain;
         AppConfig* _config;
+        SimpleLib::Camera* _camera;
         SceneConfigParameter _sceneConfig;
 };
 
