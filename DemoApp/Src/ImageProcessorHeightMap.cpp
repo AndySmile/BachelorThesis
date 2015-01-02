@@ -43,7 +43,7 @@ void ImageProcessorHeightMap::process(const cv::Mat& image, TerrainAbstract* ter
         for (unsigned int z=0; z < numberRows; ++z)
         {
             cv::Vec3b color = image.at<cv::Vec3b>(z, x);
-            uchar currAvgColor = 0;
+            float currAvgColor = 0.0f;
             
             for (unsigned short n=0; n < numberChannels; ++n) {
                 currAvgColor += color.val[n];

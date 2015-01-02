@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainMesh.cpp
- * @version     2.2.2 01-Jan-15
+ * @version     2.2.3 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -113,18 +113,18 @@ void TerrainMesh::render(void)
         glNewList(this->_meshId, GL_COMPILE);
         
             SimpleLib::OpenGLHelper::printError();
-            
-            for (unsigned short z=0; z < this->_depth - 1; ++z)
+        
+            for (unsigned int z=0; z < this->_depth - 1; ++z)
             {
                 glBegin(GL_TRIANGLE_STRIP);
                 
-                    for (unsigned short x=0; x < this->_width; ++x)
+                    for (unsigned int x=0; x < this->_width; ++x)
                     {
                         float currHeight = this->_grid[x][z];
-                        float nextHeight = (z + 1 < this->_height) ? this->_grid[x][z + 1] : currHeight;
+                        float nextHeight = (z + 1 < this->_depth) ? this->_grid[x][z + 1] : currHeight;
                         
-                        glVertex3f(offsetX + (x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
-                        glVertex3f(offsetX + (x * 2.0f), currHeight, offsetZ + (z * 2.0f));
+                        glVertex3f((x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
+                        glVertex3f((x * 2.0f), currHeight, offsetZ + (z * 2.0f));
                     }
                 
                 glEnd();
