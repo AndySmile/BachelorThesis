@@ -10,6 +10,8 @@
 
 #include <SimpleLib/Camera.h>
 #include <SFML/OpenGL.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
 namespace SimpleLib
 {
@@ -59,6 +61,18 @@ namespace SimpleLib
     void Camera::moveDown(const float speed)
     {
         this->_position.y -= (speed > 0.0f) ? speed : this->_movementSpeed;
+    }
+    
+    void Camera::lookLeft(const float speed)
+    {
+        this->_direction = glm::rotateY(this->_direction, glm::radians((speed > 0.0f) ? speed : this->_movementSpeed));
+        this->_direction = glm::normalize(this->_direction);
+    }
+    
+    void Camera::lookRight(const float speed)
+    {
+        this->_direction = glm::rotateY(this->_direction, -glm::radians((speed > 0.0f) ? speed : this->_movementSpeed));
+        this->_direction = glm::normalize(this->_direction);
     }
 
     void Camera::update(void)

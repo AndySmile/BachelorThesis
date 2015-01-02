@@ -27,6 +27,8 @@ namespace SimpleLib
             void moveBackward(const float speed=0.0f);
             void moveUp(const float speed=0.0f);
             void moveDown(const float speed=0.0f);
+            void lookLeft(const float speed=0.0f);
+            void lookRight(const float speed=0.0f);
         
             void update(void);
             

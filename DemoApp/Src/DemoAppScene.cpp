@@ -119,23 +119,29 @@ void DemoAppScene::init(void)
 void DemoAppScene::update(const float currTime)
 {
     // camera control
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         this->_camera->moveRight();
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         this->_camera->moveLeft();
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         this->_camera->moveForward();
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         this->_camera->moveBackward();
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::U)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
         this->_camera->moveUp();
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
         this->_camera->moveDown();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+        this->_camera->lookLeft();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        this->_camera->lookRight();
     }
 }
 
