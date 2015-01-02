@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppScene.cpp
- * @version     1.5.0 01-Jan-15
+ * @version     1.5.1 02-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -80,8 +80,8 @@ void DemoAppScene::init(void)
 #ifdef _DEBUG
         SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
 #endif
-        transformer->addProcessor(new ImageProcessorHistogramHeightMap());
-        //transformer->addProcessor(new ImageProcessorHeightMap());
+        //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+        transformer->addProcessor(new ImageProcessorHeightMap());
         
         this->_sceneConfig.isLightEnabled = false;
     }
@@ -118,7 +118,7 @@ void DemoAppScene::render(sf::Window& window)
     {
         static float rotationAngle = 0.0f;
         
-        //rotationAngle += 0.5f;
+        rotationAngle += 0.5f;
         
         glLoadIdentity();
         gluLookAt(0.0f, 50.0f, -80.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);

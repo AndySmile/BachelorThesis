@@ -1,5 +1,5 @@
 /**
- * @version     1.0.0 01-Jan-15
+ * @version     1.1.0 02-Jan-15
  * @copyright   Copyright (c) 2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -10,6 +10,9 @@
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>
+
+    #include <OpenCV/cxcore.h>
+    #include <OpenCV/highgui.h>
 #endif
 
 ImageProcessorHistogramHeightMap::ImageProcessorHistogramHeightMap(void)
@@ -37,12 +40,28 @@ void ImageProcessorHistogramHeightMap::process(const cv::Mat& image, TerrainAbst
     
 #ifdef _DEBUG
     SimpleLib::Logger::writeDebug("Histogram Height Map Processor: number of channels: %d", listChannels.size());
+    
+    // create a debug window to display the histogram values
+    cv::Size dimension = image.size();
+    cv::Mat debugHistogram(400, 256, CV_8UC3, cv::Scalar(0, 0, 0));
+    cv::namedWindow("Histogram Debug Output", CV_WINDOW_AUTOSIZE);
 #endif
     for (unsigned short i=0; i < numChannels; ++i) {
         cv::calcHist(&listChannels[i], 1, &numberOfChannels, cv::Mat(), listHistograms[i], 1, &histogramSize, &histogramRange, true, false);
+    
+        //cv::normalize(listHistograms[i], listHistograms[i], 0, 400, cv::NORM_MINMAX, -1, cv::MatND());
     }
     
     float* listHeights = new float[histogramSize];
+    
+    //cv::line(debugHistogram, cv::Point(50, 0), cv::Point(50, dimension.height * dimension.width), cv::Scalar(255, 0, 0), 2);
+    
+    for (int x=0; x < histogramSize; ++x)
+    {
+        for (int i=0; i < numChannels; ++i) {
+            cv::line(debugHistogram, cv::Point(x, 0), cv::Point(x, listHistograms[i].at<float>(x)), cv::Scalar((i == 0) ? 255 : 0, (i == 1) ? 255 : 0, (i == 2) ? 255 : 0));
+        }
+    }
     
     for (int x=0; x < histogramSize; ++x)
     {
@@ -82,6 +101,8 @@ void ImageProcessorHistogramHeightMap::process(const cv::Mat& image, TerrainAbst
             terrain->setGridNode(x, currHeight, z);
         }
     }
+
+    imshow("Histogram Debug Output", debugHistogram);
 
     delete[] listHeights;
     delete[] listHistograms;
