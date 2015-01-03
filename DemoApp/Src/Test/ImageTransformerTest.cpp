@@ -1,4 +1,7 @@
 /**
+ * DemoApp - ImageTransformer Test Suite.
+ *
+ * @author      Andy Liebke<coding@andysmiles4games.com>
  * @version     1.0.0 23-Dec-14
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */

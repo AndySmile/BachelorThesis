@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainMesh.cpp
- * @version     2.2.3 02-Jan-15
+ * @version     2.3.0 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -13,8 +13,16 @@
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>
-    #include <assert.h>
+    #include <cassert>
 #endif
+
+TerrainMesh::TerrainMesh(void) :
+    TerrainAbstract(0, 0, 0),
+    _grid(NULL),
+    _meshId(0)
+{
+    
+}
 
 TerrainMesh::TerrainMesh(const unsigned short width, const unsigned short height, const unsigned short depth) :
     TerrainAbstract(width, height, depth),
@@ -27,16 +35,7 @@ TerrainMesh::TerrainMesh(const unsigned short width, const unsigned short height
     SimpleLib::Logger::writeDebug("Mesh Terrain Depth: %d", this->_depth);
 #endif
 
-    this->_grid = new float*[this->_width];
-    
-    for (unsigned short x = 0; x < this->_width; ++x)
-    {
-        this->_grid[x] = new float[this->_depth];
-        
-        for (unsigned short z = 0; z < this->_depth; ++z) {
-            this->_grid[x][z] = 0.0f;
-        }
-    }
+    this->_resetGrid();
 }
 
 TerrainMesh::TerrainMesh(const TerrainMesh& src) :
@@ -82,6 +81,41 @@ TerrainMesh& TerrainMesh::operator = (const TerrainMesh& src)
     }
     
     return *this;
+}
+
+void TerrainMesh::setSize(const unsigned short width, const unsigned short height, const unsigned short depth)
+{
+    this->_width    = width;
+    this->_height   = height;
+    this->_depth    = depth;
+
+    this->_resetGrid();
+}
+
+void TerrainMesh::_resetGrid(void)
+{
+    // if grid already exists release memory
+    if (this->_grid != NULL)
+    {
+        for (unsigned int x=0; x < this->_width; ++x) {
+            delete this->_grid[x];
+        }
+        
+        delete this->_grid;
+        this->_grid = NULL;
+    }
+    
+    // create a new grid
+    this->_grid = new float*[this->_width];
+    
+    for (unsigned short x = 0; x < this->_width; ++x)
+    {
+        this->_grid[x] = new float[this->_depth];
+        
+        for (unsigned short z = 0; z < this->_depth; ++z) {
+            this->_grid[x][z] = 0.0f;
+        }
+    }
 }
 
 void TerrainMesh::setGridNode(const unsigned short x, const float y, const unsigned short z)

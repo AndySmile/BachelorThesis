@@ -1,5 +1,5 @@
 /**
- * @version     2.1.0 01-Jan-15
+ * @version     2.2.0 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <TerrainVoxel.h>
@@ -7,28 +7,21 @@
 #include <stdlib.h>
 
 #ifdef _DEBUG
-    #include <assert.h>
+    #include <cassert>
 #endif
+
+TerrainVoxel::TerrainVoxel(void) :
+    TerrainAbstract(0, 0, 0),
+    _chunk(NULL)
+{
+    
+}
 
 TerrainVoxel::TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth) :
     TerrainAbstract(width, height, depth),
     _chunk(NULL)
 {
-    this->_chunk = new unsigned char**[this->_width];
-    
-    for (unsigned short x = 0; x < this->_width; ++x)
-    {
-        this->_chunk[x] = new unsigned char*[this->_height];
-        
-        for (unsigned short y = 0; y < this->_height; ++y)
-        {
-            this->_chunk[x][y] = new unsigned char[this->_depth];
-            
-            for (unsigned short z = 0; z < this->_depth; ++z) {
-                this->_chunk[x][y][z] = 0;
-            }
-        }
-    }
+    this->_resetChunk();
 }
 
 TerrainVoxel::TerrainVoxel(const TerrainVoxel& src) :
@@ -122,6 +115,50 @@ void TerrainVoxel::setGridNode(const unsigned short x, const float y, const unsi
 {
     for (unsigned short currHeight = 0; currHeight < y; ++currHeight) {
         this->setVoxelState(1, x, currHeight, z);
+    }
+}
+
+void TerrainVoxel::setSize(const unsigned short width, const unsigned short height, const unsigned short depth)
+{
+    this->_width    = width;
+    this->_height   = height;
+    this->_depth    = depth;
+    
+    this->_resetChunk();
+}
+
+void TerrainVoxel::_resetChunk(void)
+{
+    // before creating a new chunk remove the old one
+    // in case that one already exists
+    if (this->_chunk != NULL)
+    {
+        for (unsigned short x = 0; x < this->_width; ++x)
+        {
+            for (unsigned short y = 0; y < this->_height; ++y) {
+                delete[] this->_chunk[x][y];
+            }
+            
+            delete[] this->_chunk[x];
+        }
+        
+        delete[] this->_chunk;
+    }
+    
+    this->_chunk = new unsigned char**[this->_width];
+    
+    for (unsigned short x = 0; x < this->_width; ++x)
+    {
+        this->_chunk[x] = new unsigned char*[this->_height];
+        
+        for (unsigned short y = 0; y < this->_height; ++y)
+        {
+            this->_chunk[x][y] = new unsigned char[this->_depth];
+            
+            for (unsigned short z = 0; z < this->_depth; ++z) {
+                this->_chunk[x][y][z] = 0;
+            }
+        }
     }
 }
 

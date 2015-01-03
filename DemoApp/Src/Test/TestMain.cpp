@@ -1,18 +1,27 @@
 /**
- * @version     1.1.0 26-Dec-14
+ * DemoApp - UnitTest Main.
+ *
+ * @author      Andy Liebke<coding@andysmiles4games.com>
+ * @version     1.2.0 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <cppunit/ui/text/TestRunner.h> 
 #include <Test/ImageTransformerTest.h>
 #include <Test/SimpleLib/DataCollectionTest.h>
-#include <stdlib.h>
+#include <Test/TerrainBuilderTest.h>
+#include <Test/TerrainEnvironmentDescriptorTest.h>
+#include <Test/TerrainDescriptorWaterTest.h>
+#include <cstdlib>
 
 int main(void)
 {
     CppUnit::TextTestRunner runner;
+    
     runner.addTest(DemoAppTest::ImageTransformerTest::suite());
     runner.addTest(DemoAppTest::DataCollectionTest::suite());
-    runner.run();
+    runner.addTest(DemoAppTest::TerrainEnvironmentDescriptorTest::suite());
+    runner.addTest(DemoAppTest::TerrainBuilderTest::suite());
+    runner.addTest(DemoAppTest::TerrainDescriptorWaterTest::suite());
     
-    return EXIT_SUCCESS;
+    return (runner.run()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

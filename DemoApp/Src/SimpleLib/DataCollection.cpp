@@ -3,12 +3,12 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        SimpleLib/DataCollection.cpp
- * @version     1.1.1 02-Jan-15
+ * @version     1.1.2 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
 #include <SimpleLib/DataCollection.h>
-#include <stdio.h>
+#include <cstdio>
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>

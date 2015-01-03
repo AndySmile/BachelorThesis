@@ -26,7 +26,7 @@
 #	THE SOFTWARE.
 #
 # @author		Andy Liebke<coding@andysmiles4games.com>
-# @version		1.5.1 26-Dec-14
+# @version		1.6.0 03-Jan-15
 # @copyright	Copyright (c) 2013-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 
@@ -35,6 +35,10 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/TerrainAbstract.o \
 						Tmp/TerrainVoxel.o \
 						Tmp/TerrainMesh.o \
+                        Tmp/TerrainBuilder.o \
+                        Tmp/TerrainEnvironmentDescriptor.o \
+                        Tmp/TerrainDecorator.o \
+                        Tmp/TerrainDescriptorWater.o \
 						Tmp/ImageProcessorHeightMap.o \
 						Tmp/ImageProcessorWater.o \
                         Tmp/ImageProcessorHistogramHeightMap.o \
@@ -49,10 +53,14 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 LIST_OBJECTS_APP = Tmp/DemoAppMain.o
 LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
 					Tmp/Test/ImageTransformerTest.o \
+                    Tmp/Test/TerrainBuilderTest.o \
+                    Tmp/Test/TerrainEnvironmentDescriptorTest.o \
+                    Tmp/Test/TerrainDescriptorWaterTest.o \
 					Tmp/Test/SimpleLib/DataCollectionTest.o
 						
 DEBUG_SETTINGS =  -g -D_DEBUG
 COMMON_SETTINGS = $(DEBUG_SETTINGS) -Weffc++ -Wall -I Src/ -I ../Lib/ -arch i386
+COMMON_TEST_SETTINGS = -D_UNITTEST $(COMMON_SETTINGS)
 LINKER_SETTINGS = -framework OpenCV -framework sfml-window -framework sfml-system -framework sfml-graphics -framework OpenGL
 LINKER_TEST_SETTINGS = -lcppunit
 		
@@ -60,13 +68,17 @@ LINKER_TEST_SETTINGS = -lcppunit
 build-executable: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_APP)
 	g++ $(COMMON_SETTINGS) $(LINKER_SETTINGS) -o $(APP_TITLE) $^
 	
+Tmp/Test/%.o: Src/Test/%.cpp
+	@mkdir -p $(dir $@)
+	g++ $(COMMON_TEST_SETTINGS) -c $^ -o $@
+
 Tmp/%.o: Src/%.cpp
 	@mkdir -p $(dir $@)
 	g++ $(COMMON_SETTINGS) -c $^ -o $@ 
 
 .PHONY: test
 test: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_TEST) 
-	@g++ $(COMMON_SETTINGS) $(LINKER_SETTINGS) $(LINKER_TEST_SETTINGS) -o $(APP_TITLE)Test $^
+	@g++ $(COMMON_TEST_SETTINGS) $(LINKER_SETTINGS) $(LINKER_TEST_SETTINGS) -o $(APP_TITLE)Test $^
 	@echo "Running test cases..."
 	@./$(APP_TITLE)Test
 

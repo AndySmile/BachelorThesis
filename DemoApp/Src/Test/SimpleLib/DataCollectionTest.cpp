@@ -1,5 +1,5 @@
 /**
- * @version     1.0.0 26-Dec-14
+ * @version     1.0.1 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <Test/SimpleLib/DataCollectionTest.h>
@@ -37,7 +37,7 @@ namespace DemoAppTest
         SimpleLib::DataCollection data;
         
         // no data were loaded yet, so the result have to be 0
-        int screenWidth = data.getValue("scene", "screen_width");
+        int screenWidth = data.getValue("window", "screen_width");
         
         CPPUNIT_ASSERT(screenWidth == 0);
         
@@ -45,7 +45,7 @@ namespace DemoAppTest
         
         CPPUNIT_ASSERT(result == SimpleLib::DataCollection::None);
         
-        screenWidth = data.getValue("scene", "screen_width");
+        screenWidth = data.getValue("window", "screen_width");
         
         CPPUNIT_ASSERT(screenWidth != 0);
         CPPUNIT_ASSERT(screenWidth == 1024);

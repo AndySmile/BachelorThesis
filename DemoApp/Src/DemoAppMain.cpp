@@ -8,7 +8,7 @@
  */
 #include <SimpleLib/Application.h>
 #include <DemoAppScene.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
 
 #ifdef _DEBUG

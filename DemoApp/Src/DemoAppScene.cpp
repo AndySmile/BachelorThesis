@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppScene.cpp
- * @version     1.6.0 02-Jan-15
+ * @version     1.6.1 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -17,7 +17,7 @@
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>
-    #include <assert.h>
+    #include <cassert>
 #endif
 
 DemoAppScene::DemoAppScene(void) :

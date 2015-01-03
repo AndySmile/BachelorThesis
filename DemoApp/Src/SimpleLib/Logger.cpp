@@ -3,12 +3,12 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        SimpleLib/Logger.cpp
- * @version     1.1.1 02-Jan-15
+ * @version     1.1.2 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
 #include <SimpleLib/Logger.h>
-#include <stdarg.h>
+#include <cstdarg>
 #include <iostream>
 
 namespace SimpleLib
@@ -32,7 +32,6 @@ namespace SimpleLib
     void Logger::writeFailure(const char* message, ...)
     {
         char messageBuffer[256];
-        //const char* messageFormat = message.c_str();
         va_list args;
         
         va_start(args, message);
@@ -46,7 +45,6 @@ namespace SimpleLib
     {
 #ifdef _DEBUG  
         char messageBuffer[256];
-       // const char* messageFormat = message.c_str();
         va_list args;
         
         va_start(args, message);
@@ -61,7 +59,6 @@ namespace SimpleLib
     void Logger::writeWarning(const char* message, ...)
     {
         char messageBuffer[256];
-        //const char* messageFormat = message.c_str();
         va_list args;
         
         va_start(args, message);
