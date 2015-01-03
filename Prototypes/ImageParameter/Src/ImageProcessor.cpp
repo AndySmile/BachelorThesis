@@ -1,5 +1,5 @@
 /**
- * @version     1.0.0 13-Dec-14
+ * @version     1.1.0 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -66,12 +66,14 @@ void ImageProcessor::splitImage(ProcessorFlags flag, const cv::Mat& image, cv::M
  *
  * @return integer - amount of water within the given picture in procent
  */
-unsigned int ImageProcessor::getAmountOfWater(const cv::Mat& image)
+float ImageProcessor::getAmountOfWater(const cv::Mat& image)
 {
     unsigned int amountWater = 0;
     
     if (!image.empty())
     {
+        // METHOD #1
+        
         /*const int histogramSize = 256;
         const int numberOfChannels = 0;
         float channelRange[] = {0.0f, 256.0f};
@@ -103,20 +105,97 @@ unsigned int ImageProcessor::getAmountOfWater(const cv::Mat& image)
         
         std::cout << "average blue value: " << avgBlueColor << std::endl;*/
         
-        unsigned int numberRows = image.rows;
-        unsigned int numberCols = image.cols * image.channels();
+        // METHOD #2
         
-        for (unsigned int y = 0; y < numberRows; ++y)
+//        unsigned int numberRows = image.rows;
+//        unsigned int numberCols = image.cols * image.channels();
+//        
+//        for (unsigned int y = 0; y < numberRows; ++y)
+//        {
+//            const uchar* currRowData = image.ptr<uchar>(y);
+//            
+//            for (unsigned int x = 0; x < numberCols; x += 3)
+//            {
+//                if (currRowData[x] > currRowData[x + 1] && currRowData[x] > currRowData[x + 2]) {
+//                    std::cout << (int)currRowData[x] << std::endl;
+//                }
+//            }
+//        }
+
+        // METHOD #3
+        cv::Size dimension = image.size();
+        const int histogramSize     = 256;
+        const int numberOfChannels  = 0;
+        float channelRange[]        = {0.0f, 256.0f};
+        const float* histogramRange = {channelRange};
+        
+        cv::MatND histogramBlue;
+        cv::MatND histogramGreen;
+        cv::MatND histogramRed;
+        std::vector<cv::Mat> listChannels;
+        
+        cv::split(image, listChannels);
+        
+        cv::calcHist(&listChannels[0], 1, &numberOfChannels, cv::Mat(), histogramBlue, 1, &histogramSize, &histogramRange, true, false);
+        cv::calcHist(&listChannels[1], 1, &numberOfChannels, cv::Mat(), histogramGreen, 1, &histogramSize, &histogramRange, true, false);
+        cv::calcHist(&listChannels[2], 1, &numberOfChannels, cv::Mat(), histogramRed, 1, &histogramSize, &histogramRange, true, false);
+        
+        unsigned int totalBlueColor     = 0;
+        unsigned int totalGreenColor    = 0;
+        unsigned int totalRedColor      = 0;
+        unsigned int totalOthers        = 0;
+        
+        unsigned int avgColorBlue = 0;
+        unsigned int avgColorGreen = 0;
+        unsigned int avgColorRed = 0;
+        
+        for (int i=1; i < histogramSize; ++i)
         {
-            const uchar* currRowData = image.ptr<uchar>(y);
+            unsigned int currColorBlue = cvRound(histogramBlue.at<float>(i));
+            unsigned int currColorGreen = cvRound(histogramGreen.at<float>(i));
+            unsigned int currColorRed = cvRound(histogramRed.at<float>(i));
             
-            for (unsigned int x = 0; x < numberCols; x += 3)
-            {
-                if (currRowData[x] > currRowData[x + 1] && currRowData[x] > currRowData[x + 2]) {
-                    std::cout << (int)currRowData[x] << std::endl;
-                }
+            std::cout << (int)i << " Blue: " << (int)currColorBlue << std::endl;
+            std::cout << (int)i << " Green: " << (int)currColorGreen << std::endl;
+            std::cout << (int)i << " Red: " << (int)currColorRed << std::endl;
+            
+            totalBlueColor += currColorBlue;
+            totalGreenColor += currColorGreen;
+            totalRedColor += currColorRed;
+            totalOthers += currColorRed + currColorGreen;
+            
+            if (currColorBlue > 0) {
+                avgColorBlue += i;
+            }
+        
+            if (currColorGreen > 0) {
+                avgColorGreen += i;
+            }
+            
+            if (currColorRed > 0) {
+                avgColorRed += i;
             }
         }
+        
+        unsigned int totalPixels = dimension.width * dimension.height;
+        
+        std::cout << "number of pixels: " << (int)totalPixels << std::endl;
+        std::cout << "total amount of blue pixels: " << (int)totalBlueColor << std::endl;
+        std::cout << "total amount of green pixels: " << (int)totalGreenColor << std::endl;
+        std::cout << "total amount of red pixels: " << (int)totalRedColor << std::endl;
+        std::cout << "total amount of other pixels: " << (int)totalOthers << std::endl;
+        std::cout << "\naverage amount of color blue: " << (float)((float)totalBlueColor / (float)totalPixels) << std::endl;
+        std::cout << "average amount of color green: " << (float)((float)totalGreenColor / (float)totalPixels) << std::endl;
+        std::cout << "average amount of color red: " << (float)((float)totalRedColor / (float)totalPixels) << std::endl;
+        std::cout << "average amount of color other: " << (float)((float)totalOthers / (float)totalPixels) << std::endl;
+        
+        std::cout << "\nAverage color blue: " << (float)((float)avgColorBlue / 255.0f) << std::endl;
+        std::cout << "Average color green: " << (float)((float)avgColorGreen / 255.0f) << std::endl;
+        std::cout << "Average color red: " << (float)((float)avgColorRed / 255.0f) << std::endl;
+        
+        std::cout << "\nhas more blue color: " << ((totalBlueColor > totalGreenColor && totalBlueColor > totalRedColor) ? "YES" : "NO") << std::endl;
+        
+        amountWater = (totalBlueColor > totalGreenColor && totalBlueColor > totalRedColor) ? ((float)totalBlueColor / (float)totalPixels) : 0.0f;
     }
     
     return amountWater;

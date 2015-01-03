@@ -1,5 +1,5 @@
 /**
- * @version     1.0.0 13-Dec-14
+ * @version     1.1.0 03-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -30,7 +30,7 @@ class ImageProcessor
         
         ImageFormat getImageFormat(const cv::Mat& image);
         void splitImage(ProcessorFlags flag, const cv::Mat& image, cv::Mat* imagePart1, cv::Mat* imagePart2);
-        unsigned int getAmountOfWater(const cv::Mat& image);
+        float getAmountOfWater(const cv::Mat& image);
 };
 
 #endif
