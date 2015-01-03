@@ -72,57 +72,6 @@ float ImageProcessor::getAmountOfWater(const cv::Mat& image)
     
     if (!image.empty())
     {
-        // METHOD #1
-        
-        /*const int histogramSize = 256;
-        const int numberOfChannels = 0;
-        float channelRange[] = {0.0f, 256.0f};
-        const float* histogramRange = {channelRange};
-        
-        cv::MatND histogram;
-        std::vector<cv::Mat> listChannels;
-        
-        cv::split(image, listChannels);
-        
-        cv::calcHist(&listChannels[0], 1, &numberOfChannels, cv::Mat(), histogram, 1, &histogramSize, &histogramRange, true, false);
-        
-        unsigned int avgBlueColor = 0;
-        
-        for (int i=0; i < histogramSize; ++i)
-        {
-            //std::cout << histogram.at<float>(i) << std::endl;
-            
-            unsigned int currColor = cvRound(histogram.at<float>(i));
-            
-            // everything below color value 50 is to dark as that we want count
-            // it to the average computation
-            if (currColor > 50) {
-                avgBlueColor += currColor;
-            }
-        }
-        
-        avgBlueColor /= histogramSize;
-        
-        std::cout << "average blue value: " << avgBlueColor << std::endl;*/
-        
-        // METHOD #2
-        
-//        unsigned int numberRows = image.rows;
-//        unsigned int numberCols = image.cols * image.channels();
-//        
-//        for (unsigned int y = 0; y < numberRows; ++y)
-//        {
-//            const uchar* currRowData = image.ptr<uchar>(y);
-//            
-//            for (unsigned int x = 0; x < numberCols; x += 3)
-//            {
-//                if (currRowData[x] > currRowData[x + 1] && currRowData[x] > currRowData[x + 2]) {
-//                    std::cout << (int)currRowData[x] << std::endl;
-//                }
-//            }
-//        }
-
-        // METHOD #3
         cv::Size dimension = image.size();
         const int histogramSize     = 256;
         const int numberOfChannels  = 0;
