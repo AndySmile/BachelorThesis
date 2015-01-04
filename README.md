@@ -9,13 +9,16 @@ Not all features are implemented and neither it's a stable version. After all fe
 and stable, it'll move to the master branch. So, the latest stable version will be always in the master
 branch and all the latest features, bugfixes and so on will be in the Dev branch. 
 
-BE CAREFUL USING THE VERSION WITHIN DEV BRANCH!
+**BE CAREFUL USING THE VERSION WITHIN DEV BRANCH!**
 
 Unit Testing
 ------------
-This project includes test suites which will be compiled and executed by CppUnit. To do so just go to the
+This project includes test suites which will be compiled and executed with CppUnit. To do so just go to the
 project directory within your terminal and enter:
 
 	make test
 
-That'll create a separated executable for unit testing and it'll start right after it was build.
+That'll create a separated executable for unit testing and it'll start right after it was build. To be able to
+run those tests it's necessary that you have CppUnit v.1.12.x installed.
+
+You can find it here: [http://sourceforge.net/projects/cppunit/](http://sourceforge.net/projects/cppunit/)
