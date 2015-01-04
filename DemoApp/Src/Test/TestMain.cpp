@@ -2,7 +2,7 @@
  * DemoApp - UnitTest Main.
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
- * @version     1.2.0 03-Jan-15
+ * @version     1.3.0 04-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <cppunit/ui/text/TestRunner.h> 
@@ -11,10 +11,14 @@
 #include <Test/TerrainBuilderTest.h>
 #include <Test/TerrainEnvironmentDescriptorTest.h>
 #include <Test/TerrainDescriptorWaterTest.h>
+#include <SimpleLib/Logger.h>
 #include <cstdlib>
 
 int main(void)
 {
+    // initilizes logger otherwise no message will appear
+    SimpleLib::Logger::init(SimpleLib::Logger::Console);
+
     CppUnit::TextTestRunner runner;
     
     runner.addTest(DemoAppTest::ImageTransformerTest::suite());

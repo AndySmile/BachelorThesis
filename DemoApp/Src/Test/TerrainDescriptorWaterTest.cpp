@@ -1,5 +1,5 @@
 /**
- * @version     1.0.0 03-Jan-15
+ * @version     1.1.0 04-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -22,16 +22,16 @@ namespace DemoAppTest
         
         // fill half of the image with blue color
         cv::rectangle(testImage, cv::Point(0, 5), cv::Point(10, 10), cv::Scalar(255, 0, 0), CV_FILLED);
-//        
-//        cv::namedWindow("Debug Output", CV_WINDOW_AUTOSIZE);
-//        cv::imshow("Debug Output", testImage);
-//        
-//        cv::waitKey(0);
         
         // test water detection method with an image half filled with blue color
         // that test might lead to be 100 percent full of water => waterHeight == terrainHeight
-        unsigned int waterHeight = waterDescriptor._determineWaterHeight(&terrain, testImage);
+        float waterHeight = waterDescriptor._determineWaterHeight(&terrain, testImage);
         
-        std::cout << "water height: " << (int)waterHeight << std::endl;
+        // actually you shouldn't compare two floating point numbers with each other,
+        // but in this case we know what actually has to be the result so we do it here,
+        // nevertheless, it isn't a garantee that it'll works all the time on all platforms or
+        // with all compiles. So, it's definitely necessary to replace it with a proper floating
+        // point comparism function!
+        CPPUNIT_ASSERT(waterHeight == 10.0f);
     }
 }
