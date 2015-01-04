@@ -48,6 +48,27 @@ TerrainBuilder& TerrainBuilder::operator = (const TerrainBuilder& src)
     return *this;
 }
 
+void TerrainBuilder::release(void)
+{
+    if (this->_transformer != NULL)
+    {
+        delete this->_transformer;
+        this->_transformer = NULL;
+    }
+    
+    if (this->_descriptor != NULL)
+    {
+        delete this->_descriptor;
+        this->_descriptor = NULL;
+    }
+    
+    if (this->_decorator != NULL)
+    {
+        delete this->_decorator;
+        this->_decorator = NULL;
+    }
+}
+
 void TerrainBuilder::_initTerrain(void)
 {
     switch (this->_type)

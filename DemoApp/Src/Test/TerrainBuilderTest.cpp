@@ -1,5 +1,9 @@
 /**
- * @version     1.0.0 03-Jan-15
+ * DemoApp - Terrain Builder Test Suite.
+ *
+ * @author      Andy Liebke<coding@andysmiles4games.com>
+ * @file        Src/Test/TerrainBuilderTest.cpp
+ * @version     1.1.0 04-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -30,6 +34,8 @@ namespace DemoAppTest
         CPPUNIT_ASSERT(environment != NULL);
         CPPUNIT_ASSERT(decorator == NULL);
         
+        // release memory
+        builder.release();
         // setup image tansformer
         //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
         

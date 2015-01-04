@@ -32,6 +32,7 @@ class TerrainBuilder
 
         TerrainBuilder& operator = (const TerrainBuilder& src);
 
+        void release(void);
         TerrainEnvironmentDescriptor* getTerrainEnvironmentDescriptor(void);
 
     public:
