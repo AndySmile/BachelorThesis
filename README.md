@@ -1,6 +1,7 @@
 #BachelorThesis
 
-This project is part of my Bachelor Thesis. 
+This project is part of my Bachelor Thesis. It was build and tested on Mac OS X 10.7. But it might be
+easy to get it running on other platforms like Linux or Windows as well. 
 
 ##Branches
 
@@ -13,6 +14,15 @@ and stable, it'll move to the master branch. So, the latest stable version will 
 branch and all the latest features, bugfixes and so on will be in the Dev branch. 
 
 **BE CAREFUL USING THE VERSION WITHIN DEV BRANCH!**
+
+##Dependencies
+
+This project is based on some frameworks and libraries. To get the source code compiled you have to install
+those first. 
+
+* SFML Framework v2.1.x - [http://www.sfml-dev.org/](http://www.sfml-dev.org/)
+* GLM Library v0.9.6.1 - [http://glm.g-truc.net/](http://glm.g-truc.net/)
+* OpenCV v2.0.0 - [http://opencv.org/](http://opencv.org/)
 
 ##Build project
 
