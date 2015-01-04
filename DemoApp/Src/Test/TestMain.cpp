@@ -11,6 +11,7 @@
 #include <Test/TerrainBuilderTest.h>
 #include <Test/TerrainEnvironmentDescriptorTest.h>
 #include <Test/TerrainDescriptorWaterTest.h>
+#include <Test/EntityAbstractTest.h>
 #include <SimpleLib/Logger.h>
 #include <cstdlib>
 
@@ -26,6 +27,7 @@ int main(void)
     runner.addTest(DemoAppTest::TerrainEnvironmentDescriptorTest::suite());
     runner.addTest(DemoAppTest::TerrainBuilderTest::suite());
     runner.addTest(DemoAppTest::TerrainDescriptorWaterTest::suite());
+    runner.addTest(DemoAppTest::EntityAbstractTest::suite());
     
     return (runner.run()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

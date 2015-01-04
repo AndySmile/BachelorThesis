@@ -76,6 +76,7 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/ImageProcessorHistogramHeightMap.o \
 						Tmp/ImageTransformer.o \
 						Tmp/AppConfig.o \
+						Tmp/EntityAbstract.o \
 						Tmp/SimpleLib/Application.o \
 						Tmp/SimpleLib/Camera.o \
 						Tmp/SimpleLib/OpenGLHelper.o \
@@ -91,6 +92,10 @@ LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
 					Tmp/Test/TerrainBuilderTest.o \
 					Tmp/Test/TerrainEnvironmentDescriptorTest.o \
 					Tmp/Test/TerrainDescriptorWaterTest.o \
+					Tmp/Test/EntityAbstractTest.o \
+					Tmp/Test/TerrainAbstractTest.o \
+					Tmp/Test/EntityDummy.o \
+					Tmp/Test/TerrainDummy.o \
 					Tmp/Test/SimpleLib/DataCollectionTest.o
 
 # debugging options
