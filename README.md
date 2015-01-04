@@ -5,8 +5,10 @@ easy to get it running on other platforms like Linux or Windows as well.
 
 ##Branches
 
-* master - stores latest stable version
-* Dev - stores latest development state but it's probably not stable nor those features're ready yet
+* **master** 
+	* stores latest stable version
+* **Dev**
+	* stores latest development state but it's probably not stable nor those features're ready yet
 
 I'm currently working only in the Dev branch because this project is still work in progress.
 Not all features are implemented and neither it's a stable version. After all features are right in place
@@ -20,25 +22,17 @@ branch and all the latest features, bugfixes and so on will be in the Dev branch
 This project is based on some frameworks and libraries. To get the source code compiled you have to install
 those first. 
 
-* SFML Framework v2.1.x - [http://www.sfml-dev.org/](http://www.sfml-dev.org/)
-* GLM Library v0.9.6.1 - [http://glm.g-truc.net/](http://glm.g-truc.net/)
-* OpenCV v2.0.0 - [http://opencv.org/](http://opencv.org/)
+* *SFML Framework v2.1.x*
+	* [http://www.sfml-dev.org/](http://www.sfml-dev.org/)
+* *GLM Library v0.9.6.x* 
+	* [http://glm.g-truc.net/](http://glm.g-truc.net/)
+* OpenCV v2.0.x
+	* [http://opencv.org/](http://opencv.org/)
 
 ##Build project
 
-This application will be created with a makefile in the terminal. So, open your terminal open to the DemoApp
-or to one of the available prototype directories and enter:
-
-	make
-    
-That's it. Assuming that all libraries are in place, it'll compile the entire project and you'll receive 
-an executable within the project directory. Most of those applications doesn't need paramter to get them
-started. For those you can enter:
-
-	make start
-    
-In case that the application needs parameter, you'll receive an error message and you have to start it
-directly.
+This application will be created with a makefile in the terminal. There're several options to build your application.
+How to do that can you find here: [https://github.com/AndySmile/CppProjectTools#options](CppProjectTools)
 
 ##Unit Testing
 
