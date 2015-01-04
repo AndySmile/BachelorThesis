@@ -9,6 +9,12 @@ EntityAbstract::EntityAbstract(void)
     
 }
 
+EntityAbstract::EntityAbstract(const glm::vec3 position) :
+    _position(position)
+{
+    
+}
+
 EntityAbstract::~EntityAbstract(void)
 {
     

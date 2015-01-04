@@ -1,5 +1,5 @@
 /**
- * @version     2.2.0 03-Jan-15
+ * @version     2.3.0 04-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <TerrainVoxel.h>
@@ -96,6 +96,8 @@ void TerrainVoxel::render(void)
 
 void TerrainVoxel::release(void)
 {
+    TerrainAbstract::release();
+
     if (this->_chunk != NULL)
     {
         for (unsigned short x = 0; x < this->_width; ++x)

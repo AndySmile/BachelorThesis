@@ -77,6 +77,7 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/ImageTransformer.o \
 						Tmp/AppConfig.o \
 						Tmp/EntityAbstract.o \
+						Tmp/EntityWater.o \
 						Tmp/SimpleLib/Application.o \
 						Tmp/SimpleLib/Camera.o \
 						Tmp/SimpleLib/OpenGLHelper.o \

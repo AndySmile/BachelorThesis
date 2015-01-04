@@ -11,6 +11,7 @@ class EntityAbstract
 {
     public:
         EntityAbstract(void);
+        EntityAbstract(const glm::vec3 position);
         virtual ~EntityAbstract(void);
     
     public:

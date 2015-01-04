@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainMesh.cpp
- * @version     2.3.0 03-Jan-15
+ * @version     2.4.0 04-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -174,6 +174,8 @@ void TerrainMesh::render(void)
 
 void TerrainMesh::release(void)
 {
+    TerrainAbstract::release();
+    
     if (this->_grid != NULL)
     {
         for (unsigned int x=0; x < this->_width; ++x) {

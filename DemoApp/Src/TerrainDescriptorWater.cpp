@@ -8,6 +8,7 @@
  * @ingroup     demoapp
  */
 #include <TerrainDescriptorWater.h>
+#include <EntityWater.h>
 #include <OpenCV/cv.h>
 #include <vector>
 
@@ -27,7 +28,11 @@ TerrainDescriptorWater::~TerrainDescriptorWater(void)
 
 void TerrainDescriptorWater::process(TerrainAbstract* terrain, const cv::Mat& image)
 {
+    float waterHeight = this->_determineWaterHeight(terrain, image);
     
+    if (waterHeight > 0.0f) {
+        terrain->addEntity(new EntityWater(glm::vec3(0.0f, waterHeight, 0.0f)));
+    }
 }
 
 float TerrainDescriptorWater::_determineWaterHeight(TerrainAbstract* terrain, const cv::Mat& image)

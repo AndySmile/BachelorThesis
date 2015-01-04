@@ -7,9 +7,6 @@
 #include <TerrainDescriptorWater.h>
 #include <TerrainMesh.h>
 
-#include <OpenCV/cxcore.h>
-#include <OpenCV/highgui.h>
-
 namespace DemoAppTest
 {
     void TerrainDescriptorWaterTest::processTest(void)
@@ -25,11 +22,19 @@ namespace DemoAppTest
         // that test might lead to be 100 percent full of water => waterHeight == terrainHeight
         float waterHeight = waterDescriptor._determineWaterHeight(&terrain, testImage);
         
-        // actually you shouldn't compare two floating point numbers with each other,
+        // actually you shouldn't compare two floating point numbers with each other this way,
         // but in this case we know what actually has to be the result so we do it here,
         // nevertheless, it isn't a garantee that it'll works all the time on all platforms or
         // with all compiles. So, it's definitely necessary to replace it with a proper floating
         // point comparism function!
         CPPUNIT_ASSERT(waterHeight == 10.0f);
+        
+        // test water descriptor process. this process basically add a water entity
+        // to the terrain. so, after this process the terrain might have one entity.
+        waterDescriptor.process(&terrain, testImage);
+        
+        CPPUNIT_ASSERT(terrain.getNumberOfEntities() == 1);
+        
+        terrain.release();
     }
 }
