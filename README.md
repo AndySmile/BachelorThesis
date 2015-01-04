@@ -32,7 +32,7 @@ those first.
 ##Build project
 
 This application will be created with a makefile in the terminal. There're several options to build your application.
-How to do that can you find here: [https://github.com/AndySmile/CppProjectTools#options](CppProjectTools)
+How to do that can you find here: [CppProjectTools](https://github.com/AndySmile/CppProjectTools#options)
 
 ##Unit Testing
 
