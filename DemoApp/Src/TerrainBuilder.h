@@ -1,6 +1,11 @@
 /**
- * @version     1.0.0 03-Jan-15
+ * DemoApp - Terrain Builder Model Header.
+ *
+ * @author      Andy Liebke<coding@andysmiles4games.com>
+ * @file        Src/TerrainBuilder.h
+ * @version     1.1.0 04-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+ * @ingroup     demoapp
  */
 #ifndef __TERRAIN_BUILDER_H__
 #define __TERRAIN_BUILDER_H__
@@ -22,7 +27,10 @@ class TerrainBuilder
     
     public:
         TerrainBuilder(const TerrainBuilder::TerrainType type, ImageTransformer* transformer);
+        TerrainBuilder(const TerrainBuilder& src);
         virtual ~TerrainBuilder(void);
+
+        TerrainBuilder& operator = (const TerrainBuilder& src);
 
         TerrainEnvironmentDescriptor* getTerrainEnvironmentDescriptor(void);
 
@@ -33,6 +41,9 @@ class TerrainBuilder
         inline void setTerrainEnvironmentDescriptor(TerrainEnvironmentDescriptor* descriptor);
         inline void setTerrainDecorator(TerrainDecorator* decorator);
         inline TerrainDecorator* getTerrainDecorator(void) const;
+
+    private:
+        void _initTerrain(void);
 
     private:
         TerrainType _type;
