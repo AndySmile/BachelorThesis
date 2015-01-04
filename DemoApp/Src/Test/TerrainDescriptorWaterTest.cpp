@@ -10,8 +10,6 @@
 #include <OpenCV/cxcore.h>
 #include <OpenCV/highgui.h>
 
-#include <iostream>
-
 namespace DemoAppTest
 {
     void TerrainDescriptorWaterTest::processTest(void)

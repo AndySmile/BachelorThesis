@@ -13,7 +13,6 @@
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>
-    #include <iostream>
 #endif
 
 TerrainDescriptorWater::TerrainDescriptorWater(void)
