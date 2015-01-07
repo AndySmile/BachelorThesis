@@ -36,9 +36,22 @@ A detail description how to do that is available here: [CppProjectTools](https:/
 To have a quick start is here a quick guide how to compile your project:
 
 * Make sure that depencencies are installed and working on your machine
-* Go to [YOUR-INSTALL_DIRECTORY]/BachelorThesis/
+* Go to [YOUR_INSTALL_DIRECTORY]/BachelorThesis/DemoApp/
 * Enter `make` inside your terminal
-* If now error occurred you're able to start the application with `./BachelorThesis [PATH-TO-YOUR-INPUT-IMAGE]`
+* If no error occurred you're able to start the application with `./DemoApp [PATH-TO-YOUR-INPUT-IMAGE]`
+
+##Control inside the application
+
+You can control the view camera by your keyboard. That's the keyboard schema for that:
+
+* A - Moving in the left direction
+* D - Moving in the right direction
+* W - Moving forward
+* S - Moving backward
+* Q - Moving up
+* E - Moving down
+* Left Arrow Key - Moving view direction to the left
+* Right Arrow Key - Moving view direction to the right
 
 ##Unit Testing
 
