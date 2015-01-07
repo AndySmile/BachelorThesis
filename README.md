@@ -12,12 +12,20 @@ It was build and tested on Mac OS X 10.7. But it might be easy to get it running
 * **Dev**
 	* stores latest development state but it's probably not stable nor those features're ready yet
 
-I'm currently working only in the Dev branch because this project is still work in progress.
+I'm currently working only in the **Dev** branch because this project is still work in progress.
 Not all features are implemented and neither it's a stable version. After each feature is right in place
 and stable, it'll move to the **master** branch. So, the latest stable version will be always in the **master**
 branch and all the latest features, bugfixes and so on will be in the **Dev** branch. 
 
 **BE CAREFUL USING THE VERSION WITHIN DEV BRANCH!**
+
+##File Structure
+- *DempApp*
+	- Stores main demo application that includes all final features.
+- *Lib*
+	- Stores libraries/frameworks the DemoApp and all prototype depending on.
+- *Prototypes*
+	- Stores all prototype applications.
 
 ##Dependencies
 
@@ -37,10 +45,10 @@ This application will be created with a makefile in the terminal. There're sever
 A detail description how to do that is available here: [CppProjectTools](https://github.com/AndySmile/CppProjectTools#options)
 To have a quick start is here a quick guide how to compile your project:
 
-* Make sure that depencencies are installed and working on your machine
-* Go to [YOUR_INSTALL_DIRECTORY]/BachelorThesis/DemoApp/
-* Enter `make` inside your terminal
-* If no error occurred you're able to start the application with `./DemoApp [PATH-TO-YOUR-INPUT-IMAGE]`
+1. Make sure that depencencies are installed and working on your machine
+2. Go to [YOUR_INSTALL_DIRECTORY]/BachelorThesis/DemoApp/
+3. Enter `make` inside your terminal
+4. If no error occurred you're able to start the application with `./DemoApp [PATH-TO-YOUR-INPUT-IMAGE]`
 
 ##Control Schema
 
