@@ -1,7 +1,7 @@
 #BachelorThesis
 
-This project is part of my Bachelor Thesis. It was build and tested on Mac OS X 10.7. But it might be
-easy to get it running on other platforms like Linux or Windows as well. 
+This project is part of my Bachelor Thesis. The subject is to transform a 2D Image into a 3D terrain.
+It was build and tested on Mac OS X 10.7. But it might be easy to get it running on other platforms like Linux or Windows as well. 
 
 ##Branches
 
@@ -32,7 +32,13 @@ those first.
 ##Build project
 
 This application will be created with a makefile in the terminal. There're several options to build your application.
-How to do that can you find here: [CppProjectTools](https://github.com/AndySmile/CppProjectTools#options)
+A detail description how to do that is available here: [CppProjectTools](https://github.com/AndySmile/CppProjectTools#options)
+To have a quick start is here a quick guide how to compile your project:
+
+* Make sure that depencencies are installed and working on your machine
+* Go to [YOUR-INSTALL_DIRECTORY]/BachelorThesis/
+* Enter `make` inside your terminal
+* If now error occurred you're able to start the application with `./BachelorThesis [PATH-TO-YOUR-INPUT-IMAGE]`
 
 ##Unit Testing
 
