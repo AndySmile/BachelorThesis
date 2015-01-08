@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppScene.cpp
- * @version     1.6.1 03-Jan-15
+ * @version     1.6.2 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -178,5 +178,5 @@ void DemoAppScene::release(void)
 
 std::string DemoAppScene::getTitle(void) const
 {
-    return "Image Transformer - Demo " __DATE__ " " __TIME__ " - Powered by ";
+    return "Image Transformer - Demo " __DATE__ " " __TIME__ " - Powered by SimpleLib " SIMPLELIB_VERSION_BUILD_STRING;
 }

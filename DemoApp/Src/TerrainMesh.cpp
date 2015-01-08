@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainMesh.cpp
- * @version     2.4.0 04-Jan-15
+ * @version     2.5.0 07-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -94,6 +94,10 @@ void TerrainMesh::setSize(const unsigned short width, const unsigned short heigh
 
 void TerrainMesh::_resetGrid(void)
 {
+#ifdef _DEBUG
+    SimpleLib::Logger::writeDebug("Reseting mesh grid!");
+#endif
+
     // if grid already exists release memory
     if (this->_grid != NULL)
     {

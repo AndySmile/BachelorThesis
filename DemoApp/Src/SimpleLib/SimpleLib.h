@@ -5,7 +5,7 @@
  *
  * @author      Andy Liebke\<coding@andymiles4games.com\>
  * @file        SimpleLib/SimpleLib.h
- * @version     1.1.2 03-Jan-15
+ * @version     1.2.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
  
@@ -14,9 +14,9 @@
 
 #define SIMPLELIB_VERSION_MAJOR 1
 #define SIMPLELIB_VERSION_MINOR 4
-#define SIMPLELIB_VERSION_PATCH 1
-/*#define SIMPLELIB_VERSION SIMPLELIB_VERSION_MAJOR "." SIMPLELIB_VERSION_MINOR "." SIMPLELIB_VERSION_PATCH
-#define SIMPLELIB_VERSION_STRING "v" SIMPLELIB_VERSION " " __DATE__ " " __TIME__*/
+#define SIMPLELIB_VERSION_PATCH 2
+#define SIMPLELIB_VERSION_STRING "1.4.2"
+#define SIMPLELIB_VERSION_BUILD_STRING "v" SIMPLELIB_VERSION_STRING " " __DATE__ " " __TIME__
 
 namespace SimpleLib
 {
