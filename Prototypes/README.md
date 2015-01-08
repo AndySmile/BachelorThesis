@@ -13,6 +13,8 @@ base on those information.
 
 This prototype has a rough implementation to render a terrain as a big mesh which is based on a height-map.
 
+![Screenshot of the MeshTerrainDemo prototype](http://andysmiles4games.com/GitHub/Images/Prototype-MeshTerrainDemo-Screenshot.png "Screenshot of a generated terrain rendered with OpenGL")
+
 ##PerlinNoiseDemo
 
 It was planed to build in a feature which is based on the Perlin Noise algorithm. But unfortunatelly there weren't time left
@@ -22,3 +24,5 @@ to actually build it. So, this project is quite empty.
 
 This prototype implements a terrain renderer which builds the terrain based on voxel. It works quite well but there isn't any performance
 optimisation, so if you build a large terrain, you're actually able to count each frame.
+
+![Screenshot of the VoxelTerrainDemo prototype](http://andysmiles4games.com/GitHub/Images/Prototype-VoxelTerrainDemo-Screenshot.png "Screenshot of a generated terrain rendered with OpenGL")

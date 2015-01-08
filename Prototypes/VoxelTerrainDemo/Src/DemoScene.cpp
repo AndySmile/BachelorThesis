@@ -1,6 +1,6 @@
 /**
- * @version     1.5.0 09-Dec-14
- * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved. 
+ * @version     1.5.1 08-Jan-15
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <DemoScene.h>
 #include <SFML/OpenGL.hpp>
@@ -30,7 +30,7 @@ void DemoScene::init(void)
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     
     // setup landscape
-    // this->_createFromHeightMap();
+    //this->_createFromHeightMap();
     this->_createPyramid();
 }
 
@@ -38,7 +38,7 @@ void DemoScene::_createFromHeightMap(void)
 {
     sf::Image heightMap;
     
-    heightMap.loadFromFile("Resource/HeightMap.jpg");
+    heightMap.loadFromFile("Resource/HeightMap_6.png");
     
     sf::Vector2u dimension = heightMap.getSize();
     
@@ -92,7 +92,7 @@ void DemoScene::render(sf::Window& window)
     rotationAngle += 0.5f;
 
     glLoadIdentity();
-    gluLookAt(0.0f, 28.0f, 5.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluLookAt(0.0f, 28.0f, 50.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     
     glPushMatrix();
         glRotatef(rotationAngle, 0.0f, 1.0f, 0.0f);

@@ -1,6 +1,6 @@
 /**
- * @version     1.0.1 22-Dec-14
- * @copyright   Copyright (c) 2014 by Andy Liebke. All rights reserved. 
+ * @version     1.0.2 08-Jan-15
+ * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <DemoScene.h>
 #include <SFML/OpenGL.hpp>
@@ -24,8 +24,6 @@ void DemoScene::init(void)
     float lightPosition[] = {10.0f, 5.0f, 0.0f, 0.0f};
 
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_LIGHTING);
-    //glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -42,7 +40,7 @@ void DemoScene::_createFromHeightMap(void)
 #endif
         sf::Image heightMap;
         
-        heightMap.loadFromFile("Resource/HeightMap_5.jpg");
+        heightMap.loadFromFile("Resource/HeightMap_6.png");
         
         sf::Vector2u dimension = heightMap.getSize();
         
@@ -72,13 +70,11 @@ void DemoScene::_createFromHeightMap(void)
                         sf::Color currColor = heightMap.getPixel(x, z);
                         float secondAvgColor = 0.0f;
                         float currAvgColor  = (currColor.r + currColor.g + currColor.b) * 0.3333f;
-                        currAvgColor        = (currAvgColor / 256.0f) * 10.0f;
                         
                         if (z + 1 < dimension.y)
                         {
                             sf::Color secondColor = heightMap.getPixel(x, z + 1);
                             secondAvgColor  = (secondColor.r + secondColor.g + secondColor.b) * 0.3333f;
-                            secondAvgColor      = (secondAvgColor / 256.0f) * 10.0f;
                         }
                         else {
                             secondAvgColor = currAvgColor;
@@ -117,7 +113,7 @@ void DemoScene::render(sf::Window& window)
     static float rotationAngle = 0.0f;
 
     glLoadIdentity();
-    gluLookAt(0.0f, 18.0f, 45.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluLookAt(0.0f, 318.0f, 445.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     
     rotationAngle += 0.5f;
 
@@ -136,5 +132,5 @@ void DemoScene::release(void)
 
 std::string DemoScene::getTitle(void) const
 {
-    return "Demo Mesh Terrain";
+    return "Demo Mesh Terrain " __DATE__ " [" __TIME__ "]";
 }
