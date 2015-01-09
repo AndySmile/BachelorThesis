@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainBuilder.h
- * @version     1.1.0 04-Jan-15
+ * @version     1.2.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -26,22 +26,21 @@ class TerrainBuilder
         };
     
     public:
-        TerrainBuilder(const TerrainBuilder::TerrainType type, ImageTransformer* transformer);
+        TerrainBuilder(const TerrainBuilder::TerrainType type, const std::string pathInputImage);
         TerrainBuilder(const TerrainBuilder& src);
         virtual ~TerrainBuilder(void);
 
         TerrainBuilder& operator = (const TerrainBuilder& src);
 
-        void release(void);
+        TerrainAbstract* build(void);
         TerrainEnvironmentDescriptor* getTerrainEnvironmentDescriptor(void);
-
+        ImageTransformer* getImageTransformer(void);
+        TerrainDecorator* getTerrainDecorator(void);
+        void release(void);
+    
     public:
         inline void setTerrainType(const TerrainBuilder::TerrainType type);
         inline TerrainBuilder::TerrainType getTerrainType(void) const;
-        inline ImageTransformer* getImageTransformer(void) const;
-        inline void setTerrainEnvironmentDescriptor(TerrainEnvironmentDescriptor* descriptor);
-        inline void setTerrainDecorator(TerrainDecorator* decorator);
-        inline TerrainDecorator* getTerrainDecorator(void) const;
 
     private:
         void _initTerrain(void);
@@ -52,6 +51,7 @@ class TerrainBuilder
         ImageTransformer* _transformer;
         TerrainEnvironmentDescriptor* _descriptor;
         TerrainDecorator* _decorator;
+        std::string _pathInputImage;
 };
 
 #include <Detail/TerrainBuilderDetail.h>

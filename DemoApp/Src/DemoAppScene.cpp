@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppScene.cpp
- * @version     1.6.2 08-Jan-15
+ * @version     1.7.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -70,7 +70,7 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 void DemoAppScene::init(void)
 {
     // setup terrain
-    ImageTransformer* transformer               = new ImageTransformer(this->_imagePath);
+   /* ImageTransformer* transformer               = new ImageTransformer(this->_imagePath);
     ImageTransformer::TerrainType terrainType   = ImageTransformer::MeshTerrain;
     
     if (this->_config != NULL)
@@ -96,7 +96,7 @@ void DemoAppScene::init(void)
     transformer->release();
     
     delete transformer;
-    transformer = NULL;
+    transformer = NULL;*/
     
     // initialize camera
     this->_camera = new SimpleLib::Camera(0.0f, 50.0f, -80.0f, 3.0f);

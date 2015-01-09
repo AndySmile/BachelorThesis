@@ -1,5 +1,9 @@
 /**
- * @version     1.2.0 23-Dec-14
+ * DemoApp - Image Transformer Model Header.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/ImageTransformer.h
+ * @version     1.3.1 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_TRANSFORMER_H__
@@ -27,6 +31,7 @@ class ImageTransformer
     public:
         void addProcessor(ImageProcessorInterface* processor);
         TerrainAbstract* generateTerrain(TerrainType type);
+        float* generateHeightMap(void);
         void release(void);
     
     public:

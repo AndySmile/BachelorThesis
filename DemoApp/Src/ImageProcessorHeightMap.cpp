@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/ImageProcessorHeightMap.cpp
- * @version     2.1.1 02-Jan-15
+ * @version     2.2.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -13,36 +13,33 @@
     #include <SimpleLib/Logger.h>
 #endif
 
-ImageProcessorHeightMap::ImageProcessorHeightMap(void)
+ImageProcessorHeightMap::ImageProcessorHeightMap(const float maxHeight)
 {
-    
+    this->_maxHeight = maxHeight;
 }
 
 ImageProcessorHeightMap::~ImageProcessorHeightMap(void)
 {
-    
+    this->_maxHeight = 0;
 }
 
-void ImageProcessorHeightMap::process(const cv::Mat& image, TerrainAbstract* terrain)
+void ImageProcessorHeightMap::process(float* map, const cv::Mat& inputImage)
 {
-    unsigned short numberChannels   = image.channels();
-    unsigned int numberRows         = image.rows;
-    unsigned int numberCols         = image.cols;
+    unsigned short numberChannels   = inputImage.channels();
+    unsigned int numberRows         = inputImage.rows;
+    unsigned int numberCols         = inputImage.cols;
     
 #ifdef _DEBUG
     SimpleLib::Logger::writeDebug("image channels: %d", numberChannels);
     SimpleLib::Logger::writeDebug("image rows: %d", numberRows);
     SimpleLib::Logger::writeDebug("image cols: %d", numberCols);
-    SimpleLib::Logger::writeDebug("terrain width: %d", terrain->getWidth());
-    SimpleLib::Logger::writeDebug("terrain height: %d", terrain->getHeight());
-    SimpleLib::Logger::writeDebug("terrain depth: %d", terrain->getDepth());
 #endif
 
     for (unsigned int x=0; x < numberCols; ++x)
     {
         for (unsigned int z=0; z < numberRows; ++z)
         {
-            cv::Vec3b color = image.at<cv::Vec3b>(z, x);
+            cv::Vec3b color = inputImage.at<cv::Vec3b>(z, x);
             float currAvgColor = 0.0f;
             
             for (unsigned short n=0; n < numberChannels; ++n) {
@@ -51,11 +48,14 @@ void ImageProcessorHeightMap::process(const cv::Mat& image, TerrainAbstract* ter
             
             currAvgColor /= numberChannels;
             
-            if (currAvgColor >= terrain->getHeight()) {
-                currAvgColor /= terrain->getHeight();
+            if (currAvgColor >= this->_maxHeight) {
+                currAvgColor /= this->_maxHeight;
             }
+
             
-            terrain->setGridNode(x, currAvgColor, z);
+
+            //map->at<cv::Vec3b>(z, x) = currAvgColor;
+            //terrain->setGridNode(x, currAvgColor, z);
         }
     }
 }

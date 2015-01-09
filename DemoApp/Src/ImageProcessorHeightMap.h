@@ -1,5 +1,5 @@
 /**
- * @version     2.0.0 23-Dec-14
+ * @version     2.1.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef ___IMAGE_PROCESSOR_HEIGHT_MAP_H__
@@ -10,11 +10,14 @@
 class ImageProcessorHeightMap : public ImageProcessorInterface
 {
     public:
-        ImageProcessorHeightMap(void);
+        ImageProcessorHeightMap(const float maxHeight);
         virtual ~ImageProcessorHeightMap(void);
     
-        void process(const cv::Mat& image, TerrainAbstract* terrain);
+        void process(float* map, const cv::Mat& inputImage);
         void release(void);
+
+    private:
+        float _maxHeight;
 };
 
 #endif

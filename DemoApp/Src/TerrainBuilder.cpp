@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainBuilder.cpp
- * @version     1.1.0 04-Jan-15
+ * @version     1.2.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -11,12 +11,13 @@
 #include <TerrainMesh.h>
 #include <TerrainVoxel.h>
 
-TerrainBuilder::TerrainBuilder(const TerrainBuilder::TerrainType type, ImageTransformer* transformer) :
+TerrainBuilder::TerrainBuilder(const TerrainBuilder::TerrainType type, const std::string pathInputImage) :
     _type(type),
     _terrain(NULL),
-    _transformer(transformer),
+    _transformer(NULL),
     _descriptor(NULL),
-    _decorator(NULL)
+    _decorator(NULL),
+    _pathInputImage(pathInputImage)
 {
     this->_initTerrain();
 }
@@ -26,7 +27,8 @@ TerrainBuilder::TerrainBuilder(const TerrainBuilder& src) :
     _terrain(NULL),
     _transformer(NULL),
     _descriptor(NULL),
-    _decorator(NULL)
+    _decorator(NULL),
+    _pathInputImage(src._pathInputImage)
 {
     this->_initTerrain();
 }
@@ -38,10 +40,11 @@ TerrainBuilder::~TerrainBuilder(void)
 
 TerrainBuilder& TerrainBuilder::operator = (const TerrainBuilder& src)
 {
-    this->_type         = src._type;
-    this->_transformer  = NULL;
-    this->_descriptor   = NULL;
-    this->_decorator    = NULL;
+    this->_type             = src._type;
+    this->_pathInputImage   = src._pathInputImage;
+    this->_transformer      = NULL;
+    this->_descriptor       = NULL;
+    this->_decorator        = NULL;
     
     this->_initTerrain();
     
@@ -92,6 +95,32 @@ TerrainEnvironmentDescriptor* TerrainBuilder::getTerrainEnvironmentDescriptor(vo
     if (this->_descriptor == NULL) {
         this->_descriptor = new TerrainEnvironmentDescriptor(this->_terrain);
     }
-
+    
     return this->_descriptor;
+}
+
+ImageTransformer* TerrainBuilder::getImageTransformer(void)
+{
+    if (this->_transformer == NULL) {
+        this->_transformer = new ImageTransformer(this->_pathInputImage);
+    }
+
+    return this->_transformer;
+}
+
+TerrainDecorator* TerrainBuilder::getTerrainDecorator(void)
+{
+    return NULL;
+}
+
+TerrainAbstract* TerrainBuilder::build(void)
+{
+    TerrainAbstract* terrain = NULL;
+
+    if (!this->_pathInputImage.empty())
+    {
+
+    }
+
+    return terrain;
 }

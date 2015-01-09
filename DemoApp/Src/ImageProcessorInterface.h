@@ -1,5 +1,9 @@
 /**
- * @version     2.0.0 23-Dec-14
+ * DemoApp - Image Processor Interface Header.
+ *
+ * @author      Andy Liebke\<coding@andysmiles4games.com\>
+ * @file        Src/ImageProcessorInterface.h
+ * @version     2.1.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_PROCESSOR_INTERFACE_H__
@@ -15,7 +19,7 @@ struct ImageProcessorInterface
     {
     }
     
-    virtual void process(const cv::Mat& image, TerrainAbstract* terrain) = 0;
+    virtual void process(float* map, const cv::Mat& inputImage) = 0;
     virtual void release(void) = 0;
 };
 

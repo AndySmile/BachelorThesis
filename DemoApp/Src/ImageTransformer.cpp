@@ -1,5 +1,5 @@
 /**
- * @version     1.2.3 02-Jan-15
+ * @version     1.3.0 08-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageTransformer.h>
@@ -37,34 +37,75 @@ void ImageTransformer::addProcessor(ImageProcessorInterface* processor)
 TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
 {
     TerrainAbstract* terrain    = NULL;
-    cv::Mat image               = cv::imread(this->_imageFilePath);
     
-    if (image.data == 0)
+    if (!this->_imageFilePath.empty())
     {
-#ifdef _DEBUG
-        SimpleLib::Logger::writeDebug("image '%s' wasn't loaded!", this->_imageFilePath.c_str());
-#endif
-    }
-    else
-    {
-        cv::Size dimension = image.size();
+        cv::Mat image = cv::imread(this->_imageFilePath);
         
-        if (type == MeshTerrain) {
-            terrain = new TerrainMesh(dimension.width, 40, dimension.height);
-        }
-        else if (type == VoxelTerrain) {
-            terrain = new TerrainVoxel(dimension.width, 10, dimension.height);
-        }
-        
-        if (terrain != NULL)
+        if (image.data == 0)
         {
-            for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
-                (*it)->process(image, terrain);
+#ifdef _DEBUG
+            SimpleLib::Logger::writeDebug("image '%s' wasn't loaded!", this->_imageFilePath.c_str());
+#endif
+        }
+        else
+        {
+            cv::Size dimension = image.size();
+            
+            if (type == MeshTerrain) {
+                terrain = new TerrainMesh(dimension.width, 40, dimension.height);
             }
+            else if (type == VoxelTerrain) {
+                terrain = new TerrainVoxel(dimension.width, 10, dimension.height);
+            }
+            
+            /*if (terrain != NULL)
+            {
+                for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
+                    (*it)->process(image, terrain);
+                }
+            }*/
         }
     }
     
     return terrain;
+}
+
+HeightMap ImageTransformer::generateHeightMap(void)
+{
+    float* map;
+    
+    if (!this->_imageFilePath.empty())
+    {
+        cv::Mat image = cv::imread(this->_imageFilePath);
+
+        if (image.data == 0)
+        {
+#ifdef _DEBUG
+            SimpleLib::Logger::writeDebug("ImageTransformer::generateHeightMap Failure: image '%s' wasn't loaded!", this->_imageFilePath.c_str());
+#endif
+        }
+        else
+        {
+            // initial size of the height map. It's possible that'll change by one of those image processors
+            //map.create(image.cols, image.rows, CV_8UC3);
+
+            map = new float[image.cols * image.rows];
+
+            for (unsigned int y=0; y < image.rows; ++y)
+            {
+                for (unsigned int x=0; x < image.cols; ++x) {
+                    map[(image.rows * y) + x] = 0.0f;
+                }
+            }
+
+            for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
+                (*it)->process(&map, image);
+            }
+        }
+    }
+
+    return map;
 }
 
 void ImageTransformer::release()
