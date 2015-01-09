@@ -67,16 +67,18 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/TerrainAbstract.o \
 						Tmp/TerrainVoxel.o \
 						Tmp/TerrainMesh.o \
+						Tmp/TerrainBuilder.o \
 						Tmp/TerrainEnvironmentDescriptor.o \
 						Tmp/TerrainDecorator.o \
 						Tmp/TerrainDescriptorWater.o \
 						Tmp/ImageProcessorHeightMap.o \
 						Tmp/ImageProcessorWater.o \
 						Tmp/ImageProcessorHistogramHeightMap.o \
+						Tmp/ImageTransformer.o \
 						Tmp/AppConfig.o \
 						Tmp/EntityAbstract.o \
 						Tmp/EntityWater.o \
-                        Tmp/HeightMap.o \
+						Tmp/HeightMap.o \
 						Tmp/SimpleLib/Application.o \
 						Tmp/SimpleLib/Camera.o \
 						Tmp/SimpleLib/OpenGLHelper.o \
@@ -88,13 +90,15 @@ LIST_OBJECTS_APP = Tmp/DemoAppMain.o
 
 # list of all files for the unit test executable
 LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
+					Tmp/Test/ImageTransformerTest.o \
+					Tmp/Test/TerrainBuilderTest.o \
 					Tmp/Test/TerrainEnvironmentDescriptorTest.o \
 					Tmp/Test/TerrainDescriptorWaterTest.o \
 					Tmp/Test/EntityAbstractTest.o \
 					Tmp/Test/TerrainAbstractTest.o \
 					Tmp/Test/EntityDummy.o \
 					Tmp/Test/TerrainDummy.o \
-                    Tmp/Test/HeightMapTest.o \
+					Tmp/Test/HeightMapTest.o \
 					Tmp/Test/SimpleLib/DataCollectionTest.o
 
 # debugging options

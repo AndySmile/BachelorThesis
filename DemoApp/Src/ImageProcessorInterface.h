@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/ImageProcessorInterface.h
- * @version     2.1.0 08-Jan-15
+ * @version     2.2.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_PROCESSOR_INTERFACE_H__
@@ -11,6 +11,7 @@
 
 #include <OpenCV/cxcore.h>
 #include <TerrainAbstract.h>
+#include <HeightMap.h>
 #include <string>
 
 struct ImageProcessorInterface
@@ -19,7 +20,7 @@ struct ImageProcessorInterface
     {
     }
     
-    virtual void process(float* map, const cv::Mat& inputImage) = 0;
+    virtual void process(HeightMap* map, const cv::Mat& inputImage) = 0;
     virtual void release(void) = 0;
 };
 

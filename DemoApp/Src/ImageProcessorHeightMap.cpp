@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/ImageProcessorHeightMap.cpp
- * @version     2.2.0 08-Jan-15
+ * @version     2.3.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -13,9 +13,9 @@
     #include <SimpleLib/Logger.h>
 #endif
 
-ImageProcessorHeightMap::ImageProcessorHeightMap(const float maxHeight)
+ImageProcessorHeightMap::ImageProcessorHeightMap(const float maxHeight) :
+    _maxHeight(maxHeight)
 {
-    this->_maxHeight = maxHeight;
 }
 
 ImageProcessorHeightMap::~ImageProcessorHeightMap(void)
@@ -23,7 +23,7 @@ ImageProcessorHeightMap::~ImageProcessorHeightMap(void)
     this->_maxHeight = 0;
 }
 
-void ImageProcessorHeightMap::process(float* map, const cv::Mat& inputImage)
+void ImageProcessorHeightMap::process(HeightMap* map, const cv::Mat& inputImage)
 {
     unsigned short numberChannels   = inputImage.channels();
     unsigned int numberRows         = inputImage.rows;
@@ -52,7 +52,7 @@ void ImageProcessorHeightMap::process(float* map, const cv::Mat& inputImage)
                 currAvgColor /= this->_maxHeight;
             }
 
-            
+            map->setHeight(x, z, currAvgColor);
 
             //map->at<cv::Vec3b>(z, x) = currAvgColor;
             //terrain->setGridNode(x, currAvgColor, z);

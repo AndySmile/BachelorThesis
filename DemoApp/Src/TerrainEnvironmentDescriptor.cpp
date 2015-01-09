@@ -3,21 +3,19 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainEnvironmentDescriptor.cpp
- * @version     1.1.0 04-Jan-15
+ * @version     1.2.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
 #include <TerrainEnvironmentDescriptor.h>
 
-TerrainEnvironmentDescriptor::TerrainEnvironmentDescriptor(TerrainAbstract* terrain) :
-    _terrain(terrain),
+TerrainEnvironmentDescriptor::TerrainEnvironmentDescriptor(void) :
     _listDescriptors()
 {
     
 }
 
 TerrainEnvironmentDescriptor::TerrainEnvironmentDescriptor(const TerrainEnvironmentDescriptor& src) :
-    _terrain(NULL),
     _listDescriptors()
 {
     
@@ -30,8 +28,6 @@ TerrainEnvironmentDescriptor::~TerrainEnvironmentDescriptor(void)
 
 TerrainEnvironmentDescriptor& TerrainEnvironmentDescriptor::operator = (const TerrainEnvironmentDescriptor& src)
 {
-    this->_terrain = NULL;
-    
     return *this;
 }
 
@@ -47,7 +43,7 @@ void TerrainEnvironmentDescriptor::addDescriptor(TerrainDescriptorInterface* des
     }
 }
 
-void TerrainEnvironmentDescriptor::process(void)
+void TerrainEnvironmentDescriptor::process(const cv::Mat& inputImage, TerrainAbstract* terrain)
 {
     
 }

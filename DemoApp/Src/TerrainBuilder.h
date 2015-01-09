@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainBuilder.h
- * @version     1.2.0 08-Jan-15
+ * @version     1.3.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -43,11 +43,12 @@ class TerrainBuilder
         inline TerrainBuilder::TerrainType getTerrainType(void) const;
 
     private:
-        void _initTerrain(void);
+        //void _initTerrain(void);
+        void _applyHeightMapToTerrain(const HeightMap* map, TerrainAbstract* terrain);
 
     private:
         TerrainType _type;
-        TerrainAbstract* _terrain;
+        //TerrainAbstract* _terrain;
         ImageTransformer* _transformer;
         TerrainEnvironmentDescriptor* _descriptor;
         TerrainDecorator* _decorator;

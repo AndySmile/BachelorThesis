@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/ImageTransformer.h
- * @version     1.3.1 09-Jan-15
+ * @version     1.4.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_TRANSFORMER_H__
@@ -31,7 +31,7 @@ class ImageTransformer
     public:
         void addProcessor(ImageProcessorInterface* processor);
         TerrainAbstract* generateTerrain(TerrainType type);
-        float* generateHeightMap(void);
+        HeightMap* generateHeightMap(void);
         void release(void);
     
     public:

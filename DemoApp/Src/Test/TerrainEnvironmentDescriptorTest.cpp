@@ -1,5 +1,5 @@
 /**
- * @version     1.0.0 03-Jan-15
+ * @version     1.1.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -14,8 +14,14 @@ namespace DemoAppTest
     {
         // create dummy terrain
         TerrainMesh terrain;
-    
-        TerrainEnvironmentDescriptor environment(&terrain);
+
+        // create test image
+        cv::Mat testImage(10, 10, CV_8UC3, cv::Scalar(255, 255, 255));
+
+        // fill half of the image with blue color
+        cv::rectangle(testImage, cv::Point(0, 5), cv::Point(10, 10), cv::Scalar(255, 0, 0), CV_FILLED);
+        
+        TerrainEnvironmentDescriptor environment;
         
         // test default values
         CPPUNIT_ASSERT(environment.getCountDescriptors() == 0);
@@ -32,7 +38,7 @@ namespace DemoAppTest
         CPPUNIT_ASSERT(environment.getCountDescriptors() == 1);
         
         // test processing
-        environment.process();
+        environment.process(testImage, &terrain);
         
         // test releasing memory
         environment.release();

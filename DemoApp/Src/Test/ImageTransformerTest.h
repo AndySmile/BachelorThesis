@@ -1,5 +1,8 @@
 /**
- * @version     1.0.0 23-Dec-14
+ * DemoApp - ImageTransformer Test Suite Header.
+ *
+ * @author      Andy Liebke<coding@andysmiles4games.com>
+ * @version     1.1.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_TRANSFORMER_TEST_H__
@@ -20,6 +23,7 @@ namespace DemoAppTest
         public:
             CPPUNIT_TEST_SUITE(ImageTransformerTest);
             CPPUNIT_TEST(setImageFilePathTest);
+            CPPUNIT_TEST(generateHeightMapTest);
             CPPUNIT_TEST_SUITE_END();
         
         public:
@@ -27,6 +31,7 @@ namespace DemoAppTest
              * Tests setter and getter for image file path.
              */
             void setImageFilePathTest(void);
+            void generateHeightMapTest(void);
     };
 }
 #endif

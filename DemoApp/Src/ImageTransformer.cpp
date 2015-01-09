@@ -1,5 +1,5 @@
 /**
- * @version     1.3.0 08-Jan-15
+ * @version     1.4.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageTransformer.h>
@@ -71,9 +71,9 @@ TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
     return terrain;
 }
 
-HeightMap ImageTransformer::generateHeightMap(void)
+HeightMap* ImageTransformer::generateHeightMap(void)
 {
-    float* map;
+    HeightMap* map = NULL;
     
     if (!this->_imageFilePath.empty())
     {
@@ -85,22 +85,24 @@ HeightMap ImageTransformer::generateHeightMap(void)
             SimpleLib::Logger::writeDebug("ImageTransformer::generateHeightMap Failure: image '%s' wasn't loaded!", this->_imageFilePath.c_str());
 #endif
         }
-        else
+        else if (!this->_listProcessors.empty())
         {
             // initial size of the height map. It's possible that'll change by one of those image processors
             //map.create(image.cols, image.rows, CV_8UC3);
 
-            map = new float[image.cols * image.rows];
+            /*map = new float[image.cols * image.rows];
 
             for (unsigned int y=0; y < image.rows; ++y)
             {
                 for (unsigned int x=0; x < image.cols; ++x) {
                     map[(image.rows * y) + x] = 0.0f;
                 }
-            }
+            }*/
+
+            map = new HeightMap(image.cols, image.rows);
 
             for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
-                (*it)->process(&map, image);
+                (*it)->process(map, image);
             }
         }
     }
