@@ -37,10 +37,6 @@ namespace DemoAppTest
         
         // setup image tansformer
         transformer->addProcessor(new ImageProcessorHeightMap(200.0f));
-        
-        // setup environment descriptor
-        //descriptor = new TerrainEnvironmentDescriptor();
-        //descriptor->addDescriptor(new TerrainDescriptorWater();
 
         TerrainAbstract* terrain = builder.build();
         

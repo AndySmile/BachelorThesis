@@ -34,43 +34,6 @@ void ImageTransformer::addProcessor(ImageProcessorInterface* processor)
     this->_listProcessors.push_back(processor);
 }
 
-/*TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
-{
-    TerrainAbstract* terrain    = NULL;
-    
-    if (!this->_imageFilePath.empty())
-    {
-        cv::Mat image = cv::imread(this->_imageFilePath);
-        
-        if (image.data == 0)
-        {
-#ifdef _DEBUG
-            SimpleLib::Logger::writeDebug("image '%s' wasn't loaded!", this->_imageFilePath.c_str());
-#endif
-        }
-        else
-        {
-            cv::Size dimension = image.size();
-            
-            if (type == MeshTerrain) {
-                terrain = new TerrainMesh(dimension.width, 40, dimension.height);
-            }
-            else if (type == VoxelTerrain) {
-                terrain = new TerrainVoxel(dimension.width, 10, dimension.height);
-            }
-            
-            if (terrain != NULL)
-            {
-                for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
-                    (*it)->process(image, terrain);
-                }
-            }
-        }
-    }
-    
-    return terrain;
-}*/
-
 HeightMap* ImageTransformer::generateHeightMap(void)
 {
     HeightMap* map = NULL;

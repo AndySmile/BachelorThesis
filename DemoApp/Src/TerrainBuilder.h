@@ -43,12 +43,10 @@ class TerrainBuilder
         inline TerrainBuilder::TerrainType getTerrainType(void) const;
 
     private:
-        //void _initTerrain(void);
         void _applyHeightMapToTerrain(const HeightMap* map, TerrainAbstract* terrain);
 
     private:
         TerrainType _type;
-        //TerrainAbstract* _terrain;
         ImageTransformer* _transformer;
         TerrainEnvironmentDescriptor* _descriptor;
         TerrainDecorator* _decorator;

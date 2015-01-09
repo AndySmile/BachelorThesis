@@ -71,43 +71,16 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
 void DemoAppScene::init(void)
 {
     // setup terrain
-   /* ImageTransformer* transformer               = new ImageTransformer(this->_imagePath);
-    ImageTransformer::TerrainType terrainType   = ImageTransformer::MeshTerrain;
-    
-    if (this->_config != NULL)
-    {
-        this->_config->assignProcessors(transformer);
-        this->_config->assignSceneConfig(&this->_sceneConfig);
-        
-        terrainType = this->_config->getTerrainType();
-    }
-    else
-    {
-#ifdef _DEBUG
-        SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
-#endif
-        //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
-        transformer->addProcessor(new ImageProcessorHeightMap());
-        
-        this->_sceneConfig.isLightEnabled = false;
-    }
-    
-    this->_terrain = transformer->generateTerrain(terrainType);
-    
-    transformer->release();
-    
-    delete transformer;
-    transformer = NULL;*/
-
     TerrainBuilder* builder = NULL;
-    //ImageTransformer::TerrainType terrainType = ImageTransformer::MeshTerrain;
 
     if (this->_config != NULL)
     {
-        //this->_config->assignProcessors(transformer);
         this->_config->assignSceneConfig(&this->_sceneConfig);
 
-        builder = new TerrainBuilder(this->_config->getTerrainType(), this->_imagePath);
+        builder                         = new TerrainBuilder(this->_config->getTerrainType(), this->_imagePath);
+        ImageTransformer* transformer   = builder->getImageTransformer();
+
+        this->_config->assignProcessors(transformer);
     }
     else
     {
@@ -129,7 +102,6 @@ void DemoAppScene::init(void)
     
     delete builder;
     builder = NULL;
-
 
     // initialize camera
     this->_camera = new SimpleLib::Camera(0.0f, 50.0f, -80.0f, 3.0f);

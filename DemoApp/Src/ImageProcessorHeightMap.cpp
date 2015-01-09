@@ -53,12 +53,7 @@ void ImageProcessorHeightMap::process(HeightMap* map, const cv::Mat& inputImage)
                 currAvgColor /= this->_maxHeight;
             }
 
-            //SimpleLib::Logger::writeDebug("height: %f", currAvgColor);
-
             map->setHeight(currAvgColor, x, z);
-
-            //map->at<cv::Vec3b>(z, x) = currAvgColor;
-            //terrain->setGridNode(x, currAvgColor, z);
         }
     }
 }

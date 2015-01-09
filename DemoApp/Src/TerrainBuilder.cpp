@@ -17,24 +17,20 @@
 
 TerrainBuilder::TerrainBuilder(const TerrainBuilder::TerrainType type, const std::string pathInputImage) :
     _type(type),
-    //_terrain(NULL),
     _transformer(NULL),
     _descriptor(NULL),
     _decorator(NULL),
     _pathInputImage(pathInputImage)
 {
-    //this->_initTerrain();
 }
 
 TerrainBuilder::TerrainBuilder(const TerrainBuilder& src) :
     _type(src._type),
-    //_terrain(NULL),
     _transformer(NULL),
     _descriptor(NULL),
     _decorator(NULL),
     _pathInputImage(src._pathInputImage)
 {
-    //this->_initTerrain();
 }
 
 TerrainBuilder::~TerrainBuilder(void)
@@ -49,8 +45,6 @@ TerrainBuilder& TerrainBuilder::operator = (const TerrainBuilder& src)
     this->_transformer      = NULL;
     this->_descriptor       = NULL;
     this->_decorator        = NULL;
-    
-    //this->_initTerrain();
     
     return *this;
 }
@@ -75,24 +69,6 @@ void TerrainBuilder::release(void)
         this->_decorator = NULL;
     }
 }
-
-/*void TerrainBuilder::_initTerrain(void)
-{
-    switch (this->_type)
-    {
-        case TerrainBuilder::TypeMesh: {
-            this->_terrain = new TerrainMesh();
-        } break;
-            
-        case TerrainBuilder::TypeVoxel: {
-            this->_terrain = new TerrainVoxel();
-        } break;
-        
-        default: {
-            this->_terrain = NULL;
-        } break;
-    }
-}*/
 
 TerrainEnvironmentDescriptor* TerrainBuilder::getTerrainEnvironmentDescriptor(void)
 {
