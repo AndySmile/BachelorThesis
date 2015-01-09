@@ -112,6 +112,9 @@ bool HeightMap::_initMap(void)
 {
     if (this->_data == NULL)
     {
+#ifdef _DEBUG
+        SimpleLib::Logger::writeDebug("Initialize height map with size of %d, %d", this->_width, this->_height);
+#endif
         this->_data = new float[this->_width * this->_height];
 
         memset(this->_data, 0, this->_width * this->_height * sizeof(float));

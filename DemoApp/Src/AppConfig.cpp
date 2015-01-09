@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/AppConfig.cpp
- * @version     1.1.2 02-Jan-15
+ * @version     1.2.9 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
@@ -48,7 +48,7 @@ void AppConfig::assignProcessors(ImageTransformer* transformer)
     
 }
 
-ImageTransformer::TerrainType AppConfig::getTerrainType(void) const
+TerrainBuilder::TerrainType AppConfig::getTerrainType(void) const
 {
-    return ImageTransformer::MeshTerrain;
+    return TerrainBuilder::TypeMesh;
 }

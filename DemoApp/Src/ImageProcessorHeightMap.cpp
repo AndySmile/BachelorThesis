@@ -33,6 +33,7 @@ void ImageProcessorHeightMap::process(HeightMap* map, const cv::Mat& inputImage)
     SimpleLib::Logger::writeDebug("image channels: %d", numberChannels);
     SimpleLib::Logger::writeDebug("image rows: %d", numberRows);
     SimpleLib::Logger::writeDebug("image cols: %d", numberCols);
+    SimpleLib::Logger::writeDebug("Max height: %f", this->_maxHeight);
 #endif
 
     for (unsigned int x=0; x < numberCols; ++x)
@@ -52,7 +53,9 @@ void ImageProcessorHeightMap::process(HeightMap* map, const cv::Mat& inputImage)
                 currAvgColor /= this->_maxHeight;
             }
 
-            map->setHeight(x, z, currAvgColor);
+            //SimpleLib::Logger::writeDebug("height: %f", currAvgColor);
+
+            map->setHeight(currAvgColor, x, z);
 
             //map->at<cv::Vec3b>(z, x) = currAvgColor;
             //terrain->setGridNode(x, currAvgColor, z);

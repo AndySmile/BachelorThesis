@@ -85,6 +85,9 @@ TerrainMesh& TerrainMesh::operator = (const TerrainMesh& src)
 
 void TerrainMesh::setSize(const unsigned short width, const unsigned short height, const unsigned short depth)
 {
+#ifdef _DEBUG
+    SimpleLib::Logger::writeDebug("TerrainMesh: Resize grid from [%d, %d, %d] to [%d, %d, %d]", this->_width, this->_height, this->_depth, width, height, depth);
+#endif
     this->_width    = width;
     this->_height   = height;
     this->_depth    = depth;

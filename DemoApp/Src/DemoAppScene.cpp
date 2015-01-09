@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppScene.cpp
- * @version     1.7.0 08-Jan-15
+ * @version     1.8.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -13,6 +13,7 @@
 #include <ImageTransformer.h>
 #include <ImageProcessorHeightMap.h>
 #include <ImageProcessorHistogramHeightMap.h>
+#include <TerrainBuilder.h>
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
@@ -97,7 +98,39 @@ void DemoAppScene::init(void)
     
     delete transformer;
     transformer = NULL;*/
+
+    TerrainBuilder* builder = NULL;
+    //ImageTransformer::TerrainType terrainType = ImageTransformer::MeshTerrain;
+
+    if (this->_config != NULL)
+    {
+        //this->_config->assignProcessors(transformer);
+        this->_config->assignSceneConfig(&this->_sceneConfig);
+
+        builder = new TerrainBuilder(this->_config->getTerrainType(), this->_imagePath);
+    }
+    else
+    {
+#ifdef _DEBUG
+        SimpleLib::Logger::writeDebug("DemoAppScene::init: No app config object defined! using default values instead!");
+#endif
+        builder                         = new TerrainBuilder(TerrainBuilder::TypeMesh, this->_imagePath);
+        ImageTransformer* transformer   = builder->getImageTransformer();
+
+        //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+        transformer->addProcessor(new ImageProcessorHeightMap(300.0f));
+
+        this->_sceneConfig.isLightEnabled = false;
+    }
+
+    this->_terrain = builder->build();
+
+    builder->release();
     
+    delete builder;
+    builder = NULL;
+
+
     // initialize camera
     this->_camera = new SimpleLib::Camera(0.0f, 50.0f, -80.0f, 3.0f);
     
@@ -157,6 +190,11 @@ void DemoAppScene::render(sf::Window& window)
             this->_terrain->render();
         glPopMatrix();
     }
+#ifdef _DEBUG
+    else {
+        SimpleLib::Logger::writeDebug("No terrain object available!");
+    }
+#endif
 }
 
 void DemoAppScene::release(void)

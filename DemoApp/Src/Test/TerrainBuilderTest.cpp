@@ -36,7 +36,7 @@ namespace DemoAppTest
         CPPUNIT_ASSERT(decorator == NULL);
         
         // setup image tansformer
-        transformer->addProcessor(new ImageProcessorHeightMap(20.0f));
+        transformer->addProcessor(new ImageProcessorHeightMap(200.0f));
         
         // setup environment descriptor
         //descriptor = new TerrainEnvironmentDescriptor();

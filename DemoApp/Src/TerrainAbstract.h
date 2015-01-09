@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainAbstract.h
- * @version     1.3.0 04-Jan-15
+ * @version     1.3.1 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -21,8 +21,8 @@ class TerrainAbstract
     
         void addEntity(EntityAbstract* entity);
         unsigned int getNumberOfEntities(void);
-        void render(void);
-        void release(void);
+        virtual void render(void);
+        virtual void release(void);
     
     public:
         virtual void setGridNode(const unsigned short x, const float y, const unsigned short z) = 0;

@@ -34,7 +34,7 @@ void ImageTransformer::addProcessor(ImageProcessorInterface* processor)
     this->_listProcessors.push_back(processor);
 }
 
-TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
+/*TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
 {
     TerrainAbstract* terrain    = NULL;
     
@@ -59,17 +59,17 @@ TerrainAbstract* ImageTransformer::generateTerrain(TerrainType type)
                 terrain = new TerrainVoxel(dimension.width, 10, dimension.height);
             }
             
-            /*if (terrain != NULL)
+            if (terrain != NULL)
             {
                 for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
                     (*it)->process(image, terrain);
                 }
-            }*/
+            }
         }
     }
     
     return terrain;
-}
+}*/
 
 HeightMap* ImageTransformer::generateHeightMap(void)
 {
@@ -87,18 +87,6 @@ HeightMap* ImageTransformer::generateHeightMap(void)
         }
         else if (!this->_listProcessors.empty())
         {
-            // initial size of the height map. It's possible that'll change by one of those image processors
-            //map.create(image.cols, image.rows, CV_8UC3);
-
-            /*map = new float[image.cols * image.rows];
-
-            for (unsigned int y=0; y < image.rows; ++y)
-            {
-                for (unsigned int x=0; x < image.cols; ++x) {
-                    map[(image.rows * y) + x] = 0.0f;
-                }
-            }*/
-
             map = new HeightMap(image.cols, image.rows);
 
             for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {

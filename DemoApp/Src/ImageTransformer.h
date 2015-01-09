@@ -21,16 +21,16 @@ class ImageTransformer
         ImageTransformer(void);
         virtual ~ImageTransformer(void);
     
-    public:
+    /*public:
         enum TerrainType
         {
             VoxelTerrain = 1,
             MeshTerrain = 2
-        };
+        };*/
     
     public:
         void addProcessor(ImageProcessorInterface* processor);
-        TerrainAbstract* generateTerrain(TerrainType type);
+        //TerrainAbstract* generateTerrain(TerrainType type);
         HeightMap* generateHeightMap(void);
         void release(void);
     
