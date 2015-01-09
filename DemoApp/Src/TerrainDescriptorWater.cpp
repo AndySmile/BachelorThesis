@@ -31,7 +31,7 @@ void TerrainDescriptorWater::process(TerrainAbstract* terrain, const cv::Mat& im
     float waterHeight = this->_determineWaterHeight(terrain, image);
     
     if (waterHeight > 0.0f) {
-        terrain->addEntity(new EntityWater(glm::vec3(0.0f, waterHeight, 0.0f)));
+        terrain->addEntity(new EntityWater(glm::vec3(0.0f, waterHeight, 0.0f), terrain->getWidth() * terrain->getUnitLength(), terrain->getDepth() * terrain->getUnitLength()));
     }
 }
 

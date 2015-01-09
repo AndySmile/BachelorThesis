@@ -28,8 +28,8 @@ namespace DemoAppTest
         // test terrain type setter
         CPPUNIT_ASSERT(builder.getTerrainType() == TerrainBuilder::TypeMesh);
         
-        TerrainEnvironmentDescriptor* environment   = builder.getTerrainEnvironmentDescriptor();
-        TerrainDecorator* decorator                 = builder.getTerrainDecorator();
+        TerrainEnvironment* environment   = builder.getTerrainEnvironment();
+        TerrainDecorator* decorator       = builder.getTerrainDecorator();
         
         // test default terrain builder components
         CPPUNIT_ASSERT(environment != NULL);

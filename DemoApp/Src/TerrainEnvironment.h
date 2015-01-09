@@ -3,36 +3,39 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainEnvironmentDescriptor.h
- * @version     1.2.0 09-Jan-15
+ * @version     2.0.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
-#ifndef __TERRAIN_ENVIRONMENT_DESCRIPTOR_H__
-#define __TERRAIN_ENVIRONMENT_DESCRIPTOR_H__
+#ifndef __TERRAIN_ENVIRONMENT_H__
+#define __TERRAIN_ENVIRONMENT_H__
 
 #include <TerrainAbstract.h>
 #include <TerrainDescriptorInterface.h>
 #include <vector>
+#include <string>
 
-class TerrainEnvironmentDescriptor
+class TerrainEnvironment
 {
     public:
         typedef std::vector<TerrainDescriptorInterface*> ListTerrainDescriptors;
+        typedef ListTerrainDescriptors::iterator ListTerrainDescriptorsIterator;
     
     public:
-        TerrainEnvironmentDescriptor(void);
-        TerrainEnvironmentDescriptor(const TerrainEnvironmentDescriptor& src);
-        virtual ~TerrainEnvironmentDescriptor(void);
+        TerrainEnvironment(const std::string pathInputImage);
+        TerrainEnvironment(const TerrainEnvironment& src);
+        virtual ~TerrainEnvironment(void);
     
-        TerrainEnvironmentDescriptor& operator = (const TerrainEnvironmentDescriptor& src);
+        TerrainEnvironment& operator = (const TerrainEnvironment& src);
     
         unsigned int getCountDescriptors(void);
         void addDescriptor(TerrainDescriptorInterface* descriptor);
-        void process(const cv::Mat& inputImage, TerrainAbstract* terrain);
+        void process(TerrainAbstract* terrain);
         void release(void);
     
     private:
         ListTerrainDescriptors _listDescriptors;
+        std::string _pathInputImage;
 };
 
 #endif

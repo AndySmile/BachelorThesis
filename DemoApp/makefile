@@ -68,11 +68,10 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/TerrainVoxel.o \
 						Tmp/TerrainMesh.o \
 						Tmp/TerrainBuilder.o \
-						Tmp/TerrainEnvironmentDescriptor.o \
+						Tmp/TerrainEnvironment.o \
 						Tmp/TerrainDecorator.o \
 						Tmp/TerrainDescriptorWater.o \
 						Tmp/ImageProcessorHeightMap.o \
-						Tmp/ImageProcessorWater.o \
 						Tmp/ImageProcessorHistogramHeightMap.o \
 						Tmp/ImageTransformer.o \
 						Tmp/AppConfig.o \
@@ -92,7 +91,7 @@ LIST_OBJECTS_APP = Tmp/DemoAppMain.o
 LIST_OBJECTS_TEST = Tmp/Test/TestMain.o \
 					Tmp/Test/ImageTransformerTest.o \
 					Tmp/Test/TerrainBuilderTest.o \
-					Tmp/Test/TerrainEnvironmentDescriptorTest.o \
+					Tmp/Test/TerrainEnvironmentTest.o \
 					Tmp/Test/TerrainDescriptorWaterTest.o \
 					Tmp/Test/EntityAbstractTest.o \
 					Tmp/Test/TerrainAbstractTest.o \

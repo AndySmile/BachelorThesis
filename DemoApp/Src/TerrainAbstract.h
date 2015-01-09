@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainAbstract.h
- * @version     1.3.1 09-Jan-15
+ * @version     1.4.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -16,7 +16,7 @@
 class TerrainAbstract
 {
     public:
-        TerrainAbstract(const unsigned short width, const unsigned short height, const unsigned short depth);
+        TerrainAbstract(const unsigned short width, const unsigned short height, const unsigned short depth, const float unitLength);
         virtual ~TerrainAbstract(void);
     
         void addEntity(EntityAbstract* entity);
@@ -31,6 +31,8 @@ class TerrainAbstract
         inline unsigned short getWidth(void) const;
         inline unsigned short getHeight(void) const;
         inline unsigned short getDepth(void) const;
+        inline void setUnitLength(const float unitLength);
+        inline float getUnitLength(void) const;
         inline void setSize(unsigned short width, unsigned short height, unsigned short depth);
     
     protected:
@@ -44,6 +46,7 @@ class TerrainAbstract
         unsigned short _width;
         unsigned short _height;
         unsigned short _depth;
+        float _unitLength;
         ListEntities _listEntities;
 };
 

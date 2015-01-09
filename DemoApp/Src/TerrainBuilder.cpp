@@ -18,16 +18,18 @@
 TerrainBuilder::TerrainBuilder(const TerrainBuilder::TerrainType type, const std::string pathInputImage) :
     _type(type),
     _transformer(NULL),
-    _descriptor(NULL),
+    _environment(NULL),
     _decorator(NULL),
     _pathInputImage(pathInputImage)
 {
+    this->_transformer = new ImageTransformer(this->_pathInputImage);
+    this->_environment = new TerrainEnvironment(this->_pathInputImage);
 }
 
 TerrainBuilder::TerrainBuilder(const TerrainBuilder& src) :
     _type(src._type),
     _transformer(NULL),
-    _descriptor(NULL),
+    _environment(NULL),
     _decorator(NULL),
     _pathInputImage(src._pathInputImage)
 {
@@ -43,7 +45,7 @@ TerrainBuilder& TerrainBuilder::operator = (const TerrainBuilder& src)
     this->_type             = src._type;
     this->_pathInputImage   = src._pathInputImage;
     this->_transformer      = NULL;
-    this->_descriptor       = NULL;
+    this->_environment      = NULL;
     this->_decorator        = NULL;
     
     return *this;
@@ -53,14 +55,18 @@ void TerrainBuilder::release(void)
 {
     if (this->_transformer != NULL)
     {
+        this->_transformer->release();
+        
         delete this->_transformer;
         this->_transformer = NULL;
     }
     
-    if (this->_descriptor != NULL)
+    if (this->_environment != NULL)
     {
-        delete this->_descriptor;
-        this->_descriptor = NULL;
+        this->_environment->release();
+        
+        delete this->_environment;
+        this->_environment = NULL;
     }
     
     if (this->_decorator != NULL)
@@ -70,28 +76,20 @@ void TerrainBuilder::release(void)
     }
 }
 
-TerrainEnvironmentDescriptor* TerrainBuilder::getTerrainEnvironmentDescriptor(void)
+/*TerrainEnvironmentDescriptor* TerrainBuilder::getTerrainEnvironmentDescriptor(void)
 {
-    if (this->_descriptor == NULL) {
-        this->_descriptor = new TerrainEnvironmentDescriptor();
-    }
-    
-    return this->_descriptor;
+    return this->_environment;
 }
 
 ImageTransformer* TerrainBuilder::getImageTransformer(void)
 {
-    if (this->_transformer == NULL) {
-        this->_transformer = new ImageTransformer(this->_pathInputImage);
-    }
-
     return this->_transformer;
 }
 
 TerrainDecorator* TerrainBuilder::getTerrainDecorator(void)
 {
     return NULL;
-}
+}*/
 
 TerrainAbstract* TerrainBuilder::build(void)
 {
@@ -101,14 +99,16 @@ TerrainAbstract* TerrainBuilder::build(void)
     if (map != NULL)
     {
         if (this->_type == TerrainBuilder::TypeMesh) {
-            terrain = new TerrainMesh(map->getWidth(), 300, map->getHeight());
+            terrain = new TerrainMesh(map->getWidth(), 0, map->getHeight());
         }
         else if (this->_type == TerrainBuilder::TypeVoxel) {
-            terrain = new TerrainVoxel(map->getWidth(), 300, map->getHeight());
+            terrain = new TerrainVoxel(map->getWidth(), 0, map->getHeight());
         }
 
-        if (terrain != NULL) {
+        if (terrain != NULL)
+        {
             this->_applyHeightMapToTerrain(map, terrain);
+            this->_environment->process(terrain);
         }
         
         delete map;

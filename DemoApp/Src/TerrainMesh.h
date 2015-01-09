@@ -1,5 +1,5 @@
 /**
- * @version     2.3.0 03-Jan-15
+ * @version     2.4.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __TERRAIN_MESH_H__
@@ -11,7 +11,7 @@ class TerrainMesh : public TerrainAbstract
 {
     public:
         TerrainMesh(void);
-        TerrainMesh(const unsigned short width, const unsigned short height, const unsigned short depth);
+        TerrainMesh(const unsigned short width, const unsigned short height, const unsigned short depth, const float unitLength=2.0f);
         TerrainMesh(const TerrainMesh& src);
         virtual ~TerrainMesh(void);
     

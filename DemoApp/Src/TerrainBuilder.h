@@ -11,7 +11,7 @@
 #define __TERRAIN_BUILDER_H__
 
 #include <ImageTransformer.h>
-#include <TerrainEnvironmentDescriptor.h>
+#include <TerrainEnvironment.h>
 #include <TerrainDecorator.h>
 #include <TerrainAbstract.h>
 
@@ -33,22 +33,22 @@ class TerrainBuilder
         TerrainBuilder& operator = (const TerrainBuilder& src);
 
         TerrainAbstract* build(void);
-        TerrainEnvironmentDescriptor* getTerrainEnvironmentDescriptor(void);
-        ImageTransformer* getImageTransformer(void);
-        TerrainDecorator* getTerrainDecorator(void);
         void release(void);
     
     public:
         inline void setTerrainType(const TerrainBuilder::TerrainType type);
         inline TerrainBuilder::TerrainType getTerrainType(void) const;
-
+        inline TerrainEnvironment* getTerrainEnvironment(void);
+        inline ImageTransformer* getImageTransformer(void);
+        inline TerrainDecorator* getTerrainDecorator(void);
+    
     private:
         void _applyHeightMapToTerrain(const HeightMap* map, TerrainAbstract* terrain);
 
     private:
         TerrainType _type;
         ImageTransformer* _transformer;
-        TerrainEnvironmentDescriptor* _descriptor;
+        TerrainEnvironment* _environment;
         TerrainDecorator* _decorator;
         std::string _pathInputImage;
 };

@@ -1,27 +1,20 @@
 /**
- * @version     1.1.0 09-Jan-15
+ * @version     2.0.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
-#include <Test/TerrainEnvironmentDescriptorTest.h>
-#include <TerrainEnvironmentDescriptor.h>
+#include <Test/TerrainEnvironmentTest.h>
+#include <TerrainEnvironment.h>
 #include <TerrainDescriptorWater.h>
 #include <TerrainMesh.h>
 
 namespace DemoAppTest
 {
-    void TerrainEnvironmentDescriptorTest::processTest(void)
+    void TerrainEnvironmentTest::processTest(void)
     {
         // create dummy terrain
         TerrainMesh terrain;
-
-        // create test image
-        cv::Mat testImage(10, 10, CV_8UC3, cv::Scalar(255, 255, 255));
-
-        // fill half of the image with blue color
-        cv::rectangle(testImage, cv::Point(0, 5), cv::Point(10, 10), cv::Scalar(255, 0, 0), CV_FILLED);
-        
-        TerrainEnvironmentDescriptor environment;
+        TerrainEnvironment environment("Resource/HeightMap_10.png");
         
         // test default values
         CPPUNIT_ASSERT(environment.getCountDescriptors() == 0);
@@ -38,7 +31,7 @@ namespace DemoAppTest
         CPPUNIT_ASSERT(environment.getCountDescriptors() == 1);
         
         // test processing
-        environment.process(testImage, &terrain);
+        environment.process(&terrain);
         
         // test releasing memory
         environment.release();

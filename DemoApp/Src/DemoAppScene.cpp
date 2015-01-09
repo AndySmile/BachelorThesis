@@ -14,6 +14,7 @@
 #include <ImageProcessorHeightMap.h>
 #include <ImageProcessorHistogramHeightMap.h>
 #include <TerrainBuilder.h>
+#include <TerrainDescriptorWater.h>
 #include <SFML/OpenGL.hpp>
 
 #ifdef _DEBUG
@@ -43,14 +44,14 @@ DemoAppScene::DemoAppScene(const DemoAppScene& src) :
     _sceneConfig()
 {
 #ifdef _DEBUG
-    SimpleLib::Logger::writeDebug("call copy constructor!");
+    SimpleLib::Logger::writeDebug("DemoAppScene: call copy constructor!");
 #endif
 }
 
 DemoAppScene::~DemoAppScene(void)
 {
 #ifdef _DEBUG
-    SimpleLib::Logger::writeDebug("DemoAppScene Notice: call destructor!");
+    SimpleLib::Logger::writeDebug("DemoAppScene: call destructor!");
 #endif
 }
 
@@ -62,7 +63,7 @@ DemoAppScene& DemoAppScene::operator = (const DemoAppScene& src)
     this->_terrain          = NULL;
     
 #ifdef _DEBUG
-    SimpleLib::Logger::writeDebug("call assignment operator!");
+    SimpleLib::Logger::writeDebug("DemoAppScene: call assignment operator!");
 #endif
 
     return *this;
@@ -89,9 +90,12 @@ void DemoAppScene::init(void)
 #endif
         builder                         = new TerrainBuilder(TerrainBuilder::TypeMesh, this->_imagePath);
         ImageTransformer* transformer   = builder->getImageTransformer();
-
+        TerrainEnvironment* environment = builder->getTerrainEnvironment();
+        
         //transformer->addProcessor(new ImageProcessorHistogramHeightMap());
         transformer->addProcessor(new ImageProcessorHeightMap(300.0f));
+
+        environment->addDescriptor(new TerrainDescriptorWater());
 
         this->_sceneConfig.isLightEnabled = false;
     }
@@ -164,7 +168,7 @@ void DemoAppScene::render(sf::Window& window)
     }
 #ifdef _DEBUG
     else {
-        SimpleLib::Logger::writeDebug("No terrain object available!");
+        SimpleLib::Logger::writeDebug("DemoAppScene: No terrain object available!");
     }
 #endif
 }

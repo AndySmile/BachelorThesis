@@ -1,5 +1,5 @@
 /**
- * @version     2.3.0 04-Jan-15
+ * @version     2.4.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <TerrainVoxel.h>
@@ -11,14 +11,14 @@
 #endif
 
 TerrainVoxel::TerrainVoxel(void) :
-    TerrainAbstract(0, 0, 0),
+    TerrainAbstract(0, 0, 0, 1.0f),
     _chunk(NULL)
 {
     
 }
 
-TerrainVoxel::TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth) :
-    TerrainAbstract(width, height, depth),
+TerrainVoxel::TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth, const float unitLength) :
+    TerrainAbstract(width, height, depth, unitLength),
     _chunk(NULL)
 {
     this->_resetChunk();

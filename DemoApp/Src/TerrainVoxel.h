@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainVoxel.h
- * @version     2.2.0 03-Jan-15
+ * @version     2.3.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -16,7 +16,7 @@ class TerrainVoxel : public TerrainAbstract
 {
     public:
         TerrainVoxel(void);
-        TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth);
+        TerrainVoxel(const unsigned short width, const unsigned short height, const unsigned short depth, const float unitLength=1.0f);
         TerrainVoxel(const TerrainVoxel& src);
         virtual ~TerrainVoxel(void);
     

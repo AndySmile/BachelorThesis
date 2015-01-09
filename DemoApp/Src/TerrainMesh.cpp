@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/TerrainMesh.cpp
- * @version     2.5.1 09-Jan-15
+ * @version     2.6.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -17,15 +17,15 @@
 #endif
 
 TerrainMesh::TerrainMesh(void) :
-    TerrainAbstract(0, 0, 0),
+    TerrainAbstract(0, 0, 0, 2.0f),
     _grid(NULL),
     _meshId(0)
 {
     
 }
 
-TerrainMesh::TerrainMesh(const unsigned short width, const unsigned short height, const unsigned short depth) :
-    TerrainAbstract(width, height, depth),
+TerrainMesh::TerrainMesh(const unsigned short width, const unsigned short height, const unsigned short depth, const float unitLength) :
+    TerrainAbstract(width, height, depth, unitLength),
     _grid(NULL),
     _meshId(0)
 {
@@ -132,6 +132,10 @@ void TerrainMesh::setGridNode(const unsigned short x, const float y, const unsig
     assert(z < this->_depth);
 #endif
 
+    if (y > this->_height) {
+        this->_height = y;
+    }
+
     this->_grid[x][z] = y;
 }
 
@@ -142,15 +146,16 @@ void TerrainMesh::render(void)
         // create an offset to center the terrain
         float offsetX = -(this->_width / 2.0f);
         float offsetZ = -(this->_depth / 2.0f);
+
         this->_meshId = glGenLists(1);
         
+        SimpleLib::OpenGLHelper::printError();
+
 #ifdef _DEBUG
         SimpleLib::Logger::writeDebug("Mesh ID: %d", this->_meshId);
         SimpleLib::Logger::writeDebug("offsetX: %f", offsetX);
         SimpleLib::Logger::writeDebug("offsetZ: %f", offsetZ);
 #endif
-        SimpleLib::OpenGLHelper::printError();
-        
         glNewList(this->_meshId, GL_COMPILE);
         
             SimpleLib::OpenGLHelper::printError();
@@ -164,8 +169,8 @@ void TerrainMesh::render(void)
                         float currHeight = this->_grid[x][z];
                         float nextHeight = (z + 1 < this->_depth) ? this->_grid[x][z + 1] : currHeight;
                         
-                        glVertex3f((x * 2.0f), nextHeight, offsetZ + ((z + 1) * 2.0f));
-                        glVertex3f((x * 2.0f), currHeight, offsetZ + (z * 2.0f));
+                        glVertex3f((x * this->_unitLength), nextHeight, offsetZ + ((z + 1) * this->_unitLength));
+                        glVertex3f((x * this->_unitLength), currHeight, offsetZ + (z * this->_unitLength));
                     }
                 
                 glEnd();
@@ -175,8 +180,11 @@ void TerrainMesh::render(void)
         
         SimpleLib::OpenGLHelper::printError();
     }
-    
+
+    glColor3b(160, 125, 75);
     glCallList(this->_meshId);
+
+    TerrainAbstract::render();
 }
 
 void TerrainMesh::release(void)
