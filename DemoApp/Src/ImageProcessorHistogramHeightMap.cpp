@@ -1,5 +1,5 @@
 /**
- * @version     1.1.0 02-Jan-15
+ * @version     1.2.0 09-Jan-15
  * @copyright   Copyright (c) 2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -25,7 +25,7 @@ ImageProcessorHistogramHeightMap::~ImageProcessorHistogramHeightMap(void)
     
 }
 
-void ImageProcessorHistogramHeightMap::process(const cv::Mat& image, TerrainAbstract* terrain)
+void ImageProcessorHistogramHeightMap::process(HeightMap* map, const cv::Mat& image)
 {
     const int histogramSize     = 256;
     const int numberOfChannels  = 0;
@@ -78,9 +78,9 @@ void ImageProcessorHistogramHeightMap::process(const cv::Mat& image, TerrainAbst
             float currHeight = currAvgColor / numChannels;
             
             // don't cross max height border
-            if (currHeight >= terrain->getHeight()) {
+            /*if (currHeight >= terrain->getHeight()) {
                 currHeight /= (float)terrain->getHeight();
-            }
+            }*/
             
             listHeights[z] = currHeight;
             
@@ -97,8 +97,10 @@ void ImageProcessorHistogramHeightMap::process(const cv::Mat& image, TerrainAbst
                     currHeight = (listHeights[z - 1] * (1.0f - interpolationValue)) + (currHeight * interpolationValue);
                 }
             }
-            
-            terrain->setGridNode(x, currHeight, z);
+
+            map->setHeight(currHeight, x, z);
+
+           // terrain->setGridNode(x, currHeight, z);
         }
     }
 

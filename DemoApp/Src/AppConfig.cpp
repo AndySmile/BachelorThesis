@@ -3,11 +3,13 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/AppConfig.cpp
- * @version     1.2.9 09-Jan-15
+ * @version     1.3.0 09-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
 #include <AppConfig.h>
+#include <ImageProcessorHeightMap.h>
+#include <ImageProcessorHistogramHeightMap.h>
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>
@@ -45,7 +47,41 @@ void AppConfig::assignSceneConfig(SceneConfigParameter* config)
 
 void AppConfig::assignProcessors(ImageTransformer* transformer)
 {
-    
+    float maxHeight = 0.0f;
+    DataMap::iterator groupIterator = this->_data.find("image_processor_settings");
+
+    if (groupIterator != this->_data.end())
+    {
+        for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it)
+        {
+            if (it->first.compare("ImageProcessorHeightMap_MaxHeight") == 0) {
+                maxHeight = (float)it->second;
+            }
+        }
+    }
+
+    groupIterator = this->_data.find("image_processor");
+
+    if (groupIterator != this->_data.end())
+    {
+        for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it)
+        {
+            if (it->first.compare("ImageProcessorHeightMap") == 0 && it->second == 1)
+            {
+#ifdef _DEBUG
+                SimpleLib::Logger::writeDebug("Adding ImageProcessorHeightMap!");
+#endif
+                transformer->addProcessor(new ImageProcessorHeightMap(maxHeight));
+            }
+            else if (it->first.compare("ImageProcessorHeightMap") == 0 && it->second == 1)
+            {
+#ifdef _DEBUG
+                SimpleLib::Logger::writeDebug("Adding ImageProcessorHistorgramHeightMap!");
+#endif
+                transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+            }
+        }
+    }
 }
 
 TerrainBuilder::TerrainType AppConfig::getTerrainType(void) const
