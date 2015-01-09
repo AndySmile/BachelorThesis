@@ -26,7 +26,8 @@ DemoApp/DemoAppTest
 ##
 # Resource Files.
 #
-Resource
+*/Resource/*
+Prototypes/*/Resource/*
 !DemoApp/Resource/HeightMap_10.png
 
 ##
