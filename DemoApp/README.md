@@ -2,7 +2,7 @@
 
 This is the main application of my Bachelor Thesis. It transforms a 2D image to a 3D terrain. 
 
-![Screenshot of the DemoApp render window](http://andysmiles4games.com/GitHub/Images/DemoApp-Screenshot.png "Screenshot of a generated terrain rendered with OpenGL")
+![Screenshot of the DemoApp render window](http://andysmiles4games.com/GitHub/Images/DemoApp-Screenshot-Terrain.png "Screenshot of a generated terrain rendered with OpenGL")
 
 ##Build Project
 
