@@ -15,6 +15,14 @@ To have a quick start is here a quick guide how to compile your project:
 3. Enter `make` inside your terminal
 4. If no error occurred you're able to start the application with `./DemoApp [PATH-TO-YOUR-INPUT-IMAGE]`
 
+##Start Project
+
+	./DemoApp "path-to-input-image" (optional)["path-to-control-file"]
+
+This project requires one parameter which is the path to the input image. Additionally it's possible to define 
+the path to a configuration file as a second parameter. That configuration file allows you to control 
+the generation process and also how the result will presented at the end.
+
 ##Control Schema
 
 You can control the view camera by your keyboard. That's the keyboard schema for that:
