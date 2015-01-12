@@ -1,5 +1,5 @@
 /**
- * @version     1.4.0 09-Jan-15
+ * @version     1.5.0 12-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <ImageTransformer.h>
@@ -53,7 +53,7 @@ HeightMap* ImageTransformer::generateHeightMap(void)
             map = new HeightMap(image.cols, image.rows);
 
             for (ImageProcessorsIterator it = this->_listProcessors.begin(); it != this->_listProcessors.end(); ++it) {
-                (*it)->process(map, image);
+                (*it)->process(map, &image);
             }
         }
     }

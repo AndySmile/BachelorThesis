@@ -1,5 +1,5 @@
 /**
- * @version     1.1.0 09-Jan-15
+ * @version     1.2.0 12-Jan-15
  * @copyright   Copyright (c) 2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #ifndef __IMAGE_PROCESSOR_HISTOGRAM_HEIGHT_MAP_H__
@@ -13,7 +13,7 @@ class ImageProcessorHistogramHeightMap : public ImageProcessorInterface
         ImageProcessorHistogramHeightMap(void);
         virtual ~ImageProcessorHistogramHeightMap(void);
     
-        void process(HeightMap* map, const cv::Mat& image);
+        void process(HeightMap* map, cv::Mat* image);
         void release(void);
 };
 

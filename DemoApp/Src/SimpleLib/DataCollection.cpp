@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        SimpleLib/DataCollection.cpp
- * @version     1.1.2 03-Jan-15
+ * @version     1.1.3 12-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
@@ -59,15 +59,7 @@ namespace SimpleLib
                 
                 while (!feof(fileHnd))
                 {
-                    if (fgets(currLine, 256, fileHnd) == NULL)
-                    {
-                        errorCode = ReadFailure;
-#ifdef _DEBUG
-                        Logger::writeDebug("DataCollection::loadFromFile: error while reading the data from file!");
-#endif
-                        break;
-                    }
-                    else
+                    if (fgets(currLine, 256, fileHnd) != NULL)
                     {
                         // ignore empty lines and comments
                         if ((unsigned int)strlen(currLine) > 0 && currLine[0] != '#')

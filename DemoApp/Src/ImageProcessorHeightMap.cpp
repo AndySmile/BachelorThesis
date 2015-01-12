@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/ImageProcessorHeightMap.cpp
- * @version     2.3.0 09-Jan-15
+ * @version     2.4.0 12-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -23,11 +23,11 @@ ImageProcessorHeightMap::~ImageProcessorHeightMap(void)
     this->_maxHeight = 0;
 }
 
-void ImageProcessorHeightMap::process(HeightMap* map, const cv::Mat& inputImage)
+void ImageProcessorHeightMap::process(HeightMap* map, cv::Mat* inputImage)
 {
-    unsigned short numberChannels   = inputImage.channels();
-    unsigned int numberRows         = inputImage.rows;
-    unsigned int numberCols         = inputImage.cols;
+    unsigned short numberChannels   = inputImage->channels();
+    unsigned int numberRows         = inputImage->rows;
+    unsigned int numberCols         = inputImage->cols;
     
 #ifdef _DEBUG
     SimpleLib::Logger::writeDebug("image channels: %d", numberChannels);
@@ -40,7 +40,7 @@ void ImageProcessorHeightMap::process(HeightMap* map, const cv::Mat& inputImage)
     {
         for (unsigned int z=0; z < numberRows; ++z)
         {
-            cv::Vec3b color = inputImage.at<cv::Vec3b>(z, x);
+            cv::Vec3b color = inputImage->at<cv::Vec3b>(z, x);
             float currAvgColor = 0.0f;
             
             for (unsigned short n=0; n < numberChannels; ++n) {

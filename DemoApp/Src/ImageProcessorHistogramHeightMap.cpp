@@ -1,5 +1,5 @@
 /**
- * @version     1.2.0 09-Jan-15
+ * @version     1.3.0 12-Jan-15
  * @copyright   Copyright (c) 2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 
@@ -25,7 +25,7 @@ ImageProcessorHistogramHeightMap::~ImageProcessorHistogramHeightMap(void)
     
 }
 
-void ImageProcessorHistogramHeightMap::process(HeightMap* map, const cv::Mat& image)
+void ImageProcessorHistogramHeightMap::process(HeightMap* map, cv::Mat* image)
 {
     const int histogramSize     = 256;
     const int numberOfChannels  = 0;
@@ -33,7 +33,7 @@ void ImageProcessorHistogramHeightMap::process(HeightMap* map, const cv::Mat& im
     const float* histogramRange = {channelRange};
     std::vector<cv::Mat> listChannels;
     
-    cv::split(image, listChannels);
+    cv::split(*image, listChannels);
     
     unsigned short numChannels  = listChannels.size();
     cv::MatND* listHistograms   = new cv::MatND[numChannels];
@@ -42,7 +42,7 @@ void ImageProcessorHistogramHeightMap::process(HeightMap* map, const cv::Mat& im
     SimpleLib::Logger::writeDebug("Histogram Height Map Processor: number of channels: %d", listChannels.size());
     
     // create a debug window to display the histogram values
-    cv::Size dimension = image.size();
+    cv::Size dimension = image->size();
     cv::Mat debugHistogram(400, 256, CV_8UC3, cv::Scalar(0, 0, 0));
     cv::namedWindow("Histogram Debug Output", CV_WINDOW_AUTOSIZE);
 #endif
