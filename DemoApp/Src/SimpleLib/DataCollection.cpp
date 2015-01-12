@@ -93,7 +93,7 @@ namespace SimpleLib
                                 {
                                     std::string key(this->_trimValue(currItem.substr(0, position)));
                                     std::string value(this->_trimValue(currItem.substr(position + 1)));
-                                    
+
                                     currGroupItems[key] = atoi(value.c_str());
                                 }
                             }
@@ -101,7 +101,11 @@ namespace SimpleLib
                     }
                     
                 }
-            
+
+                if (!currGroupItems.empty()) {
+                    this->_data[currGroup] = currGroupItems;
+                }
+                
                 fclose(fileHnd);
             }
         }

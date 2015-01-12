@@ -10,6 +10,7 @@
 #include <AppConfig.h>
 #include <ImageProcessorHeightMap.h>
 #include <ImageProcessorHistogramHeightMap.h>
+#include <ImageProcessorBlurring.h>
 
 #ifdef _DEBUG
     #include <SimpleLib/Logger.h>
@@ -88,6 +89,13 @@ void AppConfig::assignProcessors(ImageTransformer* transformer)
                 SimpleLib::Logger::writeDebug("AppConfig: Adding ImageProcessorHistorgramHeightMap!");
 #endif
                 transformer->addProcessor(new ImageProcessorHistogramHeightMap());
+            }
+            else if (it->first.compare("ImageProcessorBlurring") == 0 && it->second == 1)
+            {
+#ifdef _DEBUG
+                SimpleLib::Logger::writeDebug("AppConfig: Adding ImageProcessorBlurring!");
+#endif
+                transformer->addProcessor(new ImageProcessorBlurring());
             }
         }
     }

@@ -73,6 +73,7 @@ LIST_OBJECTS_COMMON =	Tmp/DemoAppScene.o \
 						Tmp/TerrainDescriptorWater.o \
 						Tmp/ImageProcessorHeightMap.o \
 						Tmp/ImageProcessorHistogramHeightMap.o \
+                        Tmp/ImageProcessorBlurring.o \
 						Tmp/ImageTransformer.o \
 						Tmp/AppConfig.o \
 						Tmp/EntityAbstract.o \
