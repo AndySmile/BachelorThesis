@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/AppConfig.cpp
- * @version     1.3.0 09-Jan-15
+ * @version     1.4.0 12-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     simplelib
  */
@@ -33,8 +33,12 @@ void AppConfig::assignSceneConfig(SceneConfigParameter* config)
     {
         for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it)
         {
-            if (it->first.compare("enable_light") == 0) {
+            if (it->first.compare("enable_light") == 0)
+            {
                 config->isLightEnabled = (it->second == 1);
+#ifdef _DEBUG
+                SimpleLib::Logger::writeDebug("AppConfig: set light to %s", ((config->isLightEnabled) ? "ON" : "OFF"));
+#endif
             }
 #ifdef _DEBUG
             else {
@@ -54,8 +58,13 @@ void AppConfig::assignProcessors(ImageTransformer* transformer)
     {
         for (DataMapItem::iterator it=groupIterator->second.begin(); it != groupIterator->second.end(); ++it)
         {
-            if (it->first.compare("ImageProcessorHeightMap_MaxHeight") == 0) {
+            if (it->first.compare("ImageProcessorHeightMap_MaxHeight") == 0)
+            {
                 maxHeight = (float)it->second;
+
+#ifdef _DEBUG
+                SimpleLib::Logger::writeDebug("AppConfig:: ImageProcessorHeightMap_MaxHeight set to %f", maxHeight);
+#endif
             }
         }
     }
@@ -69,14 +78,14 @@ void AppConfig::assignProcessors(ImageTransformer* transformer)
             if (it->first.compare("ImageProcessorHeightMap") == 0 && it->second == 1)
             {
 #ifdef _DEBUG
-                SimpleLib::Logger::writeDebug("Adding ImageProcessorHeightMap!");
+                SimpleLib::Logger::writeDebug("AppConfig: Adding ImageProcessorHeightMap!");
 #endif
                 transformer->addProcessor(new ImageProcessorHeightMap(maxHeight));
             }
             else if (it->first.compare("ImageProcessorHeightMap") == 0 && it->second == 1)
             {
 #ifdef _DEBUG
-                SimpleLib::Logger::writeDebug("Adding ImageProcessorHistorgramHeightMap!");
+                SimpleLib::Logger::writeDebug("AppConfig: Adding ImageProcessorHistorgramHeightMap!");
 #endif
                 transformer->addProcessor(new ImageProcessorHistogramHeightMap());
             }

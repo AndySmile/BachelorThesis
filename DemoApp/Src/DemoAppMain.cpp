@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke\<coding@andysmiles4games.com\>
  * @file        Src/DemoAppMain.cpp
- * @version     1.2.0 27-Dec-14
+ * @version     1.2.1 12-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  */
 #include <SimpleLib/Application.h>
@@ -22,6 +22,8 @@ int main(const int argc, char** argv)
     }
     else
     {
+        SimpleLib::Logger::init();
+
         DemoAppScene* scene = new DemoAppScene();
         
         scene->setImagePath(argv[1]);
