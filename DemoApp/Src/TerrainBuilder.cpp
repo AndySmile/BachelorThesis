@@ -3,7 +3,7 @@
  *
  * @author      Andy Liebke<coding@andysmiles4games.com>
  * @file        Src/TerrainBuilder.cpp
- * @version     1.3.0 09-Jan-15
+ * @version     1.3.1 14-Jan-15
  * @copyright   Copyright (c) 2014-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
  * @ingroup     demoapp
  */
@@ -75,21 +75,6 @@ void TerrainBuilder::release(void)
         this->_decorator = NULL;
     }
 }
-
-/*TerrainEnvironmentDescriptor* TerrainBuilder::getTerrainEnvironmentDescriptor(void)
-{
-    return this->_environment;
-}
-
-ImageTransformer* TerrainBuilder::getImageTransformer(void)
-{
-    return this->_transformer;
-}
-
-TerrainDecorator* TerrainBuilder::getTerrainDecorator(void)
-{
-    return NULL;
-}*/
 
 TerrainAbstract* TerrainBuilder::build(void)
 {
